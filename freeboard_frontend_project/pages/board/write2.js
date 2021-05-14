@@ -18,7 +18,7 @@ const [boardWritePackage, setBoardWritePackage] = useState({
 })
 
 const CREATE_BOARD = gql`
-  mutation createBoard($headWriter:String, $headPassword: String $headTitle: String!, $headContent: String!){
+  mutation createBoard($headWriter:String, $headPassword: String, $headTitle: String!, $headContent: String!){
     createBoard(createBoardInput : {
       writer: $headWriter,
       password: $headPassword,
@@ -42,6 +42,7 @@ const onChangeInput = (event) => {
     [event.target.name] : event.target.value
     
   }
+
   setBoardWritePackage(data)
   console.log(data)
 
