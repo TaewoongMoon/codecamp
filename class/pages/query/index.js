@@ -1,10 +1,12 @@
 import {useState} from "react";
 import {useMutation, gql} from "@apollo/client";
+import {useRouter} from 'next/router';
 
 
 
 export default function ProfilePage(){
 
+    const router = useRouter();
 
     const[age, setAge] = useState(0)
 
@@ -58,10 +60,17 @@ export default function ProfilePage(){
             const message = result.data.createProfile.message;
             alert(message);
             // location.reload();
+            const id = profilePackage.name
+
+            router.push(`/query/${id}`)
  
         }catch (error){
             alert(error.message)
         }
+
+
+
+
     }
 
 
