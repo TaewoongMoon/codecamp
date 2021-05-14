@@ -1,13 +1,42 @@
 import {useRouter} from "next/router"
+import {useQuery, gql} from "@apollo/client"
 
 export default function QueryDetailPage(){
     
     const router = useRouter()
 
-    console.log(router.query)
+    const FETCH_PROFILE = gql`
+        query fetchProfile($name:String){
+            fetchProfile(name:$name){
+                number
+                name
+                age
+                school
+            }
+        }
+    `
+
+    const {data} = useQuery(FETCH_PROFILE, {
+        variables:{
+            name: router.query.name,
+
+        }
+    })
+
+    console.log('data', data)
 
 
     return(
-        <div>상세보기 페이지입니다.</div>
+        <div>
+            <div>
+            이름: {data && data.fetchProfile.name}
+            </div>
+            <div>
+            나이: {data && data.fetchProfile.age}
+            </div>
+            <div>
+            학교: {data && data.fetchProfile.school}
+            </div>
+        </div>
     )
 }
