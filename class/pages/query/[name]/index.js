@@ -16,16 +16,23 @@ export default function QueryDetailPage(){
         }
     `
 
-    const {data} = useQuery(FETCH_PROFILE, {
+    const {data,loading,error} = useQuery(FETCH_PROFILE, {
         variables:{
             name: router.query.name,
 
         }
-    })
+    }
+    )
 
     console.log('data', data)
 
-
+    if(loading){
+    return <span>loading</span>
+    }
+    if(error){
+        return<span>error</span>
+    }
+    
     return(
         <div>
             <div>
@@ -34,8 +41,8 @@ export default function QueryDetailPage(){
             <div>
             나이: {data && data.fetchProfile.age}
             </div>
-            <div>
-            학교: {data && data.fetchProfile.school}
+            <div>   
+            학교: {data.fetchProfile.school}
             </div>
         </div>
     )

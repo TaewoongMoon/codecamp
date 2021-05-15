@@ -1,10 +1,11 @@
 import {Wrapper, Title, WriterWrapper, Label, Writer, Password, InputWrapper, Subject, Contents, ZipcodeWrapper, Zipcode, SearchButton, Address, Youtube, ImageWrapper, UploadButton, OptionWrapper, RadioButton, RadioLabel, CancelButton, SubmitButton, ButtonWrapper} from '../../styles/Board.write2'
 import {useState} from "react";
 import {useMutation, gql} from '@apollo/client';
-
+import {useRouter} from "next/router";
 
 export default function BoardWritePage() {
 
+const router = useRouter();
 
 const [boardWritePackage, setBoardWritePackage] = useState({
     headWriter:"",
@@ -120,6 +121,9 @@ const RegisterButton = async() => {
       }) 
       const message = "입력을 완료하였습니다."
       alert(message)
+      const id_val = result.data.createBoard._id
+      router.push(`/board/detailwrite/${id_val}`)
+            
     } catch(error){
       alert(error.message)
     }
