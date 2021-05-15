@@ -1,5 +1,6 @@
 import {useMutation, gql} from '@apollo/client';
 import { useState } from 'react';
+import {useRouter} from "next/router";
 
 
 export default function MutationPage(){
@@ -35,6 +36,11 @@ export default function MutationPage(){
 
         setPackage(data)
         console.log(data)
+    }
+
+    const router = useRouter()
+    const goBack = () => {
+        router.back()
     }
 
     // const onChangeWriter = (event) => {
@@ -80,6 +86,7 @@ export default function MutationPage(){
         제목: <input type = "text" name = "title" onChange = {onChangeInput}></input>
         내용: <input type = "text" name = "content" onChange = {onChangeInput}></input>
         <button onClick = {onClickPost}>게시물 등록하기</button>
+        <button onClick = {goBack} >뒤로가기</button>
         </>
     )
 }
