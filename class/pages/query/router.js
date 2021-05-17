@@ -3,8 +3,10 @@ import {useRouter} from 'next/router';
 const RouterPage = () =>{
     const router = useRouter()
 
+    const value = 'bbb'
+
     const onClickPush = () => {
-        router.push('/query/훈이')
+        router.push(`/query/훈이/111/${value}`)
     }
     const goBackButton = () => {
         router.back();
