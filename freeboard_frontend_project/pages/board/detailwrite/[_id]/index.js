@@ -1,10 +1,29 @@
+import { useQuery, gql } from "@apollo/client"
 import {useRouter} from "next/router"
-import {CodeCampWrapper, Header, LoginRegisterWrapper, LogoWrapper,CodeCampImage, LoginButton, RegisterButton, CarouselWrapper, MenuWrapper, MainBodyWrapper, MiniMenuWrapper2, FreeWriteMenuText, FreeWriteUsedMarketText, FreeWriteWhiteBar, FreeWriteMyPageText, MainBodyBox, MainBoxWrapper, ProfileLefterWrapper, ProfileImageBox, NameDateWrapper, NameText, DateText, ProfileHeaderBox, ProfileHeaderWrapper, AddressEmoticonWrapper, AdressImageBox, EmoticonBox, AddressEmoticon, AddressImage, AddressImageBox, ClipEmoticon, EmoticonBox2, AddressTextBox, AddressText1Box, AddressText1, AddressText2Box, AddressText2, HrLine} from "../../../../styles/Freewrite"
+import {CodeCampWrapper, Header, LoginRegisterWrapper, LogoWrapper,CodeCampImage, LoginButton, RegisterButton, CarouselWrapper, MenuWrapper, MainBodyWrapper, MiniMenuWrapper2, FreeWriteMenuText, FreeWriteUsedMarketText, FreeWriteWhiteBar, FreeWriteMyPageText, MainBodyBox, MainBoxWrapper, ProfileLefterWrapper, ProfileImageBox, NameDateWrapper, NameText, DateText, ProfileHeaderBox, ProfileHeaderWrapper, AddressEmoticonWrapper, AdressImageBox, EmoticonBox, AddressEmoticon, AddressImage, AddressImageBox, ClipEmoticon, EmoticonBox2, AddressTextBox, AddressText1Box, AddressText1, AddressText2Box, AddressText2, HrLine, TitleWrapper, TitleText, RemainderWrapper, TitleTextWrapper, ImageWrapper, Image1, TitleTotalWrapper, ImageTotalWrapper, MainTextTotalWrapper, MainTextWrapper, MainText, VideoTotalWrapper, VideoWrapper, LikeDislikeTotalWrapper, LikeDislikeWrapper, DislikeWrapper, DislikeEmoticon, DislikeNumber, LikeWrapper,LikeEmoticon, LikeNumber} from "../../../../styles/Freewrite"
 export default function freewriteBoard(){
     
     const router = useRouter()
 
     console.log(router.query)
+
+    const FETCH_BOARD = gql`
+        query fetchBoard($_id: ID!){
+            fetchBoard(boardId: $_id){
+                writer
+                title
+                contents
+                createdAt
+            }
+        }
+    `
+    const {data} = useQuery(FETCH_BOARD, {
+        variables: {
+            _id: router.query._id
+        }
+    })
+
+    console.log('data', data)
 
 
     return(
@@ -19,7 +38,7 @@ export default function freewriteBoard(){
                     <RegisterButton>회원가입</RegisterButton>
                 </LoginRegisterWrapper>
             </LogoWrapper>
-            </Header>
+        </Header>
             <CarouselWrapper></CarouselWrapper>
             <MenuWrapper>
                 <MiniMenuWrapper2>
@@ -37,8 +56,8 @@ export default function freewriteBoard(){
                             <ProfileLefterWrapper>
                                 <ProfileImageBox src = "/Vector (1).png"></ProfileImageBox>
                                 <NameDateWrapper>
-                                    <NameText>노원두</NameText>
-                                    <DateText>Date:2021.02.18</DateText>
+                                    <NameText>{data && data.fetchBoard.writer}</NameText>
+                                    <DateText>Date:{data && data.fetchBoard.createdAt}02.18</DateText>
                                 </NameDateWrapper>
                             </ProfileLefterWrapper>
                             <AddressEmoticonWrapper>
@@ -63,6 +82,38 @@ export default function freewriteBoard(){
                         </ProfileHeaderBox>
                     </ProfileHeaderWrapper>
                     <HrLine></HrLine>
+                    <TitleTotalWrapper>
+                        <TitleTextWrapper>
+                            <TitleText>{data && data.fetchBoard.title}</TitleText>
+                        </TitleTextWrapper>
+                    </TitleTotalWrapper>
+                    <ImageTotalWrapper>
+                        <ImageWrapper>
+                            <Image1></Image1>
+                        </ImageWrapper>
+                    </ImageTotalWrapper>
+                    <MainTextTotalWrapper>
+                        <MainTextWrapper>
+                            <MainText>{data && data.fetchBoard.contents}</MainText>
+                        </MainTextWrapper>
+                    </MainTextTotalWrapper>
+                    <VideoTotalWrapper>
+                        <VideoWrapper>
+
+                        </VideoWrapper>
+                    </VideoTotalWrapper>
+                    <LikeDislikeTotalWrapper>
+                        <LikeDislikeWrapper>
+                            <LikeWrapper>
+                                <LikeEmoticon src = "/Vector (4).png"></LikeEmoticon>
+                                <LikeNumber>1920</LikeNumber>
+                            </LikeWrapper>
+                            <DislikeWrapper>
+                                <DislikeEmoticon src = "/Vector (5).png"></DislikeEmoticon>
+                                <DislikeNumber>1920</DislikeNumber>
+                            </DislikeWrapper>
+                        </LikeDislikeWrapper>
+                    </LikeDislikeTotalWrapper>
                 </MainBodyBox>
             </MainBoxWrapper>
         </>

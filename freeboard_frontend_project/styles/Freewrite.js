@@ -253,3 +253,143 @@ export const HrLine = styled.hr`
     height: 1px;
     background-color: #BDBDBD;
 `
+
+export const TitleTotalWrapper = styled.div`
+    max-width: 1200px;
+    width: 100%;
+    height: 134px;
+    display: flex;
+    justify-content: center;
+`
+
+export const TitleTextWrapper = styled.div`
+    max-width: 996px;
+    width: 100%;
+    height: 134px;
+    padding-top: 80px;
+`
+
+export const TitleText = styled.div`
+    font-size: 36px;
+    font-style: bold;
+    font-weight: 700;
+`
+export const ImageTotalWrapper = styled.div`
+    max-width: 1200px;
+    width: 100%;
+    height: 520px;
+    display: flex;
+    justify-content: center;
+`
+
+export const ImageWrapper = styled.div`
+    max-width: 996px;
+    width: 100%;
+    height: 480px;
+    margin-top: 40px;
+    background-color: #000000;
+`
+export const Image1 = styled.img`
+
+`
+
+export const MainTextTotalWrapper = styled.div`
+    max-width: 1200px;
+    width: 100%;
+    height: 134px;
+    display: flex;
+    justify-content:center;
+`
+export const MainTextWrapper = styled.div`
+    max-width: 996px;
+    width: 100%;
+    height: 134px;
+    padding-top: 40px;
+`
+
+export const MainText = styled.div`
+    font-size: 16px;
+    color: #000000;
+    font-weight: 400;
+`
+
+export const VideoTotalWrapper = styled.div`
+    max-width: 1200px;
+    width: 100%;
+    height: 360px;
+    display: flex;
+    justify-content: center;
+`
+
+export const VideoWrapper = styled.div`
+    max-width: 486px;
+    width: 100%;
+    height: 240px;
+    background-color:#000000;
+    margin-top: 120px; 
+`
+
+export const LikeDislikeTotalWrapper = styled.div`
+    max-width: 1200px;
+    width: 100%;
+    height: 213px;
+    display: flex;
+    justify-content: center;
+`
+
+export const LikeDislikeWrapper = styled.div`
+    padding-top: 163px;
+    max-width: 94px;
+    width: 100%;
+    height: 213px;
+    display: flex;
+    flex-direction:row;
+    justify-content:space-between;
+`
+export const LikeWrapper = styled.div`
+    max-width: 40px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 1px solid black; */
+`
+export const LikeEmoticon= styled.img`
+    max-width: 20px;
+    width: 100%;
+    height: 18px;
+`
+export const LikeNumber = styled.div`
+    max-width: 40px;
+    width: 100%;
+    height: 27px;
+    font-size: 18px;
+    color: #FFD600;
+`
+
+export const DislikeWrapper = styled.div`
+    max-width: 40px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 1px solid black; */
+`
+
+export const DislikeEmoticon = styled.img`
+    max-width: 22px;
+    width: 100%;
+    height: 20x;
+`
+
+export const DislikeNumber = styled.div`
+    max-width: 40px;
+    width: 100%;
+    height: 27px;
+    font-size: 18px;
+    color: #828282;
+`
