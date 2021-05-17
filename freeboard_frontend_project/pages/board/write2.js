@@ -7,6 +7,8 @@ export default function BoardWritePage() {
 
 const router = useRouter();
 
+
+
 const [boardWritePackage, setBoardWritePackage] = useState({
     headWriter:"",
     headPassword:"",
@@ -89,6 +91,8 @@ const onChangeInput = (event) => {
 //   console.log(event.target.value)
 //   console.log(event.target.name)
 // }
+
+
 
 const[createBoard] = useMutation(CREATE_BOARD)
 
