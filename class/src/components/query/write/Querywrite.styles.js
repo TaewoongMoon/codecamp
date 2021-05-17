@@ -9,5 +9,5 @@ export const Name = styled.div`
 `
 
 export const Button = styled.button`
-    background-color:${({disabled}) => disabled ? "blue" : "red" }  
+    background-color:${(props) => props.disabled ? "blue" : "red" }  
 `

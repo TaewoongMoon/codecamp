@@ -332,7 +332,7 @@ export const VideoWrapper = styled.div`
     margin-top: 120px; 
 `
 
-export TotalWrapper = styled.div`
+export const LikeDislikeTotalWrapper = styled.div`
     max-width: 1200px;
     width: 100%;
     height: 213px;
