@@ -52,4 +52,22 @@
 
 //코딩 테스트 연습(수박수박수박수박수)
 
-console.log(parseInt(3 / 2))
+function solution(n) {
+    return ("수박").repeat(n / 2) + (n % 2 === 1 ? "수" : "")
+}
+
+
+// 코딩테스트 연습(가운데 글자 가져오기)
+function solution(s) {
+    if(s.length % 2 == 0 ){
+        let a = s.length / 2
+        let b = (s.length /2)  -1
+        return s[b] + s[a]
+    }else if(s.length % 2 ==1){
+        let c = parseInt(s.length / 2)
+        return s[c]
+    }
+}
+
+
+// 코딩테스트 연습()
