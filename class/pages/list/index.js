@@ -15,7 +15,7 @@ export default function ListPage(){
     ]
  
     const RankingTitle = fruits.map((data) => <Wrapper><RankingBold>{data.number}</RankingBold><Title>{data.title}</Title></Wrapper>)
- 
+    const Rank = fruits.title
 
     return(
         <>
