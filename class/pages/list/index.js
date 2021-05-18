@@ -13,13 +13,30 @@ export default function ListPage(){
         {number: 9, title: "과일선물세트"},
         {number: 10, title: "귤"},
     ]
- 
-    const RankingTitle = fruits.map((data) => <Wrapper><RankingBold>{data.number}</RankingBold><Title>{data.title}</Title></Wrapper>)
+
+    const RankingTitleEven = fruits
+        .filter((data) => (data.number % 2 === 0))
+        .map((data) => (
+            <Wrapper>
+                <RankingBold>{data.number}</RankingBold>
+                <Title>{data.title}</Title>
+            </Wrapper>
+        )) 
+
+
     const Rank = fruits.title
 
     return(
         <>
-        {RankingTitle}
+            {fruits
+                .filter((data) => (data.number % 2 === 0))
+                .map((data) => (
+                    <Wrapper>
+                        <RankingBold>{data.number}</RankingBold>
+                        <Title>{data.title}</Title>
+                    </Wrapper>
+                )
+            )}
         </>
     )
 }

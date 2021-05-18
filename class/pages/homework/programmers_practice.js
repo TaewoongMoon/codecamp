@@ -70,4 +70,15 @@ function solution(s) {
 }
 
 
-// 코딩테스트 연습()
+// 코딩테스트 연습()// 
+
+
+function solution(array, commands){
+    var answer = [];
+
+    answer = commands.map(a => {
+        return array.slice(a[0]-1, a[1]).sort((b,c) => b-c)[a[2]-1] // slice의 기능 
+    })
+
+    return answer;
+}
