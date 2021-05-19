@@ -1,8 +1,17 @@
-import {CodeCampWrapper, Header, LoginRegisterWrapper, LogoWrapper,CodeCampImage, LoginButton, RegisterButton, CarouselWrapper, MenuWrapper, MainBodyWrapper, MiniMenuWrapper2, FreeWriteMenuText, FreeWriteUsedMarketText, FreeWriteWhiteBar, FreeWriteMyPageText, MainBodyBox, MainBoxWrapper, ProfileLefterWrapper, ProfileImageBox, NameDateWrapper, NameText, DateText, ProfileHeaderBox, ProfileHeaderWrapper, AddressEmoticonWrapper, AdressImageBox, EmoticonBox, AddressEmoticon, AddressImage, AddressImageBox, ClipEmoticon, EmoticonBox2, AddressTextBox, AddressText1Box, AddressText1, AddressText2Box, AddressText2, HrLine, TitleWrapper, TitleText, RemainderWrapper, TitleTextWrapper, ImageWrapper, Image1, TitleTotalWrapper, ImageTotalWrapper, MainTextTotalWrapper, MainTextWrapper, MainText, VideoTotalWrapper, VideoWrapper, LikeDislikeTotalWrapper, LikeDislikeWrapper, DislikeWrapper, DislikeEmoticon, DislikeNumber, LikeWrapper,LikeEmoticon, LikeNumber} from "../../../../styles/Freewrite"
+import {CodeCampWrapper, Header, LoginRegisterWrapper, LogoWrapper,CodeCampImage, LoginButton, RegisterButton, CarouselWrapper, MenuWrapper, MiniMenuWrapper2, FreeWriteMenuText, FreeWriteUsedMarketText, FreeWriteWhiteBar, FreeWriteMyPageText, MainBodyBox, MainBoxWrapper, ProfileLefterWrapper, ProfileImageBox, NameDateWrapper, NameText, DateText, ProfileHeaderBox, ProfileHeaderWrapper, AddressEmoticonWrapper, EmoticonBox, AddressEmoticon, AddressImage, AddressImageBox, ClipEmoticon, EmoticonBox2, AddressTextBox, AddressText1Box, AddressText1, AddressText2Box, AddressText2, HrLine,  TitleText,  TitleTextWrapper, ImageWrapper, Image1, TitleTotalWrapper, ImageTotalWrapper, MainTextTotalWrapper, MainTextWrapper, MainText, VideoTotalWrapper, VideoWrapper, LikeDislikeTotalWrapper, LikeDislikeWrapper, DislikeWrapper, DislikeEmoticon, DislikeNumber, LikeWrapper,LikeEmoticon, LikeNumber} from "./Detail.styles"
+
+interface Iprops{
+    data: any,
+    Year: any,
+    Month: any,
+    Day: any
 
 
-export default function DetailBoardUI(props){
+}
+
+export default function DetailBoardUI(props:Iprops){
     
+
     return(
         <>
          <Header>

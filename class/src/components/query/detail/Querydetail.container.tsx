@@ -1,10 +1,13 @@
 import QuerydetailUI from "./Querydetail.presenter"
 import {useRouter} from "next/router"
 import {useQuery, gql} from "@apollo/client"
+import { Query, QueryFetchProfileArgs } from "../../../commons/types/generated/types"
 
 
 
 export default function Querydetail(){
+ 
+
     const router = useRouter()
 
     const FETCH_PROFILE = gql`
@@ -18,9 +21,9 @@ export default function Querydetail(){
         }
     `
 
-    const {data,loading,error} = useQuery(FETCH_PROFILE, {
+    const {data,loading, error}  = useQuery<Query, QueryFetchProfileArgs>(FETCH_PROFILE, {
         variables:{
-            name: router.query.name,
+            name: String(router.query.name),
 
         }
     }

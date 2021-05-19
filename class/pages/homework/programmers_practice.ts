@@ -82,3 +82,53 @@ function solution(array, commands){
 
     return answer;
 }
+
+//코딩테스트연습(나누어 떨어지는 숫자배열)
+
+function solution(arr, divisor) {
+    var answer = [];
+    
+
+
+    answer = arr.filter((data) => !(data % divisor === 0)).sort(function(a,b) {return a-b})
+
+    if(answer.length === 0){
+        return [-1]
+    }
+               
+    return answer;
+}
+
+//코딩테스트 연습(약수의 합)
+
+function solution(n) {
+    var answer = 0;
+    for(let i = 1 ; i < n + 1; i++){
+        if(n % i === 0){
+            answer = answer + i
+        }
+    }
+    return answer;
+}
+
+//코딩테스트 연습(두 정수 사이의 합)
+function solution(a, b) {
+    const c = a
+    const d = b
+    var answer = 0;
+    if(a > b){
+        a = d
+        b = c
+    }
+    for(let i = a; i < b + 1 ; i++){
+        answer = answer + i 
+    }
+    return answer;
+}
+
+//코딩테스트 연습(서울에서 김서방 찾기)
+function solution(seoul) {
+    const SeoulNumber = seoul.filter((data) => data === "Kim")
+    var answer = `김서방은 ${SeoulNumber.length}에 있다`;
+    return answer;
+}

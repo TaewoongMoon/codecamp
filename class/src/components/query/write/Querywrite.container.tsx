@@ -3,6 +3,7 @@ import {useState} from "react";
 import {useMutation} from "@apollo/client";
 import {useRouter} from 'next/router';
 import {CREATE_PROFILE} from './Querywrite.queries'
+import { Mutation, MutationCreateBoardArgs, MutationCreateProfileArgs } from "../../../commons/types/generated/types";
 
 
 const Query = () => {
@@ -11,20 +12,22 @@ const Query = () => {
 
     const[age, setAge] = useState(0)
 
+    const [createProfile] = useMutation<Mutation, MutationCreateProfileArgs>(CREATE_PROFILE);
 
-    const[profilePackage, setProfilePackage] = useState({
+
+    const [profilePackage, setProfilePackage] = useState({
         name : '',
         age,
-        school: ''
+        school: '',
     })
     
-    const[completeSign, setCompleteSign] = useState()
+    const[completeSign, setCompleteSign] = useState(true)
 
     const onChangeInput = (event) => {
         const data = {
             ...profilePackage,
             [event.target.name] : event.target.value,
-            age
+
         }
 
         setProfilePackage(data)
@@ -45,7 +48,6 @@ const Query = () => {
     }
 
 
-    const [createProfile] = useMutation(CREATE_PROFILE);
 
 
     const ProfileRegisterButton = async() => {

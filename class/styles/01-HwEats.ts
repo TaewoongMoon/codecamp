@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import {WifiOutlined, SendOutlined, UsbOutlined} from "@ant-design/icons"
+import {WifiOutlined, SendOutlined, UsbOutlined} from "@ant-design/icons";
 
 
 export const EatsRoadWrapper = styled.div`

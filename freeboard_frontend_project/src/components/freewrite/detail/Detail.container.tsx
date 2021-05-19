@@ -1,5 +1,6 @@
 import {useQuery, gql} from '@apollo/client';
 import {useRouter} from "next/router";
+import { IQuery, IQueryFetchBoardArgs } from '../../../commons/types/generated/types';
 import DetailBoardUI from "./Detail.presenter"
 
 
@@ -9,8 +10,8 @@ export default function DetailBoardContainer(){
     console.log(router.query)
 
     const FETCH_BOARD = gql`
-        query fetchBoard($_id: ID!){
-            fetchBoard(boardId: $_id){
+        query fetchBoard($boardId: ID!){
+            fetchBoard(boardId: $boardId){
                 writer
                 title
                 contents
@@ -18,10 +19,11 @@ export default function DetailBoardContainer(){
             }
         }
     `
-    const {data} = useQuery(FETCH_BOARD, {
+    const {data} = useQuery<IQuery, IQueryFetchBoardArgs>(FETCH_BOARD, {
         variables: {
-            _id: router.query._id
+            boardId: String(router.query._id)
         }
+
     })
 
     console.log('data', data)

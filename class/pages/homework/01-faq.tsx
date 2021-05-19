@@ -1,5 +1,4 @@
 import {Rectangle, StatusBar, Wrapper,Wifi, IconWrapper, Network, Battery, TimeWrapper, Timer, SearchBlock, Search, Battery2, MySectionBox, MySectionTextBox, MySectionText, MySectionImageBox, MySectionImage, MySectionNameBox, MySectionNameText, MySectionBox2, TotalMySectionBox, NoticeText, MenuSectionBox, NoticeBox, EventText, FAQText, FAQBox, EventBox, QandABox, QandAText, QandALineBox, QandALine, DashedLineBox, DashedLine, QuestionBigBox1, QuestionSmallBox, Question1, Question1Detail, ArrowBox, Arrow, QuestionBigBox2, LineRectangle, NavBarBox, HomeBarBox, HomeBarImageBox, HomeBarImage, HomeBarText, EatsRoadBox, EatsRoadImageBox, EatsRoadImage, LikeBox, LikeImageBox, LikeImage, MyBox, MyImageBox, MyImage, EatsRoadText, LikeText, MyText} from '../../styles/01-HwFaq.js';
-// import {WifiOutlined} from "@ant-design/icons";
 export default function Test() {
     // 자바스크립트
     

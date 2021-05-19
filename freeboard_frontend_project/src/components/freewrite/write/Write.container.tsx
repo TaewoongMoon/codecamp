@@ -41,7 +41,7 @@ export default function WriteContainer() {
       }
     `
     
-    const onChangeInput = (event) => {
+    const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
       const data = {
         ...boardWritePackage,
         [event.target.name] : event.target.value
