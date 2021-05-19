@@ -14,7 +14,7 @@ export default function BoardUI(props) {
             </HeaderWrapper>
             {props.data?.fetchBoards.map((data) => (
                 <BodyWrapper>
-                    <BodyCheckBox type = "checkbox" id = {data?.number} onClick = {props.onClickCheckBox}></BodyCheckBox>
+                    <BodyCheckBox type = "checkbox" id = {data?.number} onClick = {props.onClickCheckBox} checked = {props.checked[data?.number]}></BodyCheckBox>
                     <BodyNumber>{data?.number}</BodyNumber>
                     <BodyTitle>{data?.title}</BodyTitle>
                     <BodyDate>{String(new Date(data?.createdAt).getFullYear())}.{String(new Date(data?.createdAt).getMonth())}.{String(new Date(data?.createdAt).getDay())}</BodyDate>
