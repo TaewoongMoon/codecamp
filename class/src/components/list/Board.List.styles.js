@@ -29,6 +29,7 @@ export const HeaderWrapper = styled.div`
     background-color: #D3D3D3;
     border-top: 1px solid black;
     padding-left: 10px;
+    
 `
 
 export const HeaderCheckBox = styled.input`
@@ -36,7 +37,6 @@ export const HeaderCheckBox = styled.input`
     width: 100%;
     height: 15px;
     border: 1px solid black;
-    background-color: white;
     cursor: pointer;
 `
 
