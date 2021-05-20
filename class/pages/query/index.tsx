@@ -1,11 +1,5 @@
-import Query from "../../src/components/query/write/Querywrite.container"
+import Query from '../../src/components/query/write/Querywrite.container'
 
-
-
-export default function ProfilePage(){
-
-  
-
-
-    return <Query />
+export default function ProfilePage () {
+  return <Query />
 }
