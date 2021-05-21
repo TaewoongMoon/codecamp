@@ -15,7 +15,7 @@ import {
   SelectEraseButtonWrapper,
   SelectEraseButton
 } from './Board.List.styles'
-export default function BoardUI (props) {
+export default function BoardUI(props) {
   return (
     <Wrapper>
       <BoxWrapper>
@@ -31,7 +31,7 @@ export default function BoardUI (props) {
           <HeaderDate>작성일</HeaderDate>
         </HeaderWrapper>
         {props.data?.fetchBoards.map((data) => (
-          <BodyWrapper key = {data?.number}>
+          <BodyWrapper key={data?.number}>
             <BodyCheckBox
               type="checkbox"
               id={data?.number}

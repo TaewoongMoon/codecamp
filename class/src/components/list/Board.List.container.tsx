@@ -2,7 +2,7 @@ import { useState } from 'react'
 import BoardUI from './Board.List.presenter'
 import { gql, useQuery } from '@apollo/client'
 
-export default function BoardMain () {
+export default function BoardMain() {
   const [checkedAll, setCheckedAll] = useState(true)
 
   const FETCH_BOARDS = gql`
@@ -21,10 +21,12 @@ export default function BoardMain () {
   for (let i = 0; i < data?.fetchBoards.length; i++) {
     newCheck = { ...newCheck, [data.fetchBoards[i].number]: false }
   }
+  // setChecked 자체를 false로 바꾸면 어떤 방법으로 작동이 되는가?
+  // useState의 기능은 단순 데이터 저장용도 및 뿌려주기 역할인가?
 
   const [checked, setChecked] = useState(newCheck)
 
-  function onClickHeaderBox (event) {
+  function onClickHeaderBox(event) {
     console.log(event.target.checked)
     if (event.target.checked === false) {
       let newCheck = {}
@@ -43,7 +45,7 @@ export default function BoardMain () {
     }
   }
 
-  function onClickCheckBox (event) {
+  function onClickCheckBox(event) {
     const values = {
       ...checked,
       [event.target.id]: event.target.checked
