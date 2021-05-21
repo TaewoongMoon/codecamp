@@ -100,7 +100,26 @@ import {
   CommentBoxSmallInputWrapper2,
   CommentBoxSmallLimitBox2,
   CommentLimitBox2,
-  RegisterBox2
+  RegisterBox2,
+  CommentResultBigWrapper,
+  CommentResultMiddleWrapper,
+  CommentLeftBigWrapper,
+  CommentRightBigWrapper,
+  CommentLeftLeftWrapper,
+  CommentLeftRightWrapper,
+  CommentLeftRightFirstSmallWrapper,
+  CommentLeftRightRatingBox,
+  CommentLeftRightNameBox,
+  CommentRatingStar1,
+  CommentRatingStar2,
+  CommentRatingStar3,
+  CommentRatingStar4,
+  CommentRatingStar5,
+  CommentLeftRightSecondTextBox,
+  CommentLeftRightThirdDateBox,
+  CommentLeftImageBox,
+  CommentPencilImageBox,
+  CommentCancelImageBox
 } from './Detail.styles'
 
 interface Iprops {
@@ -108,9 +127,14 @@ interface Iprops {
   Year: any
   Month: any
   Day: any
+  onClickStarRating: any
+  numberofStars: any
+  onChangeCommentBox: any
+  textNumber: any
+  CommentRegisterButton: any
 }
 
-export default function DetailBoardUI (props: Iprops) {
+export default function DetailBoardUI(props: Iprops) {
   return (
     <>
       <Header>
@@ -225,47 +249,116 @@ export default function DetailBoardUI (props: Iprops) {
       <RatingBigWrapper>
         <RatingMiddleWrapper>
           <RatingSmallWrapper>
-            <WriterBox type = "text" placeholder = "작성자"></WriterBox>
-            <PasswordBox type = "password" placeholder = "비밀번호"></PasswordBox>
+            <WriterBox
+              type="text"
+              placeholder="작성자"
+              name="writer"
+              onChange={props.onChangeCommentBox}
+            ></WriterBox>
+            <PasswordBox
+              type="password"
+              placeholder="비밀번호"
+              name="password"
+              onChange={props.onChangeCommentBox}
+            ></PasswordBox>
             <StarBox>
-              <StarImage1 src = "/Star.png"></StarImage1>
-              <StarImage2 src = "/Star.png"></StarImage2>
-              <StarImage3 src = "/Star.png"></StarImage3>
-              <StarImage4 src = "/Star.png"></StarImage4>
-              <StarImage5 src = "/Star.png"></StarImage5>
+              {/* {['1', '2', '3', '4', '5'].map((data) => (
+                <StarImage1
+                  src={
+                    Number(props.rating) >= data
+                      ? '/YellowStar.png'
+                      : '/Star.png'
+                  }
+                  id={data}
+                  key={data}
+                  onClick={props.handleRating}
+                ></StarImage1>
+              ))} */}
+              <StarImage1
+                src={
+                  props.numberofStars[0] === true
+                    ? '/YellowStar.png'
+                    : '/Star.png'
+                }
+                id="1"
+                onClick={props.onClickStarRating}
+              ></StarImage1>
+              <StarImage2
+                src={
+                  props.numberofStars[1] === true
+                    ? '/YellowStar.png'
+                    : '/Star.png'
+                }
+                id="2"
+                onClick={props.onClickStarRating}
+              ></StarImage2>
+              <StarImage3
+                src={
+                  props.numberofStars[2] === true
+                    ? '/YellowStar.png'
+                    : '/Star.png'
+                }
+                id="3"
+                onClick={props.onClickStarRating}
+              ></StarImage3>
+              <StarImage4
+                src={
+                  props.numberofStars[3] === true
+                    ? '/YellowStar.png'
+                    : '/Star.png'
+                }
+                id="4"
+                onClick={props.onClickStarRating}
+              ></StarImage4>
+              <StarImage5
+                src={
+                  props.numberofStars[4] === true
+                    ? '/YellowStar.png'
+                    : '/Star.png'
+                }
+                id="5"
+                onClick={props.onClickStarRating}
+              ></StarImage5>
             </StarBox>
           </RatingSmallWrapper>
         </RatingMiddleWrapper>
       </RatingBigWrapper>
       <CommentBoxBigWrapper>
         <CommentBoxSmallWrapper>
-          <CommentBoxBigInput type = "input" placeholder = "개인정보를 공유 및 요청하거나, 명예 훼손 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."></CommentBoxBigInput>
+          <CommentBoxBigInput
+            placeholder="개인정보를 공유 및 요청하거나, 명예 훼손 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
+            maxLength={100}
+            onChange={props.onChangeCommentBox}
+            name="contents"
+          ></CommentBoxBigInput>
           <CommentBoxSmallInputWrapper>
             <CommentBoxSmallLimitBox>
-              <CommentLimitBox>0/100</CommentLimitBox>
+              <CommentLimitBox>{`${props.textNumber}/100`}</CommentLimitBox>
             </CommentBoxSmallLimitBox>
-            <RegisterBox>등록하기</RegisterBox>
+            <RegisterBox onClick={props.CommentRegisterButton}>
+              등록하기
+            </RegisterBox>
           </CommentBoxSmallInputWrapper>
         </CommentBoxSmallWrapper>
       </CommentBoxBigWrapper>
       <RatingBigWrapper2>
         <RatingMiddleWrapper2>
           <RatingSmallWrapper2>
-            <WriterBox2 type = "text" placeholder = "작성자"></WriterBox2>
-            <PasswordBox2 type = "password" placeholder = "비밀번호"></PasswordBox2>
+            <WriterBox2 type="text" placeholder="작성자"></WriterBox2>
+            <PasswordBox2 type="password" placeholder="비밀번호"></PasswordBox2>
             <StarBox2>
-              <StarImage6 src = "/Star.png"></StarImage6>
-              <StarImage7 src = "/Star.png"></StarImage7>
-              <StarImage8 src = "/Star.png"></StarImage8>
-              <StarImage9 src = "/Star.png"></StarImage9>
-              <StarImage10 src = "/Star.png"></StarImage10>
+              <StarImage6 src="/Star.png"></StarImage6>
+              <StarImage7 src="/Star.png"></StarImage7>
+              <StarImage8 src="/Star.png"></StarImage8>
+              <StarImage9 src="/Star.png"></StarImage9>
+              <StarImage10 src="/Star.png"></StarImage10>
             </StarBox2>
           </RatingSmallWrapper2>
         </RatingMiddleWrapper2>
       </RatingBigWrapper2>
       <CommentBoxBigWrapper2>
         <CommentBoxSmallWrapper2>
-          <CommentBoxBigInput2 type = "input" placeholder = "개인정보를 공유 및 요청하거나, 명예 훼손 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."></CommentBoxBigInput2>
+          <CommentBoxBigInput2 placeholder="개인정보를 공유 및 요청하거나, 명예 훼손 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."></CommentBoxBigInput2>
           <CommentBoxSmallInputWrapper2>
             <CommentBoxSmallLimitBox2>
               <CommentLimitBox2>46/100</CommentLimitBox2>
@@ -274,6 +367,37 @@ export default function DetailBoardUI (props: Iprops) {
           </CommentBoxSmallInputWrapper2>
         </CommentBoxSmallWrapper2>
       </CommentBoxBigWrapper2>
-      </>
+      <CommentResultBigWrapper>
+        <CommentResultMiddleWrapper>
+          <CommentLeftBigWrapper>
+            <CommentLeftLeftWrapper>
+              <CommentLeftImageBox src="/Vector (1).png"></CommentLeftImageBox>
+            </CommentLeftLeftWrapper>
+            <CommentLeftRightWrapper>
+              <CommentLeftRightFirstSmallWrapper>
+                <CommentLeftRightNameBox>땅찌</CommentLeftRightNameBox>
+                <CommentLeftRightRatingBox>
+                  <CommentRatingStar1 src="/Star.png"></CommentRatingStar1>
+                  <CommentRatingStar2 src="/Star.png"></CommentRatingStar2>
+                  <CommentRatingStar3 src="/Star.png"></CommentRatingStar3>
+                  <CommentRatingStar4 src="/Star.png"></CommentRatingStar4>
+                  <CommentRatingStar5 src="/Star.png"></CommentRatingStar5>
+                </CommentLeftRightRatingBox>
+              </CommentLeftRightFirstSmallWrapper>
+              <CommentLeftRightSecondTextBox>
+                진짜좋네요~ 감사합니다~!
+              </CommentLeftRightSecondTextBox>
+              <CommentLeftRightThirdDateBox>
+                2021.02.22
+              </CommentLeftRightThirdDateBox>
+            </CommentLeftRightWrapper>
+          </CommentLeftBigWrapper>
+          <CommentRightBigWrapper>
+            <CommentPencilImageBox src="/Pencilimage.png"></CommentPencilImageBox>
+            <CommentCancelImageBox src="/Cancelimage.png"></CommentCancelImageBox>
+          </CommentRightBigWrapper>
+        </CommentResultMiddleWrapper>
+      </CommentResultBigWrapper>
+    </>
   )
 }

@@ -23,7 +23,6 @@ export const CodeCampWrapper = styled.div`
 
 export const CodeCampImage = styled.img`
   cursor: pointer;
-
 `
 
 export const LoginRegisterWrapper = styled.div`
@@ -87,7 +86,6 @@ export const FreeWriteMyPageText = styled.div`
   font-weight: 500;
   color: #ab9000;
   cursor: pointer;
-
 `
 
 export const FreeWriteWhiteBar = styled.div`
@@ -184,8 +182,7 @@ export const AddressImageBox = styled.div`
   display: flex;
   justify-content: center;
 `
-export const AddressImage = styled.img`
-`
+export const AddressImage = styled.img``
 
 export const EmoticonBox = styled.div`
   margin-bottom: 4.67px;
@@ -366,7 +363,6 @@ export const LikeEmoticon = styled.img`
   width: 100%;
   height: 18px;
   cursor: pointer;
-
 `
 export const LikeNumber = styled.div`
   max-width: 40px;
@@ -374,7 +370,6 @@ export const LikeNumber = styled.div`
   height: 27px;
   font-size: 18px;
   color: #ffd600;
-  
 `
 
 export const DislikeWrapper = styled.div`
@@ -393,7 +388,6 @@ export const DislikeEmoticon = styled.img`
   width: 100%;
   height: 20x;
   cursor: pointer;
-
 `
 
 export const DislikeNumber = styled.div`
@@ -430,7 +424,7 @@ export const RouterListButton = styled.button`
   background-color: transparent;
   outline: none;
   cursor: pointer;
-  border: 1px solid #BDBDBD;
+  border: 1px solid #bdbdbd;
 `
 export const RouterFixButton = styled.button`
   max-width: 179px;
@@ -441,7 +435,7 @@ export const RouterFixButton = styled.button`
   background-color: transparent;
   outline: none;
   cursor: pointer;
-  border: 1px solid #BDBDBD;
+  border: 1px solid #bdbdbd;
 `
 
 export const Hr2LineWrapper = styled.div`
@@ -478,7 +472,6 @@ export const CommentBox = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
 `
 export const CommentImage = styled.img`
   max-width: 20px;
@@ -497,7 +490,7 @@ export const RatingBigWrapper = styled.div`
   height: 92px;
   padding-top: 40px;
   display: flex;
-  justify-content: center;  
+  justify-content: center;
 `
 
 export const RatingMiddleWrapper = styled.div`
@@ -524,9 +517,9 @@ export const WriterBox = styled.input`
   padding-left: 20px;
   outline: none;
   font-size: 16px;
-  border: 1px solid #BDBDBD;
+  border: 1px solid #bdbdbd;
   ::placeholder {
-    color: #BDBDBD;
+    color: #bdbdbd;
   }
 `
 
@@ -537,9 +530,9 @@ export const PasswordBox = styled.input`
   padding-left: 20px;
   outline: none;
   font-size: 16px;
-  border: 1px solid #BDBDBD;
+  border: 1px solid #bdbdbd;
   ::placeholder {
-    color: #BDBDBD;
+    color: #bdbdbd;
   }
 `
 
@@ -562,14 +555,14 @@ export const StarImage1 = styled.img`
 export const StarImage2 = styled.img`
   max-width: 20px;
   width: 100%;
-  height: 20px; 
+  height: 20px;
   cursor: pointer;
 `
 export const StarImage3 = styled.img`
   max-width: 20px;
   width: 100%;
   height: 20px;
-  cursor: pointer; 
+  cursor: pointer;
 `
 export const StarImage4 = styled.img`
   max-width: 20px;
@@ -581,7 +574,7 @@ export const StarImage5 = styled.img`
   max-width: 20px;
   width: 100%;
   height: 20px;
-  cursor: pointer; 
+  cursor: pointer;
 `
 
 export const CommentBoxBigWrapper = styled.div`
@@ -598,13 +591,13 @@ export const CommentBoxSmallWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 161px;
-  border: 1px solid #BDBDBD;
+  border: 1px solid #bdbdbd;
 `
 
-export const CommentBoxBigInput = styled.input`
+export const CommentBoxBigInput = styled.textarea`
   max-width: 1200px;
   width: 100%;
-  height:108px;
+  height: 108px;
   padding-left: 20px;
   color: #000000;
   font-size: 16px;
@@ -613,7 +606,7 @@ export const CommentBoxBigInput = styled.input`
   border: transparent;
   outline: none;
   ::placeholder {
-    color: #BDBDBD;
+    color: #bdbdbd;
   }
 `
 
@@ -629,7 +622,7 @@ export const CommentBoxSmallLimitBox = styled.div`
   max-width: 1109px;
   width: 100%;
   height: 53px;
-  border-top: 1px solid #F2F2F2;
+  border-top: 1px solid #f2f2f2;
 `
 
 export const CommentLimitBox = styled.div`
@@ -638,7 +631,7 @@ export const CommentLimitBox = styled.div`
   width: 100%;
   height: 38px;
   padding-top: 14px;
-  color: #BDBDBD;
+  color: #bdbdbd;
   font-size: 16px;
 `
 
@@ -647,7 +640,7 @@ export const RegisterBox = styled.button`
   width: 100%;
   height: 52px;
   background-color: #000000;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 16px;
   outline: none;
   cursor: pointer;
@@ -658,7 +651,7 @@ export const RatingBigWrapper2 = styled.div`
   height: 92px;
   padding-top: 40px;
   display: flex;
-  justify-content: center;  
+  justify-content: center;
 `
 
 export const RatingMiddleWrapper2 = styled.div`
@@ -685,10 +678,10 @@ export const WriterBox2 = styled.input`
   padding-left: 20px;
   outline: none;
   font-size: 16px;
-  border: 1px solid #BDBDBD;
+  border: 1px solid #bdbdbd;
   color: black;
   ::placeholder {
-    color: #BDBDBD;
+    color: #bdbdbd;
   }
 `
 
@@ -699,9 +692,9 @@ export const PasswordBox2 = styled.input`
   padding-left: 20px;
   outline: none;
   font-size: 16px;
-  border: 1px solid #BDBDBD;
+  border: 1px solid #bdbdbd;
   ::placeholder {
-    color: #BDBDBD;
+    color: #bdbdbd;
   }
 `
 
@@ -724,28 +717,26 @@ export const StarImage6 = styled.img`
 export const StarImage7 = styled.img`
   max-width: 20px;
   width: 100%;
-  height: 20px; 
+  height: 20px;
   cursor: pointer;
 `
 export const StarImage8 = styled.img`
   max-width: 20px;
   width: 100%;
-  height: 20px; 
+  height: 20px;
   cursor: pointer;
-
 `
 export const StarImage9 = styled.img`
   max-width: 20px;
   width: 100%;
-  height: 20px; 
+  height: 20px;
   cursor: pointer;
 `
 export const StarImage10 = styled.img`
   max-width: 20px;
   width: 100%;
-  height: 20px; 
+  height: 20px;
   cursor: pointer;
-
 `
 
 export const CommentBoxBigWrapper2 = styled.div`
@@ -762,13 +753,13 @@ export const CommentBoxSmallWrapper2 = styled.div`
   display: flex;
   flex-direction: column;
   height: 117px;
-  border: 1px solid #BDBDBD;
+  border: 1px solid #bdbdbd;
 `
 
-export const CommentBoxBigInput2 = styled.input`
+export const CommentBoxBigInput2 = styled.textarea`
   max-width: 1200px;
   width: 100%;
-  height:64px;
+  height: 64px;
   padding-left: 20px;
   color: #000000;
   font-size: 16px;
@@ -777,7 +768,7 @@ export const CommentBoxBigInput2 = styled.input`
   border: transparent;
   outline: none;
   ::placeholder {
-    color: #BDBDBD;
+    color: #bdbdbd;
   }
 `
 
@@ -793,7 +784,7 @@ export const CommentBoxSmallLimitBox2 = styled.div`
   max-width: 1109px;
   width: 100%;
   height: 53px;
-  border-top: 1px solid #F2F2F2;
+  border-top: 1px solid #f2f2f2;
 `
 
 export const CommentLimitBox2 = styled.div`
@@ -802,7 +793,7 @@ export const CommentLimitBox2 = styled.div`
   width: 100%;
   height: 38px;
   padding-top: 14px;
-  color: #BDBDBD;
+  color: #bdbdbd;
   font-size: 16px;
 `
 
@@ -815,5 +806,147 @@ export const RegisterBox2 = styled.button`
   font-size: 16px;
   outline: none;
   cursor: pointer;
-  border:none;
+  border: none;
+`
+export const CommentResultBigWrapper = styled.div`
+  width: 100%;
+  height: 150px;
+  padding-top: 40px;
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid black; */
+  justify-content: center;
+`
+
+export const CommentResultMiddleWrapper = styled.div`
+  max-width: 1200px;
+  width: 100%;
+  height: 110px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid #bdbdbd;
+`
+
+export const CommentLeftBigWrapper = styled.div`
+  max-width: 234.5px;
+  width: 100%;
+  height: 110px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* border: 1px solid black; */
+`
+export const CommentRightBigWrapper = styled.div`
+  max-width: 48px;
+  width: 100%;
+  height: 18px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`
+
+export const CommentPencilImageBox = styled.img`
+  max-width: 18px;
+  width: 100%;
+  height: 18px;
+`
+
+export const CommentCancelImageBox = styled.img`
+  max-width: 14px;
+  width: 100%;
+  height: 14px;
+`
+
+export const CommentLeftLeftWrapper = styled.div`
+  max-width: 40px;
+  width: 100%;
+  height: 104px;
+  /* border: 1px solid black; */
+`
+export const CommentLeftImageBox = styled.img`
+  max-width: 40px;
+  width: 100%;
+  height: 40px;
+`
+
+export const CommentLeftRightWrapper = styled.div`
+  max-width: 178px;
+  width: 100%;
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+`
+export const CommentLeftRightFirstSmallWrapper = styled.div`
+  max-width: 179px;
+  width: 100%;
+  height: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* border: 1px solid black; */
+`
+export const CommentLeftRightNameBox = styled.div`
+  max-width: 45px;
+  width: 100%;
+  height: 24px;
+  font-size: 16px;
+  color: #000000;
+  padding-top: 2px;
+`
+export const CommentLeftRightRatingBox = styled.div`
+  max-width: 535px;
+  width: 100%;
+  height: 24px;
+  font-size: 16px;
+  color: #4f4f4f;
+`
+
+export const CommentRatingStar1 = styled.img`
+  max-width: 20px;
+  width: 100%;
+  height: 20px;
+  cursor: pointer;
+`
+export const CommentRatingStar2 = styled.img`
+  max-width: 20px;
+  width: 100%;
+  height: 20px;
+  cursor: pointer;
+`
+export const CommentRatingStar3 = styled.img`
+  max-width: 20px;
+  width: 100%;
+  height: 20px;
+  cursor: pointer;
+`
+export const CommentRatingStar4 = styled.img`
+  max-width: 20px;
+  width: 100%;
+  height: 20px;
+  cursor: pointer;
+`
+export const CommentRatingStar5 = styled.img`
+  max-width: 20px;
+  width: 100%;
+  height: 20px;
+  cursor: pointer;
+`
+
+export const CommentLeftRightSecondTextBox = styled.div`
+  padding-top: 4px;
+  max-width: 535px;
+  width: 100%;
+  height: 28px;
+  font-size: 16px;
+  color: #4f4f4f;
+`
+
+export const CommentLeftRightThirdDateBox = styled.div`
+  padding-top: 20px;
+  max-width: 60px;
+  width: 100%;
+  height: 38px;
+  color: #bdbdbd;
+  font-size: 12px;
 `

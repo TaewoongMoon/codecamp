@@ -3,6 +3,5 @@
   "singleQuote": true,
   "tabWidth": 2,
   "bracketSpacing": true,
-  "trailingComma": "none",
-  "prettier.spaceBeforeFunctionParen": true
+  "trailingComma": "none"
 }
