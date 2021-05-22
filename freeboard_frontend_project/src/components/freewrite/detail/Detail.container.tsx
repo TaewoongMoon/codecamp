@@ -2,6 +2,8 @@ import { useQuery, gql, useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import {
+  IMutation,
+  IMutationCreateBoardCommentArgs,
   IQuery,
   IQueryFetchBoardArgs
 } from '../../../commons/types/generated/types'
@@ -9,31 +11,28 @@ import DetailBoardUI from './Detail.presenter'
 
 export default function DetailBoardContainer() {
   const router = useRouter()
-  const boardId = router.query._id
 
-  const [textNumber, setTextNumber] = useState('0')
+  const boardId = String(router.query._id)
+
   const tempStars = [false, false, false, false, false]
   const [numberofStars, setNumberofStars] = useState(tempStars)
-  let count = 0
-  for (let i = 0; i < numberofStars.length; i++) {
-    if (numberofStars[i] === true) {
-      count += 1
-    }
-  }
-  const rating = count
-  console.log(rating)
-  const [commentPackage, setCommentPackage] = useState({
+  const tempRating = numberofStars.filter((data) => data === true).length
+  const [textNumber, setTextNumber] = useState(0)
+  const [registerPackage, setRegisterPackage] = useState({
     writer: '',
     password: '',
     contents: '',
-    rating: 0
+    rating: 0,
+    boardId: ''
   })
 
   function onClickStarRating(event: any) {
     if (event.target.id === '1') {
       if (numberofStars[0] === true && numberofStars[1] === false) {
-        return setNumberofStars(tempStars)
-      } else tempStars[0] = true
+        tempStars[0] = false
+      } else {
+        tempStars[0] = true
+      }
     } else if (event.target.id === '2') {
       tempStars[0] = true
       tempStars[1] = true
@@ -55,33 +54,58 @@ export default function DetailBoardContainer() {
     }
     setNumberofStars(tempStars)
   }
+  console.log(numberofStars)
 
   function onChangeCommentBox(event: any) {
-    if (event.target.value.length > 100) return
     const temp = event.target.value.length
+    if (temp > 100) return
     setTextNumber(temp)
-    const data = {
-      ...commentPackage,
-      [event.target.name]: event.target.value,
-      rating: rating
-    }
 
-    setCommentPackage(data)
-    // console.log(event.target.name)
+    const data = {
+      ...registerPackage,
+      [event.target.name]: event.target.value,
+      rating: tempRating,
+      boardId: boardId
+    }
+    setRegisterPackage(data)
     console.log(data)
   }
+
+  const CREATE_BOARDCOMMENT = gql`
+    mutation createBoardComment(
+      $writer: String
+      $password: String
+      $contents: String!
+      $rating: Float
+      $boardId: ID!
+    ) {
+      createBoardComment(
+        createBoardCommentInput: {
+          writer: $writer
+          password: $password
+          contents: $contents
+          rating: $rating
+        }
+        boardId: $boardId
+      ) {
+        _id
+        writer
+        rating
+        contents
+      }
+    }
+  `
+  const [createBoardComment] =
+    useMutation<IMutation, IMutationCreateBoardCommentArgs>(CREATE_BOARDCOMMENT)
 
   async function CommentRegisterButton() {
     try {
       const result = await createBoardComment({
         variables: {
-          ...commentPackage,
-          boardId: boardId,
-          rating: rating
+          ...registerPackage
         }
       })
-      console.log(result.data)
-      alert('성공적으로 등록되었습니다.')
+      console.log(result)
     } catch (error) {
       alert(error.message)
     }
@@ -97,51 +121,13 @@ export default function DetailBoardContainer() {
       }
     }
   `
-  const CREATE_BOARDCOMMENT = gql`
-    mutation createBoardComment(
-      $writer: String
-      $password: String
-      $contents: String!
-      $rating: Float!
-      $boardId: ID!
-    ) {
-      createBoardComment(
-        createBoardCommentInput: {
-          writer: $writer
-          password: $password
-          contents: $contents
-          rating: $rating
-        }
-        boardId: $boardId
-      ) {
-        writer
-        rating
-        contents
-        createdAt
-      }
-    }
-  `
-  // const FETCH_BOARDCOMMENT = gql`
-  //   query fetchBoardComments(boardId: $ID!){
-  //     fetchBoardComments(boardId: $boardId){
-  //       _id,
-  //       writer,
-  //       contents,
-  //       rating,
-  //       createdAt
-  //     }
-  //   }
-  // `
-
-  const [createBoardComment] = useMutation(CREATE_BOARDCOMMENT)
   const { data } = useQuery<IQuery, IQueryFetchBoardArgs>(FETCH_BOARD, {
     variables: {
       boardId: String(router.query._id)
     }
   })
-  // const { data }
 
-  console.log('data', data)
+  // console.log('data', data)
 
   const Year = String(new Date(data?.fetchBoard.createdAt).getFullYear())
   const Month = String(
@@ -152,12 +138,6 @@ export default function DetailBoardContainer() {
     '0'
   )
 
-  // const [rating, setRating] = useState(4)
-
-  // const handleRating = (e: any) => {
-  //   setRating(e.target.id)
-  // }
-
   return (
     <DetailBoardUI
       data={data}
@@ -165,10 +145,10 @@ export default function DetailBoardContainer() {
       Month={Month}
       Day={Day}
       onClickStarRating={onClickStarRating}
-      numberofStars={numberofStars}
-      textNumber={textNumber}
       onChangeCommentBox={onChangeCommentBox}
+      textNumber={textNumber}
       CommentRegisterButton={CommentRegisterButton}
+      numberofStars={numberofStars}
     />
   )
 }

@@ -594,7 +594,7 @@ export const CommentBoxSmallWrapper = styled.div`
   border: 1px solid #bdbdbd;
 `
 
-export const CommentBoxBigInput = styled.textarea`
+export const CommentBoxBigInput = styled.input`
   max-width: 1200px;
   width: 100%;
   height: 108px;
@@ -756,7 +756,7 @@ export const CommentBoxSmallWrapper2 = styled.div`
   border: 1px solid #bdbdbd;
 `
 
-export const CommentBoxBigInput2 = styled.textarea`
+export const CommentBoxBigInput2 = styled.input`
   max-width: 1200px;
   width: 100%;
   height: 64px;
@@ -808,14 +808,14 @@ export const RegisterBox2 = styled.button`
   cursor: pointer;
   border: none;
 `
+
 export const CommentResultBigWrapper = styled.div`
   width: 100%;
   height: 150px;
-  padding-top: 40px;
   display: flex;
   flex-direction: row;
-  /* border: 1px solid black; */
   justify-content: center;
+  padding-top: 40px;
 `
 
 export const CommentResultMiddleWrapper = styled.div`
@@ -824,56 +824,31 @@ export const CommentResultMiddleWrapper = styled.div`
   height: 110px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  border-bottom: 1px solid #bdbdbd;
+  justify-content: space;
 `
-
 export const CommentLeftBigWrapper = styled.div`
-  max-width: 234.5px;
+  max-width: 900px;
   width: 100%;
   height: 110px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* border: 1px solid black; */
 `
-export const CommentRightBigWrapper = styled.div`
-  max-width: 48px;
-  width: 100%;
-  height: 18px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`
-
-export const CommentPencilImageBox = styled.img`
-  max-width: 18px;
-  width: 100%;
-  height: 18px;
-`
-
-export const CommentCancelImageBox = styled.img`
-  max-width: 14px;
-  width: 100%;
-  height: 14px;
-`
-
 export const CommentLeftLeftWrapper = styled.div`
   max-width: 40px;
   width: 100%;
-  height: 104px;
-  /* border: 1px solid black; */
+  height: 110px;
+  padding-top: 6px;
 `
+
 export const CommentLeftImageBox = styled.img`
   max-width: 40px;
   width: 100%;
   height: 40px;
 `
-
 export const CommentLeftRightWrapper = styled.div`
-  max-width: 178px;
+  max-width: 844px;
   width: 100%;
-  height: 110px;
   display: flex;
   flex-direction: column;
 `
@@ -884,24 +859,21 @@ export const CommentLeftRightFirstSmallWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* border: 1px solid black; */
 `
 export const CommentLeftRightNameBox = styled.div`
   max-width: 45px;
   width: 100%;
-  height: 24px;
   font-size: 16px;
+  height: 24px;
   color: #000000;
-  padding-top: 2px;
 `
 export const CommentLeftRightRatingBox = styled.div`
-  max-width: 535px;
-  width: 100%;
-  height: 24px;
-  font-size: 16px;
-  color: #4f4f4f;
+  max-width: 116px;
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `
-
 export const CommentRatingStar1 = styled.img`
   max-width: 20px;
   width: 100%;
@@ -935,18 +907,34 @@ export const CommentRatingStar5 = styled.img`
 
 export const CommentLeftRightSecondTextBox = styled.div`
   padding-top: 4px;
-  max-width: 535px;
+  max-width: 844px;
   width: 100%;
   height: 28px;
   font-size: 16px;
   color: #4f4f4f;
 `
-
 export const CommentLeftRightThirdDateBox = styled.div`
-  padding-top: 20px;
   max-width: 60px;
   width: 100%;
   height: 38px;
-  color: #bdbdbd;
+  padding-top: 20px;
   font-size: 12px;
+  color: #bdbdbd;
+`
+export const CommentRightBigWrapper = styled.div`
+  max-width: 48px;
+  height: 18px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`
+export const CommentPencilImageBox = styled.img`
+  max-width: 18px;
+  width: 100%;
+  height: 18px;
+`
+export const CommentCancelImageBox = styled.img`
+  max-width: 14px;
+  height: 14px;
+  width: 100%;
 `
