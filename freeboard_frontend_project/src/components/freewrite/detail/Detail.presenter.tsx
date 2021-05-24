@@ -132,6 +132,8 @@ interface Iprops {
   onChangeCommentBox: any
   textNumber: any
   CommentRegisterButton: any
+  onChangeNamePassword: any
+  commentData: any
 }
 
 export default function DetailBoardUI(props: Iprops) {
@@ -253,13 +255,13 @@ export default function DetailBoardUI(props: Iprops) {
               type="text"
               placeholder="작성자"
               name="writer"
-              onChange={props.onChangeCommentBox}
+              onChange={props.onChangeNamePassword}
             ></WriterBox>
             <PasswordBox
               type="password"
               placeholder="비밀번호"
               name="password"
-              onChange={props.onChangeCommentBox}
+              onChange={props.onChangeNamePassword}
             ></PasswordBox>
             <StarBox>
               {/* {['1', '2', '3', '4', '5'].map((data) => (
@@ -333,7 +335,7 @@ export default function DetailBoardUI(props: Iprops) {
           ></CommentBoxBigInput>
           <CommentBoxSmallInputWrapper>
             <CommentBoxSmallLimitBox>
-              <CommentLimitBox>{`${props.textNumber}/100`}</CommentLimitBox>
+              <CommentLimitBox>{`${props.textNumber.contents}/100`}</CommentLimitBox>
             </CommentBoxSmallLimitBox>
             <RegisterBox onClick={props.CommentRegisterButton}>
               등록하기
@@ -367,37 +369,80 @@ export default function DetailBoardUI(props: Iprops) {
           </CommentBoxSmallInputWrapper2>
         </CommentBoxSmallWrapper2>
       </CommentBoxBigWrapper2>
-      <CommentResultBigWrapper>
-        <CommentResultMiddleWrapper>
-          <CommentLeftBigWrapper>
-            <CommentLeftLeftWrapper>
-              <CommentLeftImageBox src="/Vector (1).png"></CommentLeftImageBox>
-            </CommentLeftLeftWrapper>
-            <CommentLeftRightWrapper>
-              <CommentLeftRightFirstSmallWrapper>
-                <CommentLeftRightNameBox>땅찌</CommentLeftRightNameBox>
-                <CommentLeftRightRatingBox>
-                  <CommentRatingStar1 src="/Star.png"></CommentRatingStar1>
-                  <CommentRatingStar2 src="/Star.png"></CommentRatingStar2>
-                  <CommentRatingStar3 src="/Star.png"></CommentRatingStar3>
-                  <CommentRatingStar4 src="/Star.png"></CommentRatingStar4>
-                  <CommentRatingStar5 src="/Star.png"></CommentRatingStar5>
-                </CommentLeftRightRatingBox>
-              </CommentLeftRightFirstSmallWrapper>
-              <CommentLeftRightSecondTextBox>
-                진짜좋네요~ 감사합니다~!
-              </CommentLeftRightSecondTextBox>
-              <CommentLeftRightThirdDateBox>
-                2021.02.22
-              </CommentLeftRightThirdDateBox>
-            </CommentLeftRightWrapper>
-          </CommentLeftBigWrapper>
-          <CommentRightBigWrapper>
-            <CommentPencilImageBox src="/Pencilimage.png"></CommentPencilImageBox>
-            <CommentCancelImageBox src="/Cancelimage.png"></CommentCancelImageBox>
-          </CommentRightBigWrapper>
-        </CommentResultMiddleWrapper>
-      </CommentResultBigWrapper>
+      {props?.commentData?.fetchBoardComments.map((data: any) => (
+        <CommentResultBigWrapper key={data._id}>
+          <CommentResultMiddleWrapper>
+            <CommentLeftBigWrapper>
+              <CommentLeftLeftWrapper>
+                <CommentLeftImageBox src="/Vector (1).png"></CommentLeftImageBox>
+              </CommentLeftLeftWrapper>
+              <CommentLeftRightWrapper>
+                <CommentLeftRightFirstSmallWrapper>
+                  <CommentLeftRightNameBox>
+                    {data.writer}
+                  </CommentLeftRightNameBox>
+                  <CommentLeftRightRatingBox>
+                    <CommentRatingStar1
+                      src={
+                        data.rating === 1 ||
+                        data.rating === 2 ||
+                        data.rating === 3 ||
+                        data.rating === 4 ||
+                        data.rating === 5
+                          ? '/YellowStar.png'
+                          : '/Star.png'
+                      }
+                    ></CommentRatingStar1>
+                    <CommentRatingStar2
+                      src={
+                        data.rating === 2 ||
+                        data.rating === 3 ||
+                        data.rating === 4 ||
+                        data.rating === 5
+                          ? '/YellowStar.png'
+                          : '/Star.png'
+                      }
+                    ></CommentRatingStar2>
+                    <CommentRatingStar3
+                      src={
+                        data.rating === 3 ||
+                        data.rating === 4 ||
+                        data.rating === 5
+                          ? '/YellowStar.png'
+                          : '/Star.png'
+                      }
+                    ></CommentRatingStar3>
+                    <CommentRatingStar4
+                      src={
+                        data.rating === 4 || data.rating === 5
+                          ? '/YellowStar.png'
+                          : '/Star.png'
+                      }
+                    ></CommentRatingStar4>
+                    <CommentRatingStar5
+                      src={data.rating === 5 ? '/YellowStar.png' : '/Star.png'}
+                    ></CommentRatingStar5>
+                  </CommentLeftRightRatingBox>
+                </CommentLeftRightFirstSmallWrapper>
+                <CommentLeftRightSecondTextBox>
+                  {data.contents}
+                </CommentLeftRightSecondTextBox>
+                <CommentLeftRightThirdDateBox>
+                  {`${String(new Date(data.createdAt).getFullYear())}.${String(
+                    new Date(data.createdAt).getMonth() + 1
+                  ).padStart(2, '0')}.${String(
+                    new Date(data.createdAt).getDate()
+                  ).padStart(0, '2')}`}
+                </CommentLeftRightThirdDateBox>
+              </CommentLeftRightWrapper>
+            </CommentLeftBigWrapper>
+            <CommentRightBigWrapper>
+              <CommentPencilImageBox src="/Pencilimage.png"></CommentPencilImageBox>
+              <CommentCancelImageBox src="/Cancelimage.png"></CommentCancelImageBox>
+            </CommentRightBigWrapper>
+          </CommentResultMiddleWrapper>
+        </CommentResultBigWrapper>
+      ))}
     </>
   )
 }

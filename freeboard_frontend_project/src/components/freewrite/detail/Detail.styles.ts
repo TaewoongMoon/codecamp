@@ -824,7 +824,8 @@ export const CommentResultMiddleWrapper = styled.div`
   height: 110px;
   display: flex;
   flex-direction: row;
-  justify-content: space;
+  justify-content: space-between;
+  border-bottom: 1px solid #bdbdbd;
 `
 export const CommentLeftBigWrapper = styled.div`
   max-width: 900px;
@@ -866,6 +867,7 @@ export const CommentLeftRightNameBox = styled.div`
   font-size: 16px;
   height: 24px;
   color: #000000;
+  padding-top: 2px;
 `
 export const CommentLeftRightRatingBox = styled.div`
   max-width: 116px;
@@ -923,6 +925,7 @@ export const CommentLeftRightThirdDateBox = styled.div`
 `
 export const CommentRightBigWrapper = styled.div`
   max-width: 48px;
+  width: 100%;
   height: 18px;
   display: flex;
   flex-direction: row;
@@ -932,9 +935,11 @@ export const CommentPencilImageBox = styled.img`
   max-width: 18px;
   width: 100%;
   height: 18px;
+  cursor: pointer;
 `
 export const CommentCancelImageBox = styled.img`
   max-width: 14px;
   height: 14px;
   width: 100%;
+  cursor: pointer;
 `
