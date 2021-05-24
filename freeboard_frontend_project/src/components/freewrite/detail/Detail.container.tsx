@@ -4,6 +4,7 @@ import { useState } from 'react'
 import {
   IMutation,
   IMutationCreateBoardCommentArgs,
+  IMutationUpdateBoardCommentArgs,
   IQuery,
   IQueryFetchBoardArgs,
   IQueryFetchBoardCommentsArgs
@@ -28,6 +29,8 @@ export default function DetailBoardContainer() {
     rating: 0
   })
   const [commentFix, setCommentFix] = useState(false)
+
+  const [boardCommentId, setBoardCommentId] = useState('')
 
   // 댓글 수정부분 State
   const [commentFixNumberofStars, setCommentFixNumberofStars] =
@@ -178,22 +181,42 @@ export default function DetailBoardContainer() {
     }
   }
 
-  function onClickCommentFix() {
+  async function CommentFixRegisterButton() {
+    try {
+      const result = await updateBoardComment({
+        variables: {
+          updateBoardCommentInput: {
+            contents: commentFixRegisterPackage.commentFixContents,
+            rating: commentFixRegisterPackage.commentFixRating
+          },
+          boardCommentId: boardCommentId
+        }
+      })
+      refetch()
+      console.log(result)
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
+  function onClickCommentFix(event: any) {
     if (commentFix === true) {
       setCommentFix(false)
+      setBoardCommentId('')
     } else {
       setCommentFix(true)
+      setBoardCommentId(event.target.id)
     }
   }
 
   const CREATE_BOARDCOMMENT = gql`
     mutation createBoardComment(
       $createBoardCommentInput: CreateBoardCommentInput!
-      $boardId: ID!
+      $boardCommentId: ID!
     ) {
       createBoardComment(
         createBoardCommentInput: $createBoardCommentInput
-        boardId: $boardId
+        boardCommentId: $boardCommentId
       ) {
         _id
         writer
@@ -203,9 +226,30 @@ export default function DetailBoardContainer() {
       }
     }
   `
+
+  const UPDATE_BOARDCOMMENT = gql`
+    mutation updateBoardComment(
+      $updateBoardCommentInput: UpdateBoardCommentInput!
+      $password: String
+      $boardCommentId: ID!
+    ) {
+      updateBoardComment(
+        updateBoardCommentInput: $updateBoardCommentInput
+        password: $password
+        boardCommentId: $boardCommentId
+      ) {
+        writer
+        contents
+        rating
+        createdAt
+      }
+    }
+  `
+  const [updateBoardComment] =
+    useMutation<IMutation, IMutationUpdateBoardCommentArgs>(UPDATE_BOARDCOMMENT)
+
   const [createBoardComment] =
     useMutation<IMutation, IMutationCreateBoardCommentArgs>(CREATE_BOARDCOMMENT)
-
   const FETCH_BOARD = gql`
     query fetchBoard($boardId: ID!) {
       fetchBoard(boardId: $boardId) {
@@ -241,14 +285,14 @@ export default function DetailBoardContainer() {
       }
     }
   `
-  const { data: commentData } = useQuery<IQuery, IQueryFetchBoardCommentsArgs>(
-    FETCH_BOARDCOMMENT,
-    {
-      variables: {
-        boardId: String(router.query._id)
-      }
+  const { data: commentData, refetch } = useQuery<
+    IQuery,
+    IQueryFetchBoardCommentsArgs
+  >(FETCH_BOARDCOMMENT, {
+    variables: {
+      boardId: String(router.query._id)
     }
-  )
+  })
   console.log('data', boardData)
   console.log('data', commentData)
 
@@ -280,6 +324,7 @@ export default function DetailBoardContainer() {
       onChangeFixNamePassword={onChangeFixNamePassword}
       commentTextNumber={commentTextNumber}
       commentFixNumberofStars={commentFixNumberofStars}
+      CommentFixRegisterButton={CommentFixRegisterButton}
     />
   )
 }

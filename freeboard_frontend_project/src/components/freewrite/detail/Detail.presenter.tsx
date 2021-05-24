@@ -141,6 +141,7 @@ interface Iprops {
   onChangeFixNamePassword: any
   commentTextNumber: any
   commentFixNumberofStars: any
+  CommentFixRegisterButton: any
 }
 
 export default function DetailBoardUI(props: Iprops) {
@@ -431,14 +432,16 @@ export default function DetailBoardUI(props: Iprops) {
                     {`${props.commentTextNumber.commentFixContents}/100`}
                   </CommentLimitBox2>
                 </CommentBoxSmallLimitBox2>
-                <RegisterBox2>수정하기</RegisterBox2>
+                <RegisterBox2 onClick={props.CommentFixRegisterButton}>
+                  수정하기
+                </RegisterBox2>
               </CommentBoxSmallInputWrapper2>
             </CommentBoxSmallWrapper2>
           </CommentBoxBigWrapper2>
         </>
       )}
       {props?.commentData?.fetchBoardComments.map((data: any) => (
-        <CommentResultBigWrapper key={data._id}>
+        <CommentResultBigWrapper key={data._id} id={data._id}>
           <CommentResultMiddleWrapper>
             <CommentLeftBigWrapper>
               <CommentLeftLeftWrapper>
@@ -506,6 +509,7 @@ export default function DetailBoardUI(props: Iprops) {
             </CommentLeftBigWrapper>
             <CommentRightBigWrapper>
               <CommentPencilImageBox
+                id={data._id}
                 src="/Pencilimage.png"
                 onClick={props.onClickCommentFix}
               ></CommentPencilImageBox>
