@@ -27,7 +27,8 @@ export default function DetailBoardContainer() {
     contents: '',
     rating: 0
   })
-  console.log(registerPackage)
+
+  const [commentFix, setCommentFix] = useState(false)
 
   function onClickStarRating(event: any) {
     if (event.target.id === '1') {
@@ -103,6 +104,10 @@ export default function DetailBoardContainer() {
     } catch (error) {
       alert(error.message)
     }
+  }
+
+  function onClickCommentFix() {
+    setCommentFix(true)
   }
 
   const CREATE_BOARDCOMMENT = gql`
@@ -192,6 +197,8 @@ export default function DetailBoardContainer() {
       CommentRegisterButton={CommentRegisterButton}
       numberofStars={numberofStars}
       onChangeNamePassword={onChangeNamePassword}
+      onClickCommentFix={onClickCommentFix}
+      commentFix={commentFix}
     />
   )
 }

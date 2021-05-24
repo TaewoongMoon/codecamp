@@ -134,6 +134,8 @@ interface Iprops {
   CommentRegisterButton: any
   onChangeNamePassword: any
   commentData: any
+  commentFix: any
+  onClickCommentFix: any
 }
 
 export default function DetailBoardUI(props: Iprops) {
@@ -437,7 +439,10 @@ export default function DetailBoardUI(props: Iprops) {
               </CommentLeftRightWrapper>
             </CommentLeftBigWrapper>
             <CommentRightBigWrapper>
-              <CommentPencilImageBox src="/Pencilimage.png"></CommentPencilImageBox>
+              <CommentPencilImageBox
+                src="/Pencilimage.png"
+                onClick={props.onClickCommentFix}
+              ></CommentPencilImageBox>
               <CommentCancelImageBox src="/Cancelimage.png"></CommentCancelImageBox>
             </CommentRightBigWrapper>
           </CommentResultMiddleWrapper>
