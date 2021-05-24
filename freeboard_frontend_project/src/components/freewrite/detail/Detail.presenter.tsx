@@ -136,6 +136,11 @@ interface Iprops {
   commentData: any
   commentFix: any
   onClickCommentFix: any
+  onClickCommentStarRating: any
+  onChangeCommentFixBox: any
+  onChangeFixNamePassword: any
+  commentTextNumber: any
+  commentFixNumberofStars: any
 }
 
 export default function DetailBoardUI(props: Iprops) {
@@ -345,32 +350,93 @@ export default function DetailBoardUI(props: Iprops) {
           </CommentBoxSmallInputWrapper>
         </CommentBoxSmallWrapper>
       </CommentBoxBigWrapper>
-      <RatingBigWrapper2>
-        <RatingMiddleWrapper2>
-          <RatingSmallWrapper2>
-            <WriterBox2 type="text" placeholder="작성자"></WriterBox2>
-            <PasswordBox2 type="password" placeholder="비밀번호"></PasswordBox2>
-            <StarBox2>
-              <StarImage6 src="/Star.png"></StarImage6>
-              <StarImage7 src="/Star.png"></StarImage7>
-              <StarImage8 src="/Star.png"></StarImage8>
-              <StarImage9 src="/Star.png"></StarImage9>
-              <StarImage10 src="/Star.png"></StarImage10>
-            </StarBox2>
-          </RatingSmallWrapper2>
-        </RatingMiddleWrapper2>
-      </RatingBigWrapper2>
-      <CommentBoxBigWrapper2>
-        <CommentBoxSmallWrapper2>
-          <CommentBoxBigInput2 placeholder="개인정보를 공유 및 요청하거나, 명예 훼손 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."></CommentBoxBigInput2>
-          <CommentBoxSmallInputWrapper2>
-            <CommentBoxSmallLimitBox2>
-              <CommentLimitBox2>46/100</CommentLimitBox2>
-            </CommentBoxSmallLimitBox2>
-            <RegisterBox2>수정하기</RegisterBox2>
-          </CommentBoxSmallInputWrapper2>
-        </CommentBoxSmallWrapper2>
-      </CommentBoxBigWrapper2>
+      {props.commentFix === true && (
+        <>
+          <RatingBigWrapper2>
+            <RatingMiddleWrapper2>
+              <RatingSmallWrapper2>
+                <WriterBox2
+                  type="text"
+                  placeholder="작성자"
+                  name="commentFixWriter"
+                  onChange={props.onChangeFixNamePassword}
+                ></WriterBox2>
+                <PasswordBox2
+                  type="password"
+                  placeholder="비밀번호"
+                  name="commentFixPassword"
+                  onChange={props.onChangeFixNamePassword}
+                ></PasswordBox2>
+                <StarBox2>
+                  <StarImage6
+                    src={
+                      props?.commentFixNumberofStars[0] === true
+                        ? '/YellowStar.png'
+                        : '/Star.png'
+                    }
+                    id="6"
+                    onClick={props.onClickCommentStarRating}
+                  ></StarImage6>
+                  <StarImage7
+                    src={
+                      props?.commentFixNumberofStars[1] === true
+                        ? '/YellowStar.png'
+                        : '/Star.png'
+                    }
+                    id="7"
+                    onClick={props.onClickCommentStarRating}
+                  ></StarImage7>
+                  <StarImage8
+                    src={
+                      props?.commentFixNumberofStars[2] === true
+                        ? '/YellowStar.png'
+                        : '/Star.png'
+                    }
+                    id="8"
+                    onClick={props.onClickCommentStarRating}
+                  ></StarImage8>
+                  <StarImage9
+                    src={
+                      props?.commentFixNumberofStars[3] === true
+                        ? '/YellowStar.png'
+                        : '/Star.png'
+                    }
+                    id="9"
+                    onClick={props.onClickCommentStarRating}
+                  ></StarImage9>
+                  <StarImage10
+                    src={
+                      props?.commentFixNumberofStars[4] === true
+                        ? '/YellowStar.png'
+                        : '/Star.png'
+                    }
+                    id="10"
+                    onClick={props.onClickCommentStarRating}
+                  ></StarImage10>
+                </StarBox2>
+              </RatingSmallWrapper2>
+            </RatingMiddleWrapper2>
+          </RatingBigWrapper2>
+          <CommentBoxBigWrapper2>
+            <CommentBoxSmallWrapper2>
+              <CommentBoxBigInput2
+                name="commentFixContents"
+                maxLength={100}
+                onChange={props.onChangeCommentFixBox}
+                placeholder="개인정보를 공유 및 요청하거나, 명예 훼손 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
+              ></CommentBoxBigInput2>
+              <CommentBoxSmallInputWrapper2>
+                <CommentBoxSmallLimitBox2>
+                  <CommentLimitBox2>
+                    {`${props.commentTextNumber.commentFixContents}/100`}
+                  </CommentLimitBox2>
+                </CommentBoxSmallLimitBox2>
+                <RegisterBox2>수정하기</RegisterBox2>
+              </CommentBoxSmallInputWrapper2>
+            </CommentBoxSmallWrapper2>
+          </CommentBoxBigWrapper2>
+        </>
+      )}
       {props?.commentData?.fetchBoardComments.map((data: any) => (
         <CommentResultBigWrapper key={data._id}>
           <CommentResultMiddleWrapper>

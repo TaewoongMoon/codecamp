@@ -12,14 +12,14 @@ import DetailBoardUI from './Detail.presenter'
 
 export default function DetailBoardContainer() {
   const router = useRouter()
-
+  // 댓글 등록 & 댓글 수정 공통으로 쓰이는 부분들
   const boardId = String(router.query._id)
-
   const tempStars = [false, false, false, false, false]
+  // 댓글 등록부분 State
   const [numberofStars, setNumberofStars] = useState(tempStars)
   const tempRating = numberofStars.filter((data) => data === true).length
   const [textNumber, setTextNumber] = useState({
-    contents: 0
+    contents: ''
   })
   const [registerPackage, setRegisterPackage] = useState({
     writer: '',
@@ -27,9 +27,23 @@ export default function DetailBoardContainer() {
     contents: '',
     rating: 0
   })
-
   const [commentFix, setCommentFix] = useState(false)
 
+  // 댓글 수정부분 State
+  const [commentFixNumberofStars, setCommentFixNumberofStars] =
+    useState(tempStars)
+  const commentTempRating = commentFixNumberofStars.filter(
+    (data) => data === true
+  ).length
+  const [commentTextNumber, setCommentTextNumber] = useState({
+    commentFixContents: 0
+  })
+  const [commentFixRegisterPackage, setCommentFixRegisterPackage] = useState({
+    commentFixWriter: '',
+    commentFixPassword: '',
+    commentFixContents: '',
+    commentFixRating: 0
+  })
   function onClickStarRating(event: any) {
     if (event.target.id === '1') {
       if (numberofStars[0] === true && numberofStars[1] === false) {
@@ -57,12 +71,47 @@ export default function DetailBoardContainer() {
       tempStars[4] = true
     }
     setNumberofStars(tempStars)
-    // setRegisterPackage({
-    //   ...registerPackage,
-    //   rating: tempStars.filter((data) => data === true).length
-    // })
+    setRegisterPackage({
+      ...registerPackage,
+      rating: tempStars.filter((data) => data === true).length
+    })
   }
-  console.log(numberofStars)
+
+  function onClickCommentStarRating(event: any) {
+    if (event.target.id === '6') {
+      if (
+        commentFixNumberofStars[0] === true &&
+        commentFixNumberofStars[1] === false
+      ) {
+        tempStars[0] = false
+      } else {
+        tempStars[0] = true
+      }
+    } else if (event.target.id === '7') {
+      tempStars[0] = true
+      tempStars[1] = true
+    } else if (event.target.id === '8') {
+      tempStars[0] = true
+      tempStars[1] = true
+      tempStars[2] = true
+    } else if (event.target.id === '9') {
+      tempStars[0] = true
+      tempStars[1] = true
+      tempStars[2] = true
+      tempStars[3] = true
+    } else if (event.target.id === '10') {
+      tempStars[0] = true
+      tempStars[1] = true
+      tempStars[2] = true
+      tempStars[3] = true
+      tempStars[4] = true
+    }
+    setCommentFixNumberofStars(tempStars)
+    setCommentFixRegisterPackage({
+      ...commentFixRegisterPackage,
+      commentFixRating: tempStars.filter((data) => data === true).length
+    })
+  }
 
   function onChangeCommentBox(event: any) {
     const temp = {
@@ -79,6 +128,21 @@ export default function DetailBoardContainer() {
     console.log(data)
   }
 
+  function onChangeCommentFixBox(event: any) {
+    const temp = {
+      commentFixContents: event.target.value.length
+    }
+    if (temp.commentFixContents > 100) return
+    setCommentTextNumber(temp)
+    const data = {
+      ...commentFixRegisterPackage,
+      [event.target.name]: event.target.value,
+      commentFixRating: commentTempRating
+    }
+    setCommentFixRegisterPackage(data)
+    console.log(data)
+  }
+
   function onChangeNamePassword(event: any) {
     const data = {
       ...registerPackage,
@@ -86,6 +150,14 @@ export default function DetailBoardContainer() {
       rating: tempRating
     }
     setRegisterPackage(data)
+  }
+  function onChangeFixNamePassword(event: any) {
+    const data = {
+      ...commentFixRegisterPackage,
+      [event.target.name]: event.target.value,
+      commentFixRating: commentTempRating
+    }
+    setCommentFixRegisterPackage(data)
   }
 
   async function CommentRegisterButton() {
@@ -107,7 +179,11 @@ export default function DetailBoardContainer() {
   }
 
   function onClickCommentFix() {
-    setCommentFix(true)
+    if (commentFix === true) {
+      setCommentFix(false)
+    } else {
+      setCommentFix(true)
+    }
   }
 
   const CREATE_BOARDCOMMENT = gql`
@@ -199,6 +275,11 @@ export default function DetailBoardContainer() {
       onChangeNamePassword={onChangeNamePassword}
       onClickCommentFix={onClickCommentFix}
       commentFix={commentFix}
+      onClickCommentStarRating={onClickCommentStarRating}
+      onChangeCommentFixBox={onChangeCommentFixBox}
+      onChangeFixNamePassword={onChangeFixNamePassword}
+      commentTextNumber={commentTextNumber}
+      commentFixNumberofStars={commentFixNumberofStars}
     />
   )
 }
