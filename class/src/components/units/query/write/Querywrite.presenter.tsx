@@ -1,5 +1,10 @@
+import { useEffect } from 'react'
 import { Name, Button } from './Querywrite.styles'
 const QueryUI = (props) => {
+  useEffect(() => {
+    console.log('asdf')
+  }, [])
+
   return (
     <>
       <div>

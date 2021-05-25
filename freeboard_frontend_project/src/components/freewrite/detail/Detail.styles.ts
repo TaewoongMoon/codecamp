@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import Slider from 'react-slick'
 
 export const Header = styled.div`
   margin-top: 54px;
@@ -48,10 +49,40 @@ export const RegisterButton = styled.button`
 `
 
 export const CarouselWrapper = styled.div`
-  margin-top: 54px;
+  padding-top: 54px;
+  width: 100%;
+  max-height: 454px;
+  height: 454px;
+`
+// height 100%줄때랑 height 최대로 줄때랑 도대체 무슨차이일까?
+export const SlickSlider = styled(Slider)`
+  width: 100%;
+  max-height: 350px;
+  height: 350px;
+`
+// 이거 질문해보기 Slickslider의 크기는 350px인데 DogImage1Wrapper는 안에 감싸져있음에도 불구하고 400px을 넘어갈 수 있다. 그리고 400px을 넘어가면 왠지모르게 버튼이 계속 바깥쪽으로 나가버린다.
+export const DogImage1Wrapper = styled.div`
   width: 100%;
   height: 400px;
-  background-color: #000000;
+  display: flex;
+  flex-direction: row;
+`
+export const DogImage1 = styled.img`
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+`
+export const DogImage2Wrapper = styled.div`
+  width: 100%;
+  height: 400px;
+  display: flex;
+  flex-direction: row;
+`
+
+export const DogImage2 = styled.img`
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
 `
 
 export const MenuWrapper = styled.div`

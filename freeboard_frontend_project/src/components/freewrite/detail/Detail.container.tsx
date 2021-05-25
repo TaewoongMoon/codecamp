@@ -292,11 +292,11 @@ export default function DetailBoardContainer() {
   const CREATE_BOARDCOMMENT = gql`
     mutation createBoardComment(
       $createBoardCommentInput: CreateBoardCommentInput!
-      $boardCommentId: ID!
+      $boardId: ID!
     ) {
       createBoardComment(
         createBoardCommentInput: $createBoardCommentInput
-        boardCommentId: $boardCommentId
+        boardId: $boardId
       ) {
         _id
         writer
@@ -355,8 +355,6 @@ export default function DetailBoardContainer() {
       boardId: String(router.query._id)
     }
   })
-  console.log('data', boardData)
-  console.log('data', commentData)
 
   const Year = String(new Date(boardData?.fetchBoard.createdAt).getFullYear())
   const Month = String(

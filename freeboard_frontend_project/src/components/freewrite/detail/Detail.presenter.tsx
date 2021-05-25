@@ -6,7 +6,6 @@ import {
   CodeCampImage,
   LoginButton,
   RegisterButton,
-  CarouselWrapper,
   MenuWrapper,
   MiniMenuWrapper2,
   FreeWriteMenuText,
@@ -119,9 +118,11 @@ import {
   CommentLeftRightThirdDateBox,
   CommentLeftImageBox,
   CommentPencilImageBox,
-  CommentCancelImageBox
+  CommentCancelImageBox,
+  CarouselWrapper
 } from './Detail.styles'
 import YoutubePage from './Youtube.container'
+import SimpleSlider from './Slider.container'
 
 interface Iprops {
   data: any
@@ -162,7 +163,9 @@ export default function DetailBoardUI(props: Iprops) {
           </LoginRegisterWrapper>
         </LogoWrapper>
       </Header>
-      <CarouselWrapper></CarouselWrapper>
+      <CarouselWrapper>
+        <SimpleSlider></SimpleSlider>
+      </CarouselWrapper>
       <MenuWrapper>
         <MiniMenuWrapper2>
           <FreeWriteMenuText>자유게시판</FreeWriteMenuText>
