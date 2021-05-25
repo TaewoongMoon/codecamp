@@ -4,6 +4,8 @@ import { useState } from 'react'
 import {
   IMutation,
   IMutationCreateBoardCommentArgs,
+  IMutationDislikeBoardArgs,
+  IMutationLikeBoardArgs,
   IMutationUpdateBoardCommentArgs,
   IQuery,
   IQueryFetchBoardArgs,
@@ -35,6 +37,34 @@ export default function DetailBoardContainer() {
   // 댓글 수정부분 State
   const [commentFixNumberofStars, setCommentFixNumberofStars] =
     useState(tempStars)
+
+  const FETCH_BOARD = gql`
+    query fetchBoard($boardId: ID!) {
+      fetchBoard(boardId: $boardId) {
+        writer
+        title
+        contents
+        createdAt
+        likeCount
+        dislikeCount
+      }
+    }
+  `
+
+  const { data: boardData } = useQuery<IQuery, IQueryFetchBoardArgs>(
+    FETCH_BOARD,
+    {
+      variables: {
+        boardId: String(router.query._id)
+      }
+    }
+  )
+
+  const [likeDislikeNumber, setLikeDislikeNumber] = useState({
+    likeNumber: 0,
+    dislikeNumber: 0
+  })
+
   const commentTempRating = commentFixNumberofStars.filter(
     (data) => data === true
   ).length
@@ -207,7 +237,57 @@ export default function DetailBoardContainer() {
       setCommentFix(true)
       setBoardCommentId(event.target.id)
     }
+    console.log(event)
   }
+
+  async function onClickLike() {
+    try {
+      const result = await likeBoard({
+        variables: {
+          boardId: boardId
+        }
+      })
+      setLikeDislikeNumber({
+        ...likeDislikeNumber,
+        likeNumber: Number(result.data?.likeBoard)
+      })
+      console.log(result)
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
+  async function onClickDislike() {
+    try {
+      const result = await dislikeBoard({
+        variables: {
+          boardId: boardId
+        }
+      })
+      setLikeDislikeNumber({
+        ...likeDislikeNumber,
+        dislikeNumber: Number(result.data?.dislikeBoard)
+      })
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
+  const CREATE_LIKE = gql`
+    mutation likeBoard($boardId: ID!) {
+      likeBoard(boardId: $boardId)
+    }
+  `
+  const CREATE_DISLIKE = gql`
+    mutation dislikeBoard($boardId: ID!) {
+      dislikeBoard(boardId: $boardId)
+    }
+  `
+  const [dislikeBoard] =
+    useMutation<IMutation, IMutationDislikeBoardArgs>(CREATE_DISLIKE)
+
+  const [likeBoard] =
+    useMutation<IMutation, IMutationLikeBoardArgs>(CREATE_LIKE)
 
   const CREATE_BOARDCOMMENT = gql`
     mutation createBoardComment(
@@ -250,24 +330,6 @@ export default function DetailBoardContainer() {
 
   const [createBoardComment] =
     useMutation<IMutation, IMutationCreateBoardCommentArgs>(CREATE_BOARDCOMMENT)
-  const FETCH_BOARD = gql`
-    query fetchBoard($boardId: ID!) {
-      fetchBoard(boardId: $boardId) {
-        writer
-        title
-        contents
-        createdAt
-      }
-    }
-  `
-  const { data: boardData } = useQuery<IQuery, IQueryFetchBoardArgs>(
-    FETCH_BOARD,
-    {
-      variables: {
-        boardId: String(router.query._id)
-      }
-    }
-  )
 
   const FETCH_BOARDCOMMENT = gql`
     query fetchBoardComments($boardId: ID!) {
@@ -325,6 +387,9 @@ export default function DetailBoardContainer() {
       commentTextNumber={commentTextNumber}
       commentFixNumberofStars={commentFixNumberofStars}
       CommentFixRegisterButton={CommentFixRegisterButton}
+      onClickLike={onClickLike}
+      likeDislikeNumber={likeDislikeNumber}
+      onClickDislike={onClickDislike}
     />
   )
 }

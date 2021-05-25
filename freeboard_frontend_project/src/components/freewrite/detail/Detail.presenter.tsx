@@ -121,6 +121,7 @@ import {
   CommentPencilImageBox,
   CommentCancelImageBox
 } from './Detail.styles'
+import YoutubePage from './Youtube.container'
 
 interface Iprops {
   data: any
@@ -142,6 +143,9 @@ interface Iprops {
   commentTextNumber: any
   commentFixNumberofStars: any
   CommentFixRegisterButton: any
+  onClickLike: any
+  likeDislikeNumber: any
+  onClickDislike: any
 }
 
 export default function DetailBoardUI(props: Iprops) {
@@ -223,17 +227,31 @@ export default function DetailBoardUI(props: Iprops) {
             </MainTextWrapper>
           </MainTextTotalWrapper>
           <VideoTotalWrapper>
-            <VideoWrapper></VideoWrapper>
+            <VideoWrapper>
+              <YoutubePage />
+            </VideoWrapper>
           </VideoTotalWrapper>
           <LikeDislikeTotalWrapper>
             <LikeDislikeWrapper>
               <LikeWrapper>
-                <LikeEmoticon src="/Vector (4).png"></LikeEmoticon>
-                <LikeNumber>1920</LikeNumber>
+                <LikeEmoticon
+                  src="/Vector (4).png"
+                  onClick={props.onClickLike}
+                ></LikeEmoticon>
+                <LikeNumber>
+                  {props.likeDislikeNumber.likeNumber ||
+                    props.data?.fetchBoard.likeCount}
+                </LikeNumber>
               </LikeWrapper>
               <DislikeWrapper>
-                <DislikeEmoticon src="/Vector (5).png"></DislikeEmoticon>
-                <DislikeNumber>1920</DislikeNumber>
+                <DislikeEmoticon
+                  src="/Vector (5).png"
+                  onClick={props.onClickDislike}
+                ></DislikeEmoticon>
+                <DislikeNumber>
+                  {props.likeDislikeNumber.dislikeNumber ||
+                    props.data?.fetchBoard.dislikeCount}
+                </DislikeNumber>
               </DislikeWrapper>
             </LikeDislikeWrapper>
           </LikeDislikeTotalWrapper>

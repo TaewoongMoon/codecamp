@@ -329,6 +329,8 @@ export const VideoWrapper = styled.div`
   height: 240px;
   background-color: #000000;
   margin-top: 120px;
+  display: flex;
+  justify-content: center;
 `
 
 export const LikeDislikeTotalWrapper = styled.div`
@@ -370,6 +372,7 @@ export const LikeNumber = styled.div`
   height: 27px;
   font-size: 18px;
   color: #ffd600;
+  text-align: center;
 `
 
 export const DislikeWrapper = styled.div`
@@ -396,6 +399,7 @@ export const DislikeNumber = styled.div`
   height: 27px;
   font-size: 18px;
   color: #828282;
+  text-align: center;
 `
 
 export const RouterButtonBigWrapper = styled.div`
