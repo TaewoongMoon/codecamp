@@ -1,9 +1,12 @@
 import ReactPlayer from 'react-player'
 
-export default function YoutubePage() {
+interface Iprops {
+  data: any
+}
+export default function YoutubePage(props: Iprops) {
   return (
     <ReactPlayer
-      url="https://www.youtube.com/watch?v=kZC12U6EhTc&t=115s"
+      url={props?.data?.fetchBoard.youtubeUrl}
       playing={true}
       controls={true}
       width={486}

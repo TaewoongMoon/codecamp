@@ -3,7 +3,7 @@ import { useMutation, gql } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { WriteUI } from './Write.presenter'
 
-export default function WriteContainer () {
+export default function WriteContainer() {
   const router = useRouter()
   console.log(router.query)
   const [buttonColor, setButtonColor] = useState(true)
@@ -25,6 +25,7 @@ export default function WriteContainer () {
       $headPassword: String
       $headTitle: String!
       $headContent: String!
+      $headYoutube: String
     ) {
       createBoard(
         createBoardInput: {
@@ -32,12 +33,14 @@ export default function WriteContainer () {
           password: $headPassword
           title: $headTitle
           contents: $headContent
+          youtubeUrl: $headYoutube
         }
       ) {
         _id
         writer
         title
         contents
+        youtubeUrl
       }
     }
   `
@@ -133,7 +136,8 @@ export default function WriteContainer () {
             headWriter: boardWritePackage.headWriter,
             headPassword: boardWritePackage.headPassword,
             headTitle: boardWritePackage.headTitle,
-            headContent: boardWritePackage.headContent
+            headContent: boardWritePackage.headContent,
+            headYoutube: boardWritePackage.headYoutube
           }
         })
         const message = '입력을 완료하였습니다.'

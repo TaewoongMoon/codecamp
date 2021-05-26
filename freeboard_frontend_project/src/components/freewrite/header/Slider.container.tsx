@@ -6,7 +6,7 @@ import {
   DogImage2,
   DogImage1Wrapper,
   DogImage2Wrapper
-} from './Detail.styles'
+} from './Header.styles'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 // import axios from 'axios'
@@ -21,16 +21,19 @@ export default function SimpleSlider() {
     arrows: true
   }
   const [image, setImage] = useState<string[]>([])
+
   useEffect(() => {
     const getDogs = async () => {
       const result = await axios.get('https://dog.ceo/api/breeds/image/random')
       new Array(5)
-        .fill(null)
+        .fill(1)
         .forEach((data: any) => setImage([...image, result.data.message]))
     }
     getDogs()
   }, [])
-  console.log(image)
+
+  const testTemp = new Array(5).fill(1)
+  console.log(testTemp)
 
   async function onClickSwipe1() {
     const result = await axios.get('https://dog.ceo/api/breeds/image/random')
