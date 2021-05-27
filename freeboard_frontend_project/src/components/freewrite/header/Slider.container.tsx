@@ -1,12 +1,6 @@
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import {
-  SlickSlider,
-  DogImage1,
-  DogImage2,
-  DogImage1Wrapper,
-  DogImage2Wrapper
-} from './Header.styles'
+import { SlickSlider, DogImage1, DogImage1Wrapper } from './Header.styles'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 // import axios from 'axios'
@@ -24,29 +18,22 @@ export default function SimpleSlider() {
 
   useEffect(() => {
     const getDogs = async () => {
-      const result = await axios.get('https://dog.ceo/api/breeds/image/random')
-      new Array(5)
-        .fill(1)
-        .forEach((data: any) => setImage([...image, result.data.message]))
+      const images = await Promise.all(
+        new Array(5).fill(1).map((data: any) => {
+          return axios.get('https://dog.ceo/api/breeds/image/random')
+        })
+      ).then((res) => res.map((data) => data?.data?.message))
+      setImage(images)
     }
     getDogs()
   }, [])
-
-  const testTemp = new Array(5).fill(1)
-  console.log(testTemp)
-
-  async function onClickSwipe1() {
-    const result = await axios.get('https://dog.ceo/api/breeds/image/random')
-    setImage(image.concat(result.data.message))
-  }
   return (
     <SlickSlider {...settings}>
-      <DogImage1Wrapper onClick={onClickSwipe1}>
-        <DogImage1 src={image[0]} />
-      </DogImage1Wrapper>
-      <DogImage2Wrapper>
-        <DogImage2 src={image[image.length - 1]} />
-      </DogImage2Wrapper>
+      {image.map((data) => (
+        <DogImage1Wrapper key={data}>
+          <DogImage1 src={data} />
+        </DogImage1Wrapper>
+      ))}
     </SlickSlider>
   )
 }
