@@ -7,6 +7,10 @@ export default function WriteContainer() {
   const router = useRouter()
   console.log(router.query)
   const [buttonColor, setButtonColor] = useState(true)
+  const [addressDetails, setAddressDetails] = useState({
+    zipcode: '',
+    address: ''
+  })
 
   const [boardWritePackage, setBoardWritePackage] = useState({
     headWriter: '',
@@ -66,6 +70,13 @@ export default function WriteContainer() {
     }
   }
 
+  const handleComplete = (data: any) => {
+    setAddressDetails({
+      ...addressDetails,
+      zipcode: String(data.zonecode),
+      address: String(data.address)
+    })
+  }
   // const WriterChange = (event) => {
   //   const temp = event.target.value;
   //   setWriter(temp);
@@ -155,6 +166,8 @@ export default function WriteContainer() {
       onChangeInput={onChangeInput}
       RegisterButton={RegisterButton}
       buttonColor={buttonColor}
+      handleComplete={handleComplete}
+      addressDetails={addressDetails}
     />
   )
 }

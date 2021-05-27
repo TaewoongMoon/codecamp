@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import Modal from '../modal/Modal.container'
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -80,14 +81,7 @@ export const Zipcode = styled.input`
   border: 1px solid #bdbdbd;
 `
 
-export const SearchButton = styled.button`
-  width: 124px;
-  height: 52px;
-  margin-left: 16px;
-  background-color: black;
-  cursor: pointer;
-  color: white;
-`
+export const SearchButton = styled(Modal)``
 
 export const Address = styled.input`
   width: 996px;

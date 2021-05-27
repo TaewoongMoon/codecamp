@@ -67,10 +67,20 @@ export const WriteUI = (props: any) => {
       <InputWrapper>
         <Label>주소</Label>
         <ZipcodeWrapper>
-          <Zipcode placeholder="07250" />
-          <SearchButton>우편번호 검색</SearchButton>
+          <Zipcode
+            placeholder="07250"
+            type="text"
+            value={props.addressDetails.zipcode}
+          />
+          <SearchButton handleComplete={props.handleComplete}>
+            우편번호 검색
+          </SearchButton>
         </ZipcodeWrapper>
-        <Address onChange={props.onChangeInput} name="simpleAddress" />
+        <Address
+          onChange={props.onChangeInput}
+          name="simpleAddress"
+          value={props.addressDetails.address}
+        />
         <Address onChange={props.onChangeInput} name="detailAddress" />
       </InputWrapper>
       <InputWrapper>
