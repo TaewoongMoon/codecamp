@@ -47,7 +47,8 @@ import {
   RouterListButton,
   RouterFixButton,
   Hr2LineWrapper,
-  Hr2Line
+  Hr2Line,
+  HRWrapper
 } from './Body.styles'
 
 interface Iprops {
@@ -58,6 +59,7 @@ interface Iprops {
   likeDislikeNumber: any
   onClickDislike: any
   onClickLike: any
+  onClickFixPage: any
 }
 
 export default function MainBoardPage(props: Iprops) {
@@ -99,7 +101,9 @@ export default function MainBoardPage(props: Iprops) {
               </AddressEmoticonWrapper>
             </ProfileHeaderBox>
           </ProfileHeaderWrapper>
-          <HrLine></HrLine>
+          <HRWrapper>
+            <HrLine></HrLine>
+          </HRWrapper>
           <TitleTotalWrapper>
             <TitleTextWrapper>
               <TitleText>{props.data && props.data.fetchBoard.title}</TitleText>
@@ -151,7 +155,9 @@ export default function MainBoardPage(props: Iprops) {
       <RouterButtonBigWrapper>
         <RouterButtonSmallWrapper>
           <RouterListButton>목록으로</RouterListButton>
-          <RouterFixButton>수정하기</RouterFixButton>
+          <RouterFixButton onClick={props.onClickFixPage}>
+            수정하기
+          </RouterFixButton>
         </RouterButtonSmallWrapper>
       </RouterButtonBigWrapper>
       <Hr2LineWrapper>

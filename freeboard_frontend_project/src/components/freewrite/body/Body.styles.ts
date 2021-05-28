@@ -281,7 +281,12 @@ export const AddressText2 = styled.div`
   color: #ffffff;
   font-weight: 500;
 `
-
+export const HRWrapper = styled.div`
+  width: 100%;
+  height: 1px;
+  display: flex;
+  justify-content: center;
+`
 export const HrLine = styled.hr`
   max-width: 996px;
   width: 100%;
@@ -295,6 +300,7 @@ export const TitleTotalWrapper = styled.div`
   height: 134px;
   display: flex;
   justify-content: center;
+  /* border: 10px solid black; */
 `
 
 export const TitleTextWrapper = styled.div`
