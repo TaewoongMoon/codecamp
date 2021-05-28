@@ -77,46 +77,6 @@ export default function WriteContainer() {
       address: String(data.address)
     })
   }
-  // const WriterChange = (event) => {
-  //   const temp = event.target.value;
-  //   setWriter(temp);
-  // }
-
-  // const PasswordChange = (event) => {
-  //   const temp = event.target.value;
-  //   setPassword(temp);
-  // }
-
-  // const TitleChange = (event) => {
-  //   const temp = event.target.value;
-  //   setTitle(temp);
-  // }
-
-  // const ContentChange = (event) => {
-  //   const temp = event.target.value;
-  //   setContent(temp);
-  // }
-
-  // const AddressChangeSimple = (event) =>{
-  //   const temp = event.target.value;
-  //   setSimpleAddress(temp);
-  // }
-
-  // const AddressChangeDetail = (event) => {
-  //   const temp = event.target.value;
-  //   setDetailAddress(temp);
-  // }
-
-  // const YoutubeChange = (event) => {
-  //   const temp = event.target.value;
-  //   setYoutube(temp);
-  // }
-
-  // const SettingOption = (event) => {
-  //   // setOption(OptionBtnName)
-  //   console.log(event.target.value)
-  //   console.log(event.target.name)
-  // }
 
   const [createBoard] = useMutation(CREATE_BOARD)
 
@@ -132,7 +92,10 @@ export default function WriteContainer() {
       alert('제목을 작성하여주십시오.')
     } else if (boardWritePackage.headContent.length < 20) {
       alert('내용의 길이가 너무 짦습니다.')
-    } else if (boardWritePackage.simpleAddress.length < 1) {
+    } else if (
+      boardWritePackage.simpleAddress.length ||
+      addressDetails.address.length < 1
+    ) {
       alert('주소를 작성하여 주십시오.')
     } else if (boardWritePackage.detailAddress.length < 1) {
       alert('주소를 작성하여 주십시오.')

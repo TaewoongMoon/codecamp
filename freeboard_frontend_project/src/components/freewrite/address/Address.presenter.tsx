@@ -14,7 +14,3 @@ export default function DaumPostCodeUI(props: any) {
     />
   )
 }
-
-// onComplete = () =>{{
-//     return props.handleComplete()
-// }}
