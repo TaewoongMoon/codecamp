@@ -8,7 +8,7 @@ const ListPage = () => {
   const router = useRouter()
   const boardId = router.query._id
   const [checkedAll, setCheckedAll] = useState(true)
-
+  const [pencilColor, setPencilColor] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const onClickpage = (event: any) => {
     setCurrentPage(Number(event.target.id))
@@ -27,6 +27,15 @@ const ListPage = () => {
   function onClickRegisterPage() {
     router.push(`/board/detailwrite/${boardId}`)
   }
+
+  function onMouseoverRegisterPage() {
+    setPencilColor(true)
+  }
+
+  function onMouseoutRegisterPage() {
+    setPencilColor(false)
+  }
+  console.log(pencilColor)
 
   function onClickCheckBox(event: any) {
     const values = {
@@ -65,6 +74,9 @@ const ListPage = () => {
       currentPage={currentPage}
       fetchMore={fetchMore}
       onClickRegisterPage={onClickRegisterPage}
+      onMouseoverRegisterPage={onMouseoverRegisterPage}
+      pencilColor={pencilColor}
+      onMouseoutRegisterPage={onMouseoutRegisterPage}
     />
   )
 }

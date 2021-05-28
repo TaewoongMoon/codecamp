@@ -166,8 +166,9 @@ export const RegisterButton = styled.button`
   outline: none;
   background-color: #ffffff;
   border: 1px solid #f2f2f2;
-  &: hover {
+  ${'&: hover'} {
     background-color: #000000;
+    color: #ffffff;
   }
 `
 export const RegisterTextWrapper = styled.div`
@@ -193,5 +194,4 @@ export const RegisterText = styled.div`
   font-size: 16px;
   height: 24px;
   padding-top: 4px;
-  color: ${(props) => props.onClick && '#FFFFFF'};
 `

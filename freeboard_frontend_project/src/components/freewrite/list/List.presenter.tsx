@@ -65,9 +65,18 @@ const ListPageUI = (props: any) => {
             ))}
           </SelectEraseButtonWrapper>
           <PaginationWrapper>
-            <RegisterButton>
+            <RegisterButton
+              onMouseOver={props.onMouseoverRegisterPage}
+              onMouseOut={props.onMouseoutRegisterPage}
+            >
               <RegisterTextWrapper>
-                <RegisterPencilImage src="/RegisterPencil.png"></RegisterPencilImage>
+                <RegisterPencilImage
+                  src={
+                    props.pencilColor === true
+                      ? '/YellowStar.png'
+                      : '/RegisterPencil(2).png'
+                  }
+                ></RegisterPencilImage>
                 <RegisterText onClick={props.onClickRegisterPage}>
                   게시물 등록하기
                 </RegisterText>
