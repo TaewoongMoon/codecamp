@@ -62,6 +62,9 @@ export default function BodyPage() {
   function onClickFixPage() {
     router.push(`/board/detailwrite/${boardId}/fix`)
   }
+  function onClickListPage() {
+    router.push(`/board/detailwrite/${boardId}/list`)
+  }
 
   const [dislikeBoard] =
     useMutation<IMutation, IMutationDislikeBoardArgs>(CREATE_DISLIKE)
@@ -85,6 +88,7 @@ export default function BodyPage() {
       data={boardData}
       likeDislikeNumber={likeDislikeNumber}
       onClickFixPage={onClickFixPage}
+      onClickListPage={onClickListPage}
     />
   )
 }

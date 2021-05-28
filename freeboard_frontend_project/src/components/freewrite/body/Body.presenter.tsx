@@ -60,6 +60,7 @@ interface Iprops {
   onClickDislike: any
   onClickLike: any
   onClickFixPage: any
+  onClickListPage: any
 }
 
 export default function MainBoardPage(props: Iprops) {
@@ -154,7 +155,9 @@ export default function MainBoardPage(props: Iprops) {
       </MainBoxWrapper>
       <RouterButtonBigWrapper>
         <RouterButtonSmallWrapper>
-          <RouterListButton>목록으로</RouterListButton>
+          <RouterListButton onClick={props.onClickListPage}>
+            목록으로
+          </RouterListButton>
           <RouterFixButton onClick={props.onClickFixPage}>
             수정하기
           </RouterFixButton>

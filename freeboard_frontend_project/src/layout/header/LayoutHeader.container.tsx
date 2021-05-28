@@ -1,7 +1,10 @@
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import HeaderUI from './LayoutHeader.presenter'
 
 export default function Header() {
+  const router = useRouter()
+  const boardId = router.query._id
   const [currentMenu, setCurrentMenu] = useState('freeboard')
 
   const [menuSelector, setMenuSelector] = useState({
@@ -9,13 +12,23 @@ export default function Header() {
     secondhandmarket: '',
     mypage: ''
   })
-  function onClickMenuSelector(event: any) {
+  async function onClickMenuSelector(event: any) {
     const data = {
       ...menuSelector,
       [event.target.id]: String(event.target.id)
     }
+
     setMenuSelector(data)
-    setCurrentMenu(String(event.target.id))
+    const temp = String(event.target.id)
+    setCurrentMenu(temp)
+
+    if (temp === 'freeboard') {
+      router.push(`/board/detailwrite/${boardId}`)
+    } else if (temp === 'secondhandmarket') {
+      router.push(`/board/detailwrite/${boardId}/secondhandmarket`)
+    } else if (temp === 'mypage') {
+      router.push(`/board/detailwrite/${boardId}/mypage`)
+    }
   }
 
   return (
