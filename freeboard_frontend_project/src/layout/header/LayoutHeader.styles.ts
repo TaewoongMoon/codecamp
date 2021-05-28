@@ -101,22 +101,25 @@ export const MiniMenuWrapper2 = styled.div`
   flex-direction: row;
   justify-content: space-between;
 `
-
+interface IProps {
+  isActive: any
+}
 export const FreeWriteMenuText = styled.div`
   font-size: 18px;
   font-weight: 700;
   cursor: pointer;
+  color: ${(props: IProps) => (props.isActive ? '#000000' : '#ab9000')};
 `
 export const FreeWriteUsedMarketText = styled.div`
   font-size: 18px;
   font-weight: 500;
-  color: #ab9000;
+  color: ${(props: IProps) => (props.isActive ? '#000000' : '#ab9000')};
   cursor: pointer;
 `
 export const FreeWriteMyPageText = styled.div`
   font-size: 18px;
   font-weight: 500;
-  color: #ab9000;
+  color: ${(props: IProps) => (props.isActive ? '#000000' : '#ab9000')};
   cursor: pointer;
 `
 

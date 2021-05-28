@@ -16,7 +16,12 @@ import {
   FreeWriteMyPageText
 } from './LayoutHeader.styles'
 
-export default function HeaderUI() {
+interface IProps {
+  onClickMenuSelector: any
+  currentMenu: any
+  menuSelector: any
+}
+export default function HeaderUI(props: IProps) {
   return (
     <div>
       <Header>
@@ -35,11 +40,29 @@ export default function HeaderUI() {
       </CarouselWrapper>
       <MenuWrapper>
         <MiniMenuWrapper2>
-          <FreeWriteMenuText>자유게시판</FreeWriteMenuText>
+          <FreeWriteMenuText
+            id="freeboard"
+            isActive={props.menuSelector.freeboard === props.currentMenu}
+            onClick={props.onClickMenuSelector}
+          >
+            자유게시판
+          </FreeWriteMenuText>
           <FreeWriteWhiteBar></FreeWriteWhiteBar>
-          <FreeWriteUsedMarketText>중고마켓</FreeWriteUsedMarketText>
+          <FreeWriteUsedMarketText
+            id="secondhandmarket"
+            isActive={props.menuSelector.secondhandmarket === props.currentMenu}
+            onClick={props.onClickMenuSelector}
+          >
+            중고마켓
+          </FreeWriteUsedMarketText>
           <FreeWriteWhiteBar></FreeWriteWhiteBar>
-          <FreeWriteMyPageText>마이페이지</FreeWriteMyPageText>
+          <FreeWriteMyPageText
+            id="mypage"
+            isActive={props.menuSelector.mypage === props.currentMenu}
+            onClick={props.onClickMenuSelector}
+          >
+            마이페이지
+          </FreeWriteMyPageText>
         </MiniMenuWrapper2>
       </MenuWrapper>
     </div>
