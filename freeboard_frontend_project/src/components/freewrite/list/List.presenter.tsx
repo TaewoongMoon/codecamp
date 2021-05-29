@@ -10,9 +10,7 @@ import {
   RegisterButton,
   RegisterPencilImage,
   RegisterText,
-  RegisterTextWrapper
-} from './List.styles'
-import {
+  RegisterTextWrapper,
   BoxWrapper,
   Wrapper,
   BodyWrapper,
