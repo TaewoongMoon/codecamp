@@ -82,36 +82,85 @@ export const BodyNumber = styled.div`
   max-width: 18px;
   width: 100%;
   height: 24px;
-  font-size: 16px;
-  font-style: bold;
-  color: #4f4f4f4f;
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 `
-export const BodyTitle = styled.div`
-  max-width: 900px;
-  width: 100%;
+
+export const BodyNumberText = styled.span`
+  max-width: 18px;
   height: 24px;
   font-size: 16px;
   font-style: bold;
   color: #4f4f4f4f;
-  text-align: center;
+  ${'&: hover'} {
+    color: #000000;
+    border-bottom: 1px solid black;
+  }
+  cursor: pointer;
 `
+
+export const BodyTitle = styled.div`
+  max-width: 700px;
+  width: 100%;
+  height: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`
+
+export const BodyText = styled.span`
+  max-width: 700px;
+  height: 24px;
+  font-size: 16px;
+  font-style: bold;
+  color: #4f4f4f4f;
+  ${'&: hover'} {
+    color: #000000;
+    border-bottom: 1px solid black;
+  }
+  cursor: pointer;
+`
+
 export const BodyWriter = styled.div`
   max-width: 283px;
   width: 100%;
   height: 24px;
-  font-size: 16px;
-  font-style: bold;
-  color: #4f4f4f4f;
-  text-align: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 `
+export const BodyWriterText = styled.div`
+  max-width: 283px;
+  height: 24px;
+  font-size: 16px;
+  color: #4f4f4f4f;
+  ${'&: hover'} {
+    color: #000000;
+    border-bottom: 1px solid black;
+  }
+  cursor: pointer;
+`
+
 export const BodyDate = styled.div`
   max-width: 170px;
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`
+
+export const BodyDateText = styled.span`
+  max-width: 170px;
   font-size: 16px;
   font-style: bold;
   color: #4f4f4f4f;
   text-align: center;
+  ${'&: hover'} {
+    color: #000000;
+    border-bottom: 1px solid black;
+  }
+  cursor: pointer;
 `
 
 export const HrLine = styled.div`
@@ -119,44 +168,61 @@ export const HrLine = styled.div`
   max-width: 1200px;
 `
 
-export const SelectEraseButtonWrapper = styled.div`
-  padding-top: 30px;
-  max-width: 250px;
+export const BottomRegisterButtonBigWrapper = styled.div`
+  padding-top: 40px;
+  max-width: 1200px;
   width: 100%;
-  height: 100px;
+  height: 92px;
   display: flex;
+  flex-direction: row;
+`
+export const BottomRegisterButtonMiddleLeftWrapper = styled.div`
+  max-width: 1029px;
+  width: 100%;
+  height: 92px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`
+export const BottomRegisterButtonSmallLeftWrapper = styled.div`
+  max-width: 1029px;
+  height: 19px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `
 
-export const SelectEraseButton = styled.button`
-  max-width: 250px;
+export const BottomRegisterButtonLeftArrow = styled.img`
+  max-width: 7.41px;
   width: 100%;
-  height: 40px;
-  background-color: red;
-  text-align: center;
-  color: white;
-  font-style: bold;
-  border-collapse: collapse;
-  border: 0px;
-  font-size: 20px;
-  border-radius: 125px;
-  cursor: pointer;
+  height: 12px;
+  margin-right: 8.59px;
 `
+export const BottomRegisterButtonRightArrow = styled.img`
+  max-width: 7.41px;
+  width: 100%;
+  height: 12px;
+  margin-left: 8.59px;
+`
+
+export const BottomRegisterButtonMiddleRightWrapper = styled.div`
+  max-width: 171px;
+  width: 100%;
+  height: 92px;
+  display: flex;
+  align-items: center;
+`
+
 interface IProps {
   isActive: boolean
 }
 export const Page = styled.span`
-  padding-left: 15px;
-  padding-right: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
   cursor: pointer;
-  color: ${(props: IProps) => (props.isActive ? 'red' : 'black')};
-`
-export const PaginationWrapper = styled.div`
-  max-width: 1200px;
-  width: 100%;
-  height: 92px;
-  padding-top: 40px;
-  display: flex;
-  flex-direction: row;
+  color: ${(props: IProps) => (props.isActive ? '#FFD600' : '#000000')};
+  border-bottom: ${(props: IProps) => props.isActive && '1px solid #FFD600'};
 `
 export const RegisterButton = styled.button`
   max-width: 171px;
@@ -170,6 +236,7 @@ export const RegisterButton = styled.button`
     background-color: #000000;
     color: #ffffff;
   }
+  cursor: pointer;
 `
 export const RegisterTextWrapper = styled.div`
   max-width: 171px;

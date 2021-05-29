@@ -1,4 +1,12 @@
 import {
+  BodyDateText,
+  BodyNumberText,
+  BodyText,
+  BodyWriterText,
+  BottomRegisterButtonLeftArrow,
+  BottomRegisterButtonMiddleLeftWrapper,
+  BottomRegisterButtonRightArrow,
+  BottomRegisterButtonSmallLeftWrapper,
   RegisterButton,
   RegisterPencilImage,
   RegisterText,
@@ -12,7 +20,6 @@ import {
   BodyTitle,
   BodyDate,
   HrLine,
-  SelectEraseButtonWrapper,
   Page,
   HeaderWrapper,
   HeaderNumber,
@@ -20,7 +27,8 @@ import {
   HeaderWriter,
   HeaderDate,
   BodyWriter,
-  PaginationWrapper
+  BottomRegisterButtonBigWrapper,
+  BottomRegisterButtonMiddleRightWrapper
 } from './List.styles'
 const ListPageUI = (props: any) => {
   return (
@@ -30,59 +38,89 @@ const ListPageUI = (props: any) => {
           <HeaderWrapper>
             <HeaderNumber>번호</HeaderNumber>
             <HeaderTitle>제목</HeaderTitle>
-            <HeaderWriter>노원두</HeaderWriter>
+            <HeaderWriter>작성자</HeaderWriter>
             <HeaderDate>날짜</HeaderDate>
           </HeaderWrapper>
-          {props.data?.fetchBoards.map((data: any) => (
+          {props.data?.fetchBoards.map((data: any, index) => (
             <BodyWrapper key={data?._id}>
-              <BodyNumber>10</BodyNumber>
-              <BodyTitle>{data?.title}</BodyTitle>
-              <BodyWriter>노원두</BodyWriter>
+              <BodyNumber>
+                <BodyNumberText
+                  id={data?._id}
+                  onClick={props.onClickRegisterPageThroughText}
+                >
+                  {props.pageNumberCount + (index + 1)}
+                </BodyNumberText>
+              </BodyNumber>
+              <BodyTitle>
+                <BodyText
+                  id={data?._id}
+                  onClick={props.onClickRegisterPageThroughText}
+                >
+                  {data.title}
+                </BodyText>
+              </BodyTitle>
+              <BodyWriter>
+                <BodyWriterText
+                  id={data?._id}
+                  onClick={props.onClickRegisterPageThroughText}
+                >
+                  {data.writer}
+                </BodyWriterText>
+              </BodyWriter>
               <BodyDate>
-                {`${String(new Date(data?.createdAt).getFullYear())}.
+                <BodyDateText
+                  id={data?._id}
+                  onClick={props.onClickRegisterPageThroughText}
+                >{`${String(new Date(data?.createdAt).getFullYear())}.
                 ${String(new Date(data?.createdAt).getMonth() + 1).padStart(
-                  0,
-                  '2'
+                  2,
+                  '0'
                 )}.
                 ${String(new Date(data?.createdAt).getDate()).padStart(
-                  0,
-                  '2'
-                )}`}
+                  2,
+                  '0'
+                )}`}</BodyDateText>
               </BodyDate>
             </BodyWrapper>
           ))}
           <HrLine></HrLine>
-          <SelectEraseButtonWrapper>
-            {new Array(10).fill(1).map((_, index) => (
-              <Page
-                key=""
-                id={String(index + 1)}
-                onClick={props.onClickPage}
-                isActive={props.currentPage === index + 1}
+          <BottomRegisterButtonBigWrapper>
+            <BottomRegisterButtonMiddleLeftWrapper>
+              <BottomRegisterButtonSmallLeftWrapper>
+                <BottomRegisterButtonLeftArrow src="/LeftArrow.png"></BottomRegisterButtonLeftArrow>
+                {new Array(10).fill(1).map((_, index) => (
+                  <Page
+                    key=""
+                    id={String(index + 1)}
+                    onClick={props.onClickPage}
+                    isActive={props.currentPage === index + 1}
+                  >
+                    {index + 1}
+                  </Page>
+                ))}
+                <BottomRegisterButtonRightArrow src="/RightArrow.png"></BottomRegisterButtonRightArrow>
+              </BottomRegisterButtonSmallLeftWrapper>
+            </BottomRegisterButtonMiddleLeftWrapper>
+            <BottomRegisterButtonMiddleRightWrapper>
+              <RegisterButton
+                onMouseOver={props.onMouseoverRegisterPage}
+                onMouseOut={props.onMouseoutRegisterPage}
               >
-                {index + 1}
-              </Page>
-            ))}
-          </SelectEraseButtonWrapper>
-          <PaginationWrapper>
-            <RegisterButton
-              onMouseOver={props.onMouseoverRegisterPage}
-              onMouseOut={props.onMouseoutRegisterPage}
-            >
-              <RegisterTextWrapper>
-                <RegisterPencilImage
-                  src={
-                    props.pencilColor === true
-                      ? '/YellowStar.png'
-                      : '/RegisterPencil(2).png'
-                  }
-                ></RegisterPencilImage>
-                <RegisterText onClick={props.onClickRegisterPage}>
-                  게시물 등록하기
-                </RegisterText>
-              </RegisterTextWrapper>
-            </RegisterButton>
-          </PaginationWrapper>
+                <RegisterTextWrapper>
+                  <RegisterPencilImage
+                    src={
+                      props.pencilColor === true
+                        ? '/YellowStar.png'
+                        : '/RegisterPencil(2).png'
+                    }
+                  ></RegisterPencilImage>
+                  <RegisterText onClick={props.onClickRegisterPage}>
+                    게시물 등록하기
+                  </RegisterText>
+                </RegisterTextWrapper>
+              </RegisterButton>
+            </BottomRegisterButtonMiddleRightWrapper>
+          </BottomRegisterButtonBigWrapper>
         </BoxWrapper>
       </Wrapper>
     </>
