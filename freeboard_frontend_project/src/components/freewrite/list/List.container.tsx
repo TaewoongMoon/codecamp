@@ -15,13 +15,11 @@ const ListPage = () => {
   const { data, fetchMore } = useQuery(FETCH_BOARDS, {
     variables: { page: currentPage + pageNumberCount }
   })
-  console.log(arrowClick)
 
   const { data: countData } = useQuery(FETCH_BOARDSCOUNT)
 
-  console.log(data?.fetchBoards)
+  console.log(countData)
   const dataBundle = Math.floor(countData?.fetchBoardsCount / 100)
-  console.log(dataBundle)
 
   function onClickRegisterPage() {
     router.push(`/board/detailwrite/${boardId}`)

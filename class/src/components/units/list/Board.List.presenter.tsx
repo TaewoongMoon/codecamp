@@ -75,24 +75,6 @@ export default function BoardUI(props: IProps) {
           </SelectEraseButtonWrapper>
         </BoxWrapper>
       </Wrapper>
-      <InfiniteScroll
-        pageStart={0}
-        loadMore={props.fetchMore}
-        hasMore={true || false}
-        loader={
-          <div className="loader" key={0}>
-            Loading ...
-          </div>
-        }
-      >
-        {
-          <>
-            <HeaderNumber>번호</HeaderNumber>
-            <HeaderTitle>제목</HeaderTitle>
-            <HeaderDate>작성일</HeaderDate>
-          </>
-        }
-      </InfiniteScroll>
     </>
   )
 }
