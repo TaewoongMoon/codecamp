@@ -6,7 +6,6 @@ import { useRouter } from 'next/router'
 
 const ListPage = () => {
   const router = useRouter()
-  const boardId = router.query._id
   const [pencilColor, setPencilColor] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const [arrowClick, setArrowClick] = useState(0)
@@ -22,7 +21,7 @@ const ListPage = () => {
   const dataBundle = Math.floor(countData?.fetchBoardsCount / 100)
 
   function onClickRegisterPage() {
-    router.push(`/board/detailwrite/${boardId}`)
+    router.push('/board/write')
   }
 
   function onClickRegisterPageThroughText(event: any) {

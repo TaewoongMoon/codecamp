@@ -101,7 +101,7 @@ export const BodyNumberText = styled.span`
 `
 
 export const BodyTitle = styled.div`
-  max-width: 700px;
+  max-width: 800px;
   width: 100%;
   height: 24px;
   display: flex;
@@ -110,7 +110,7 @@ export const BodyTitle = styled.div`
 `
 
 export const BodyText = styled.span`
-  max-width: 700px;
+  max-width: 800px;
   height: 24px;
   font-size: 16px;
   font-style: bold;
@@ -123,7 +123,7 @@ export const BodyText = styled.span`
 `
 
 export const BodyWriter = styled.div`
-  max-width: 283px;
+  max-width: 210px;
   width: 100%;
   height: 24px;
   display: flex;
@@ -131,7 +131,7 @@ export const BodyWriter = styled.div`
   justify-content: flex-start;
 `
 export const BodyWriterText = styled.div`
-  max-width: 283px;
+  max-width: 210px;
   height: 24px;
   font-size: 16px;
   color: #4f4f4f4f;
