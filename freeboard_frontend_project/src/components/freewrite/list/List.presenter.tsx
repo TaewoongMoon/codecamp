@@ -29,6 +29,7 @@ import {
   BottomRegisterButtonMiddleRightWrapper
 } from './List.styles'
 const ListPageUI = (props: any) => {
+  console.log('/////')
   console.log(props.dataBundle % 10)
   return (
     <>
@@ -92,7 +93,11 @@ const ListPageUI = (props: any) => {
                   src="/LeftArrow.png"
                   onClick={props.onClickLeftArrowButton}
                 ></BottomRegisterButtonLeftArrow>
-                {new Array(props.arrowClick < props.dataBundle ? 10 : 4)
+                {new Array(
+                  props.arrowClick < props.dataBundle
+                    ? 10
+                    : props.dataBundle % 10 || 10
+                )
                   .fill(1)
                   .map((_, index) => (
                     <Page
