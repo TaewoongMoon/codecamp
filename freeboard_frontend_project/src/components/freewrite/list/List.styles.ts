@@ -84,7 +84,7 @@ export const BodyNumber = styled.div`
   height: 24px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
 `
 
 export const BodyNumberText = styled.span`

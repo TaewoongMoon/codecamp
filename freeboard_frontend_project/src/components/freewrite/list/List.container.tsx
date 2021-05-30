@@ -1,7 +1,7 @@
 import ListPageUI from './List.presenter'
 import { useState } from 'react'
 import { useQuery } from '@apollo/client'
-import { FETCH_BOARDS } from './List.queries'
+import { FETCH_BOARDS, FETCH_BOARDSCOUNT } from './List.queries'
 import { useRouter } from 'next/router'
 
 const ListPage = () => {
@@ -9,15 +9,19 @@ const ListPage = () => {
   const boardId = router.query._id
   const [pencilColor, setPencilColor] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
-  const onClickpage = (event: any) => {
-    setCurrentPage(Number(event.target.id))
-    setPageNumberCount((prev) => prev + 10)
-  }
+  const [arrowClick, setArrowClick] = useState(0)
   const [pageNumberCount, setPageNumberCount] = useState(0)
 
   const { data, fetchMore } = useQuery(FETCH_BOARDS, {
-    variables: { page: currentPage }
+    variables: { page: currentPage + pageNumberCount }
   })
+  console.log(arrowClick)
+
+  const { data: countData } = useQuery(FETCH_BOARDSCOUNT)
+
+  console.log(data?.fetchBoards)
+  const dataBundle = Math.floor(countData?.fetchBoardsCount / 100)
+  console.log(dataBundle)
 
   function onClickRegisterPage() {
     router.push(`/board/detailwrite/${boardId}`)
@@ -27,6 +31,21 @@ const ListPage = () => {
     router.push(`/board/detailwrite/${String(event.target.id)}`)
     console.log(event.target.id)
   }
+  const onClickpage = (event: any) => {
+    setCurrentPage(Number(event.target.id))
+  }
+
+  const onClickRightArrowButton = () => {
+    if (arrowClick === dataBundle) return
+    setArrowClick((prev) => prev + 1)
+    setPageNumberCount((prev) => prev + 10)
+  }
+
+  const onClickLeftArrowButton = () => {
+    if (arrowClick === 0) return
+    setArrowClick((prev) => prev - 1)
+    setPageNumberCount((prev) => prev - 10)
+  }
 
   function onMouseoverRegisterPage() {
     setPencilColor(true)
@@ -35,8 +54,6 @@ const ListPage = () => {
   function onMouseoutRegisterPage() {
     setPencilColor(false)
   }
-
-  console.log(data)
 
   return (
     <ListPageUI
@@ -50,6 +67,11 @@ const ListPage = () => {
       onMouseoutRegisterPage={onMouseoutRegisterPage}
       pageNumberCount={pageNumberCount}
       onClickRegisterPageThroughText={onClickRegisterPageThroughText}
+      onClickRightArrowButton={onClickRightArrowButton}
+      arrowClick={arrowClick}
+      onClickLeftArrowButton={onClickLeftArrowButton}
+      dataBundle={dataBundle}
+      countData={countData}
     />
   )
 }

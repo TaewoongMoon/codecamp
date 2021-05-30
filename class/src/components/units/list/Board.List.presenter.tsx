@@ -1,4 +1,4 @@
-import InfiniteScroll from 'react-infinite-scroller'
+import { BoardReturn } from '../../../commons/types/generated/types'
 import {
   BoxWrapper,
   HeaderCheckBox,
@@ -16,7 +16,18 @@ import {
   SelectEraseButtonWrapper,
   Page
 } from './Board.List.styles'
-export default function BoardUI(props) {
+
+interface IProps {
+  checkedAll: any
+  onClickHeaderBox: any
+  onClickCheckBox: any
+  checked: any
+  onClickPage: any
+  currentPage: any
+  fetchMore: any
+  data: any
+}
+export default function BoardUI(props: IProps) {
   return (
     <>
       <Wrapper>
@@ -32,13 +43,13 @@ export default function BoardUI(props) {
             <HeaderTitle>제목</HeaderTitle>
             <HeaderDate>작성일</HeaderDate>
           </HeaderWrapper>
-          {props.data?.fetchBoards.map((data) => (
+          {props.data?.fetchBoards.map((data: BoardReturn) => (
             <BodyWrapper key={data?.number}>
               <BodyCheckBox
                 type="checkbox"
-                id={data?.number}
-                onClick={props.onClickCheckBox}
-                checked={props.checked[data?.number]}
+                // id={data?.number as number}
+                onChange={props.onClickCheckBox}
+                checked={props.checked[data?.number as number]}
               ></BodyCheckBox>
               <BodyNumber>{data?.number}</BodyNumber>
               <BodyTitle>{data?.title}</BodyTitle>

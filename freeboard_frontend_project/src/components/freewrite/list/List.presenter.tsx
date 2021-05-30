@@ -39,14 +39,16 @@ const ListPageUI = (props: any) => {
             <HeaderWriter>작성자</HeaderWriter>
             <HeaderDate>날짜</HeaderDate>
           </HeaderWrapper>
-          {props.data?.fetchBoards.map((data: any, index) => (
+          {props.data?.fetchBoards.map((data: any, index: any) => (
             <BodyWrapper key={data?._id}>
               <BodyNumber>
                 <BodyNumberText
                   id={data?._id}
                   onClick={props.onClickRegisterPageThroughText}
                 >
-                  {props.pageNumberCount + (index + 1)}
+                  {(props.currentPage - 1) * 10 +
+                    props.pageNumberCount * 10 +
+                    (index + 1)}
                 </BodyNumberText>
               </BodyNumber>
               <BodyTitle>
@@ -85,18 +87,30 @@ const ListPageUI = (props: any) => {
           <BottomRegisterButtonBigWrapper>
             <BottomRegisterButtonMiddleLeftWrapper>
               <BottomRegisterButtonSmallLeftWrapper>
-                <BottomRegisterButtonLeftArrow src="/LeftArrow.png"></BottomRegisterButtonLeftArrow>
-                {new Array(10).fill(1).map((_, index) => (
-                  <Page
-                    key=""
-                    id={String(index + 1)}
-                    onClick={props.onClickPage}
-                    isActive={props.currentPage === index + 1}
-                  >
-                    {index + 1}
-                  </Page>
-                ))}
-                <BottomRegisterButtonRightArrow src="/RightArrow.png"></BottomRegisterButtonRightArrow>
+                <BottomRegisterButtonLeftArrow
+                  src="/LeftArrow.png"
+                  onClick={props.onClickLeftArrowButton}
+                ></BottomRegisterButtonLeftArrow>
+                {new Array(
+                  props.arrowClick < props.dataBundle
+                    ? 10
+                    : props.dataBundle % 10
+                )
+                  .fill(1)
+                  .map((_, index) => (
+                    <Page
+                      key=""
+                      id={String(index + 1)}
+                      onClick={props.onClickPage}
+                      isActive={props.currentPage === index + 1}
+                    >
+                      {index + 1 + props.arrowClick * 10}
+                    </Page>
+                  ))}
+                <BottomRegisterButtonRightArrow
+                  src="/RightArrow.png"
+                  onClick={props.onClickRightArrowButton}
+                ></BottomRegisterButtonRightArrow>
               </BottomRegisterButtonSmallLeftWrapper>
             </BottomRegisterButtonMiddleLeftWrapper>
             <BottomRegisterButtonMiddleRightWrapper>

@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { ChangeEvent, MouseEvent, useState } from 'react'
 import BoardUI from './Board.List.presenter'
 import { gql, useQuery } from '@apollo/client'
+import { BoardReturn } from '../../../commons/types/generated/types'
 
 export default function BoardMain() {
   const [checkedAll, setCheckedAll] = useState(true)
@@ -16,10 +17,13 @@ export default function BoardMain() {
     }
   `
 
-  // setChecked 자체를 false로 바꾸면 어떤 방법으로 작동이 되는가?
-  // useState의 기능은 단순 데이터 저장용도 및 뿌려주기 역할인가?
-
-  function onClickHeaderBox(event) {
+  interface INewCheck {
+    [key: number]: boolean
+  }
+  interface IValues {
+    [key: number]: boolean
+  }
+  function onClickHeaderBox(event: ChangeEvent<HTMLInputElement>) {
     console.log(event.target.checked)
     if (event.target.checked === false) {
       let newCheck = {}
@@ -29,9 +33,9 @@ export default function BoardMain() {
       setCheckedAll(false)
       setChecked(newCheck)
     } else if (event.target.checked === true) {
-      const newCheck = {}
-      data?.fetchBoards.forEach((data) => {
-        newCheck[data.number] = true
+      const newCheck: INewCheck = {}
+      data?.fetchBoards.forEach((data: BoardReturn) => {
+        newCheck[data.number as number] = true
       })
       setCheckedAll(true)
       setChecked(newCheck)
@@ -39,8 +43,8 @@ export default function BoardMain() {
   }
 
   const [currentPage, setCurrentPage] = useState(1)
-  const onClickpage = (event) => {
-    setCurrentPage(Number(event.target.id))
+  const onClickpage = (event: MouseEvent<HTMLSpanElement, MouseEvent>) => {
+    setCurrentPage(Number((event.target as HTMLInputElement).id))
   }
 
   const { data, fetchMore } = useQuery(FETCH_BOARDS, {
@@ -53,15 +57,15 @@ export default function BoardMain() {
   }
   const [checked, setChecked] = useState(newCheck)
 
-  function onClickCheckBox(event) {
-    const values = {
+  function onClickCheckBox(event: ChangeEvent<HTMLInputElement>) {
+    const values: IValues = {
       ...checked,
       [event.target.id]: event.target.checked
     }
 
     setChecked(values)
 
-    const resultMap = Object.keys(values).map((props) => {
+    const resultMap = Object.keys(values).map((props: any) => {
       return [String(props), values[props]]
     })
 
