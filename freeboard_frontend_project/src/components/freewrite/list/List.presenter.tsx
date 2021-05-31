@@ -41,7 +41,7 @@ const ListPageUI = (props: any) => {
             <HeaderWriter>작성자</HeaderWriter>
             <HeaderDate>날짜</HeaderDate>
           </HeaderWrapper>
-          {props.data?.fetchBoards.map((data: any, index: any) => (
+          {props.data?.fetchBoards?.map((data: any, index: any) => (
             <BodyWrapper key={data?._id}>
               <BodyNumber>
                 <BodyNumberText
@@ -96,7 +96,8 @@ const ListPageUI = (props: any) => {
                 {new Array(
                   props.arrowClick < props.dataBundle
                     ? 10
-                    : props.dataBundle % 10 || 10
+                    : Math.ceil(props.countData?.fetchBoardsCount / 100) % 10 ||
+                      10
                 )
                   .fill(1)
                   .map((_, index) => (

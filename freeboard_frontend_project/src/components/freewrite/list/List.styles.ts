@@ -123,7 +123,7 @@ export const BodyText = styled.span`
 `
 
 export const BodyWriter = styled.div`
-  max-width: 210px;
+  max-width: 288px;
   width: 100%;
   height: 24px;
   display: flex;
@@ -131,7 +131,7 @@ export const BodyWriter = styled.div`
   justify-content: flex-start;
 `
 export const BodyWriterText = styled.div`
-  max-width: 210px;
+  max-width: 288px;
   height: 24px;
   font-size: 16px;
   color: #4f4f4f4f;
