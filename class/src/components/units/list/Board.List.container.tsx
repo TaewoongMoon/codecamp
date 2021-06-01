@@ -1,32 +1,29 @@
-import { useState } from 'react'
+import { ChangeEvent, MouseEvent, useState } from 'react'
 import BoardUI from './Board.List.presenter'
 import { gql, useQuery } from '@apollo/client'
+import { BoardReturn } from '../../../commons/types/generated/types'
 
 export default function BoardMain() {
   const [checkedAll, setCheckedAll] = useState(true)
 
   const FETCH_BOARDS = gql`
-    query fetchBoards {
-      fetchBoards {
+    query fetchBoards($page: Int) {
+      fetchBoards(page: $page) {
         number
         title
         createdAt
+        writer
       }
     }
   `
 
-  const { data } = useQuery(FETCH_BOARDS)
-
-  let newCheck = {}
-  for (let i = 0; i < data?.fetchBoards.length; i++) {
-    newCheck = { ...newCheck, [data.fetchBoards[i].number]: false }
+  interface INewCheck {
+    [key: number]: boolean
   }
-  // setChecked 자체를 false로 바꾸면 어떤 방법으로 작동이 되는가?
-  // useState의 기능은 단순 데이터 저장용도 및 뿌려주기 역할인가?
-
-  const [checked, setChecked] = useState(newCheck)
-
-  function onClickHeaderBox(event) {
+  interface IValues {
+    [key: number]: boolean
+  }
+  function onClickHeaderBox(event: ChangeEvent<HTMLInputElement>) {
     console.log(event.target.checked)
     if (event.target.checked === false) {
       let newCheck = {}
@@ -36,24 +33,39 @@ export default function BoardMain() {
       setCheckedAll(false)
       setChecked(newCheck)
     } else if (event.target.checked === true) {
-      const newCheck = {}
-      data?.fetchBoards.forEach((data) => {
-        newCheck[data.number] = true
+      const newCheck: INewCheck = {}
+      data?.fetchBoards.forEach((data: BoardReturn) => {
+        newCheck[data.number as number] = true
       })
       setCheckedAll(true)
       setChecked(newCheck)
     }
   }
 
-  function onClickCheckBox(event) {
-    const values = {
+  const [currentPage, setCurrentPage] = useState(1)
+  const onClickpage = (event: MouseEvent<HTMLSpanElement, MouseEvent>) => {
+    setCurrentPage(Number((event.target as HTMLInputElement).id))
+  }
+
+  const { data, fetchMore } = useQuery(FETCH_BOARDS, {
+    variables: { page: currentPage }
+  })
+
+  let newCheck = {}
+  for (let i = 0; i < data?.fetchBoards.length; i++) {
+    newCheck = { ...newCheck, [data.fetchBoards[i].number]: false }
+  }
+  const [checked, setChecked] = useState(newCheck)
+
+  function onClickCheckBox(event: ChangeEvent<HTMLInputElement>) {
+    const values: IValues = {
       ...checked,
       [event.target.id]: event.target.checked
     }
 
     setChecked(values)
 
-    const resultMap = Object.keys(values).map((props) => {
+    const resultMap = Object.keys(values).map((props: any) => {
       return [String(props), values[props]]
     })
 
@@ -86,6 +98,9 @@ export default function BoardMain() {
       checkedAll={checkedAll}
       onClickHeaderBox={onClickHeaderBox}
       checked={checked}
+      onClickPage={onClickpage}
+      currentPage={currentPage}
+      fetchMore={fetchMore}
     />
   )
 }

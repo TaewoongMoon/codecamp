@@ -1,6 +1,5 @@
 import DaumPostcode from 'react-daum-postcode'
-
-export default function PostcodePage() {
+function PostcodePage() {
   const handleComplete = (data) => {
     console.log(data)
   }
@@ -13,3 +12,5 @@ export default function PostcodePage() {
     />
   )
 }
+
+export default PostcodePage
