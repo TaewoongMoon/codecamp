@@ -2,7 +2,7 @@ import { Component, createRef, RefObject } from 'react'
 
 class MyClassPage extends Component {
   private inputRef: RefObject<HTMLInputElement>
-  constructor(props) {
+  constructor(props: any) {
     // 초기값을 정해주는 곳
     super(props)
     this.state = {}
@@ -18,7 +18,7 @@ class MyClassPage extends Component {
     console.log('dddd')
   }
 
-  onChangeInput(event) {
+  onChangeInput(event: any) {
     this.setState({
       [event.target.name]: event.target.value
     })
