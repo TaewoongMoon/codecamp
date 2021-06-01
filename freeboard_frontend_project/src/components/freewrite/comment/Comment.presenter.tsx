@@ -1,3 +1,5 @@
+import InfiniteScroll from 'react-infinite-scroll-component'
+
 import {
   CommentBigWrapper,
   CommentWrapper,
@@ -77,6 +79,8 @@ interface Iprops {
   commentTextNumber: any
   commentFixNumberofStars: any
   CommentFixRegisterButton: any
+  fetchMore: any
+  onLoadMore: any
 }
 
 export default function CommentBoard(props: Iprops) {
@@ -173,6 +177,7 @@ export default function CommentBoard(props: Iprops) {
           </CommentBoxSmallInputWrapper>
         </CommentBoxSmallWrapper>
       </CommentBoxBigWrapper>
+      {console.log(props.commentFix)}
       {props.commentFix === true && (
         <>
           <RatingBigWrapper2>
@@ -262,84 +267,108 @@ export default function CommentBoard(props: Iprops) {
           </CommentBoxBigWrapper2>
         </>
       )}
-      {props?.commentData?.fetchBoardComments.map((data: any) => (
-        <CommentResultBigWrapper key={data._id} id={data._id}>
-          <CommentResultMiddleWrapper>
-            <CommentLeftBigWrapper>
-              <CommentLeftLeftWrapper>
-                <CommentLeftImageBox src="/Vector (1).png"></CommentLeftImageBox>
-              </CommentLeftLeftWrapper>
-              <CommentLeftRightWrapper>
-                <CommentLeftRightFirstSmallWrapper>
-                  <CommentLeftRightNameBox>
-                    {data.writer}
-                  </CommentLeftRightNameBox>
-                  <CommentLeftRightRatingBox>
-                    <CommentRatingStar1
-                      src={
-                        data.rating === 1 ||
-                        data.rating === 2 ||
-                        data.rating === 3 ||
-                        data.rating === 4 ||
-                        data.rating === 5
-                          ? '/YellowStar.png'
-                          : '/Star.png'
-                      }
-                    ></CommentRatingStar1>
-                    <CommentRatingStar2
-                      src={
-                        data.rating === 2 ||
-                        data.rating === 3 ||
-                        data.rating === 4 ||
-                        data.rating === 5
-                          ? '/YellowStar.png'
-                          : '/Star.png'
-                      }
-                    ></CommentRatingStar2>
-                    <CommentRatingStar3
-                      src={
-                        data.rating === 3 ||
-                        data.rating === 4 ||
-                        data.rating === 5
-                          ? '/YellowStar.png'
-                          : '/Star.png'
-                      }
-                    ></CommentRatingStar3>
-                    <CommentRatingStar4
-                      src={
-                        data.rating === 4 || data.rating === 5
-                          ? '/YellowStar.png'
-                          : '/Star.png'
-                      }
-                    ></CommentRatingStar4>
-                    <CommentRatingStar5
-                      src={data.rating === 5 ? '/YellowStar.png' : '/Star.png'}
-                    ></CommentRatingStar5>
-                  </CommentLeftRightRatingBox>
-                </CommentLeftRightFirstSmallWrapper>
-                <CommentLeftRightSecondTextBox>
-                  {data.contents}
-                </CommentLeftRightSecondTextBox>
-                <CommentLeftRightThirdDateBox>
-                  {`${String(new Date(data.createdAt).getFullYear())}.${String(
-                    new Date(data.createdAt).getMonth() + 1
-                  ).padStart(2, '0')}.${String(
-                    new Date(data.createdAt).getDate()
-                  ).padStart(0, '2')}`}
-                </CommentLeftRightThirdDateBox>
-              </CommentLeftRightWrapper>
-            </CommentLeftBigWrapper>
-            <CommentRightBigWrapper>
-              <CommentPencilImageBox
-                id={data._id}
-                src="/Pencilimage.png"
-                onClick={props.onClickCommentFix}
-              ></CommentPencilImageBox>
-              <CommentCancelImageBox src="/Cancelimage.png"></CommentCancelImageBox>
-            </CommentRightBigWrapper>
-          </CommentResultMiddleWrapper>
-        </CommentResultBigWrapper>
-      ))}
+      <div
+        id="scrollableDiv"
+        style={{
+          height: 300,
+          overflow: 'auto',
+          display: 'flex',
+          flexDirection: 'column'
+        }}
+      >
+        <InfiniteScroll
+          dataLength={100}
+          next={props.onLoadMore}
+          style={{ display: 'flex', flexDirection: 'column' }}
+          inverse={false} //
+          hasMore={true}
+          loader={!props.commentData && <h4>Loading...</h4>}
+          scrollableTarget="scrollableDiv"
+        >
+          {props?.commentData?.fetchBoardComments.map((data: any) => (
+            <CommentResultBigWrapper key={data._id} id={data._id}>
+              <CommentResultMiddleWrapper>
+                <CommentLeftBigWrapper>
+                  <CommentLeftLeftWrapper>
+                    <CommentLeftImageBox src="/Vector (1).png"></CommentLeftImageBox>
+                  </CommentLeftLeftWrapper>
+                  <CommentLeftRightWrapper>
+                    <CommentLeftRightFirstSmallWrapper>
+                      <CommentLeftRightNameBox>
+                        {data.writer}
+                      </CommentLeftRightNameBox>
+                      <CommentLeftRightRatingBox>
+                        <CommentRatingStar1
+                          src={
+                            data.rating === 1 ||
+                            data.rating === 2 ||
+                            data.rating === 3 ||
+                            data.rating === 4 ||
+                            data.rating === 5
+                              ? '/YellowStar.png'
+                              : '/Star.png'
+                          }
+                        ></CommentRatingStar1>
+                        <CommentRatingStar2
+                          src={
+                            data.rating === 2 ||
+                            data.rating === 3 ||
+                            data.rating === 4 ||
+                            data.rating === 5
+                              ? '/YellowStar.png'
+                              : '/Star.png'
+                          }
+                        ></CommentRatingStar2>
+                        <CommentRatingStar3
+                          src={
+                            data.rating === 3 ||
+                            data.rating === 4 ||
+                            data.rating === 5
+                              ? '/YellowStar.png'
+                              : '/Star.png'
+                          }
+                        ></CommentRatingStar3>
+                        <CommentRatingStar4
+                          src={
+                            data.rating === 4 || data.rating === 5
+                              ? '/YellowStar.png'
+                              : '/Star.png'
+                          }
+                        ></CommentRatingStar4>
+                        <CommentRatingStar5
+                          src={
+                            data.rating === 5 ? '/YellowStar.png' : '/Star.png'
+                          }
+                        ></CommentRatingStar5>
+                      </CommentLeftRightRatingBox>
+                    </CommentLeftRightFirstSmallWrapper>
+                    <CommentLeftRightSecondTextBox>
+                      {data.contents}
+                    </CommentLeftRightSecondTextBox>
+                    <CommentLeftRightThirdDateBox>
+                      {`${String(
+                        new Date(data.createdAt).getFullYear()
+                      )}.${String(
+                        new Date(data.createdAt).getMonth() + 1
+                      ).padStart(2, '0')}.${String(
+                        new Date(data.createdAt).getDate()
+                      ).padStart(0, '2')}`}
+                    </CommentLeftRightThirdDateBox>
+                  </CommentLeftRightWrapper>
+                </CommentLeftBigWrapper>
+                <CommentRightBigWrapper>
+                  <CommentPencilImageBox
+                    id={data._id}
+                    src="/Pencilimage.png"
+                    onClick={props.onClickCommentFix}
+                  ></CommentPencilImageBox>
+                  <CommentCancelImageBox src="/Cancelimage.png"></CommentCancelImageBox>
+                </CommentRightBigWrapper>
+              </CommentResultMiddleWrapper>
+            </CommentResultBigWrapper>
+          ))}
+        </InfiniteScroll>
+      </div>
     </>
   )
 }

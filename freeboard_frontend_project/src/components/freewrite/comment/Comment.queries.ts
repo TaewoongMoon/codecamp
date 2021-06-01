@@ -38,8 +38,8 @@ export const UPDATE_BOARDCOMMENT = gql`
 `
 
 export const FETCH_BOARDCOMMENT = gql`
-  query fetchBoardComments($boardId: ID!) {
-    fetchBoardComments(boardId: $boardId) {
+  query fetchBoardComments($boardId: ID!, $page: Int) {
+    fetchBoardComments(boardId: $boardId, page: $page) {
       _id
       writer
       contents

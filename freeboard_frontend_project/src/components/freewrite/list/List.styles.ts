@@ -1,4 +1,115 @@
 import styled from '@emotion/styled'
+import { Card } from '@material-ui/core'
+
+export const TotalWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+`
+
+export const CardBigWrapper = styled.div`
+  width: 100%;
+  height: 419px;
+  padding-top: 162px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`
+
+export const BestCards = styled(Card)``
+
+export const BestTitleWrapper = styled.div`
+  width: 100%;
+  height: 47px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+`
+export const BestTitleBlock1 = styled.div`
+  width: 5%;
+  height: 27px;
+`
+
+export const BestRealTitle = styled.div`
+  width: 95%;
+  height: 27px;
+  font-size: 18px;
+  font-weight: bold;
+`
+
+export const LikeNameWrapper = styled.div`
+  max-width: 100%;
+  height: 44px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
+`
+
+export const LikeNameLeftWrapper = styled.div`
+  max-width: 200px;
+  width: 100%;
+  height: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`
+
+export const PersonImage = styled.img`
+  max-width: 20px;
+  width: 100%;
+  height: 20px;
+`
+
+export const PersonName = styled.div`
+  max-width: 410px;
+  width: 100%;
+  height: 24px;
+  align-items: center;
+  font-size: 16px;
+  margin-left: 5px;
+`
+
+export const DateWrapper = styled.div`
+  width: 100%;
+  height: 30px;
+  padding-top: 6px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
+`
+
+export const DateLeftWrapper = styled.div`
+  max-width: 110px;
+  width: 100%;
+  height: 18px;
+  font-size: 12px;
+  color: #828282;
+`
+export const DateRightWrapper = styled.div`
+  max-width: 27px;
+  width: 100%;
+  height: 24px;
+  font-size: 16px;
+`
+
+export const LikeNameRightWrapper = styled.img`
+  max-width: 20px;
+  width: 100%;
+  height: 18px;
+`
+
+export const CardMiddleWrapper = styled.div`
+  max-width: 1200px;
+  width: 100%;
+  height: 257px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -6,6 +117,24 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 511px;
+`
+export const BestListWrapper = styled.div`
+  width: 100%;
+  height: 122px;
+  padding-top: 42px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`
+
+export const BestList = styled.div`
+  max-width: 208px;
+  width: 100%;
+  height: 42px;
+  color: #000000;
+  font-weight: bold;
+  font-size: 36px;
+  text-align: center;
 `
 
 export const BoxWrapper = styled.div`

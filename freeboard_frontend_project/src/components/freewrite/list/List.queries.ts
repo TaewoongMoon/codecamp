@@ -16,3 +16,14 @@ export const FETCH_BOARDSCOUNT = gql`
     fetchBoardsCount
   }
 `
+
+export const FETCH_BOARDSOFTHEBEST = gql`
+  query fetchBoardsOfTheBest {
+    fetchBoardsOfTheBest {
+      title
+      writer
+      createdAt
+      likeCount
+    }
+  }
+`

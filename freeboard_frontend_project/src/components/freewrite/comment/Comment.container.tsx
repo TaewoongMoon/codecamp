@@ -18,6 +18,7 @@ import {
 export default function CommentPage() {
   const router = useRouter()
   const boardId = String(router.query._id)
+  const [page, setPage] = useState(1)
   const [textNumber, setTextNumber] = useState({
     contents: ''
   })
@@ -208,19 +209,45 @@ export default function CommentPage() {
     console.log(event)
   }
 
+  const onLoadMore = () => {
+    console.log('asdf')
+    fetchMore({
+      variables: {
+        boardId: String(router.query._id),
+        page: page + 1
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        console.log('2222222222')
+        if (!fetchMoreResult) return prev
+        const aaa = Object.assign({}, prev, {
+          fetchBoardComments: [
+            ...prev.fetchBoardComments,
+            ...fetchMoreResult.fetchBoardComments
+          ]
+        })
+        setPage((prev) => prev + 1)
+        return aaa
+      }
+    })
+  }
+
   const [updateBoardComment] =
     useMutation<IMutation, IMutationUpdateBoardCommentArgs>(UPDATE_BOARDCOMMENT)
 
   const [createBoardComment] =
     useMutation<IMutation, IMutationCreateBoardCommentArgs>(CREATE_BOARDCOMMENT)
-  const { data: commentData, refetch } = useQuery<
-    IQuery,
-    IQueryFetchBoardCommentsArgs
-  >(FETCH_BOARDCOMMENT, {
+  const {
+    data: commentData,
+    refetch,
+    fetchMore
+  } = useQuery<IQuery, IQueryFetchBoardCommentsArgs>(FETCH_BOARDCOMMENT, {
     variables: {
-      boardId: String(router.query._id)
+      boardId: String(router.query._id),
+      page: page
     }
   })
+
+  console.log(commentData?.fetchBoardComments.length)
 
   return (
     <CommentBoard
@@ -239,6 +266,8 @@ export default function CommentPage() {
       commentTextNumber={commentTextNumber}
       commentFixNumberofStars={commentFixNumberofStars}
       CommentFixRegisterButton={CommentFixRegisterButton}
+      fetchMore={fetchMore}
+      onLoadMore={onLoadMore}
     />
   )
 }
