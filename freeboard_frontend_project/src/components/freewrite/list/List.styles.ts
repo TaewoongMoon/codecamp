@@ -8,8 +8,8 @@ export const TotalWrapper = styled.div`
 
 export const CardBigWrapper = styled.div`
   width: 100%;
-  height: 419px;
-  padding-top: 162px;
+  height: 297px;
+  padding-top: 40px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -116,12 +116,11 @@ export const Wrapper = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 511px;
+  margin-top: 41px;
 `
 export const BestListWrapper = styled.div`
   width: 100%;
-  height: 122px;
-  padding-top: 42px;
+  height: 42px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -390,4 +389,83 @@ export const RegisterText = styled.div`
   font-size: 16px;
   height: 24px;
   padding-top: 4px;
+`
+
+export const SearchSecWrapper = styled.div`
+  width: 100%;
+  height: 132px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`
+
+export const SearchMiddleWrapper = styled.div`
+  max-width: 1200px;
+  width: 100%;
+  height: 132px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 80px;
+`
+export const SearchBoxWrapper = styled.div`
+  max-width: 588px;
+  width: 100%;
+  height: 52px;
+  display: flex;
+  flex-direction: row;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+`
+export const SearchImageWrapper = styled.div`
+  max-width: 48px;
+  width: 100%;
+  height: 52px;
+  display: flex;
+  flex-direction: row;
+  padding-left: 19px;
+  flex-direction: row;
+  align-items: center;
+`
+
+export const SearchImage = styled.img`
+  max-width: 17.49px;
+  height: 17.49px;
+  width: 100%;
+`
+
+export const SearchInputBox = styled.input`
+  color: #000000;
+  font-size: 16px;
+  text-align: left;
+  width: 100%;
+  background-color: #f2f2f2;
+  outline: none;
+  border: none;
+  ::placeholder {
+    color: #000000;
+  }
+  border-radius: 10px;
+`
+
+export const CalendarWrapper = styled.div`
+  max-width: 282px;
+  width: 100%;
+  height: 52px;
+  background-color: #ffffff;
+  border: 1px solid #f2f2f2;
+  border-radius: 10px;
+`
+export const SearchButton = styled.button`
+  max-width: 94px;
+  width: 100%;
+  height: 52px;
+  background-color: #000000;
+  color: #ffffff;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  cursor: pointer;
 `
