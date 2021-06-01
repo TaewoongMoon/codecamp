@@ -3,10 +3,14 @@ import { useMutation, gql } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { WriteUI } from './Write.presenter'
 
-export default function WriteContainer () {
+export default function WriteContainer() {
   const router = useRouter()
   console.log(router.query)
   const [buttonColor, setButtonColor] = useState(true)
+  const [addressDetails, setAddressDetails] = useState({
+    zipcode: '',
+    address: ''
+  })
 
   const [boardWritePackage, setBoardWritePackage] = useState({
     headWriter: '',
@@ -25,6 +29,7 @@ export default function WriteContainer () {
       $headPassword: String
       $headTitle: String!
       $headContent: String!
+      $headYoutube: String
     ) {
       createBoard(
         createBoardInput: {
@@ -32,12 +37,14 @@ export default function WriteContainer () {
           password: $headPassword
           title: $headTitle
           contents: $headContent
+          youtubeUrl: $headYoutube
         }
       ) {
         _id
         writer
         title
         contents
+        youtubeUrl
       }
     }
   `
@@ -63,46 +70,13 @@ export default function WriteContainer () {
     }
   }
 
-  // const WriterChange = (event) => {
-  //   const temp = event.target.value;
-  //   setWriter(temp);
-  // }
-
-  // const PasswordChange = (event) => {
-  //   const temp = event.target.value;
-  //   setPassword(temp);
-  // }
-
-  // const TitleChange = (event) => {
-  //   const temp = event.target.value;
-  //   setTitle(temp);
-  // }
-
-  // const ContentChange = (event) => {
-  //   const temp = event.target.value;
-  //   setContent(temp);
-  // }
-
-  // const AddressChangeSimple = (event) =>{
-  //   const temp = event.target.value;
-  //   setSimpleAddress(temp);
-  // }
-
-  // const AddressChangeDetail = (event) => {
-  //   const temp = event.target.value;
-  //   setDetailAddress(temp);
-  // }
-
-  // const YoutubeChange = (event) => {
-  //   const temp = event.target.value;
-  //   setYoutube(temp);
-  // }
-
-  // const SettingOption = (event) => {
-  //   // setOption(OptionBtnName)
-  //   console.log(event.target.value)
-  //   console.log(event.target.name)
-  // }
+  const handleComplete = (data: any) => {
+    setAddressDetails({
+      ...addressDetails,
+      zipcode: String(data.zonecode),
+      address: String(data.address)
+    })
+  }
 
   const [createBoard] = useMutation(CREATE_BOARD)
 
@@ -118,7 +92,10 @@ export default function WriteContainer () {
       alert('제목을 작성하여주십시오.')
     } else if (boardWritePackage.headContent.length < 20) {
       alert('내용의 길이가 너무 짦습니다.')
-    } else if (boardWritePackage.simpleAddress.length < 1) {
+    } else if (
+      boardWritePackage.simpleAddress.length ||
+      addressDetails.address.length < 1
+    ) {
       alert('주소를 작성하여 주십시오.')
     } else if (boardWritePackage.detailAddress.length < 1) {
       alert('주소를 작성하여 주십시오.')
@@ -133,7 +110,8 @@ export default function WriteContainer () {
             headWriter: boardWritePackage.headWriter,
             headPassword: boardWritePackage.headPassword,
             headTitle: boardWritePackage.headTitle,
-            headContent: boardWritePackage.headContent
+            headContent: boardWritePackage.headContent,
+            headYoutube: boardWritePackage.headYoutube
           }
         })
         const message = '입력을 완료하였습니다.'
@@ -151,6 +129,8 @@ export default function WriteContainer () {
       onChangeInput={onChangeInput}
       RegisterButton={RegisterButton}
       buttonColor={buttonColor}
+      handleComplete={handleComplete}
+      addressDetails={addressDetails}
     />
   )
 }
