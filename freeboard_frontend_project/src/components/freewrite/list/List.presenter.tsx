@@ -47,7 +47,15 @@ import {
   PersonName,
   DateWrapper,
   DateLeftWrapper,
-  DateRightWrapper
+  DateRightWrapper,
+  SearchSecWrapper,
+  SearchMiddleWrapper,
+  SearchBoxWrapper,
+  SearchImageWrapper,
+  SearchImage,
+  SearchInputBox,
+  CalendarWrapper,
+  SearchButton
 } from './List.styles'
 
 const useStyles = makeStyles({
@@ -109,6 +117,21 @@ const ListPageUI = (props: any) => {
             )}
           </CardMiddleWrapper>
         </CardBigWrapper>
+        <SearchSecWrapper>
+          <SearchMiddleWrapper>
+            <SearchBoxWrapper>
+              <SearchImageWrapper>
+                <SearchImage src="/SearchImage.png"></SearchImage>
+              </SearchImageWrapper>
+              <SearchInputBox
+                type="text"
+                placeholder="제목을 검색해주세요"
+              ></SearchInputBox>
+            </SearchBoxWrapper>
+            <CalendarWrapper></CalendarWrapper>
+            <SearchButton>검색하기</SearchButton>
+          </SearchMiddleWrapper>
+        </SearchSecWrapper>
         <Wrapper>
           <BoxWrapper>
             <HeaderWrapper>
