@@ -225,7 +225,6 @@ export default function CommentPage() {
             ...fetchMoreResult.fetchBoardComments
           ]
         })
-        console.log('**************')
         setPage((prev) => prev + 1)
         return aaa
       }

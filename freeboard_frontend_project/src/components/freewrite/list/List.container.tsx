@@ -1,7 +1,11 @@
 import ListPageUI from './List.presenter'
 import { useState } from 'react'
 import { useQuery } from '@apollo/client'
-import { FETCH_BOARDS, FETCH_BOARDSCOUNT } from './List.queries'
+import {
+  FETCH_BOARDS,
+  FETCH_BOARDSCOUNT,
+  FETCH_BOARDSOFTHEBEST
+} from './List.queries'
 import { useRouter } from 'next/router'
 
 const ListPage = () => {
@@ -10,12 +14,20 @@ const ListPage = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [arrowClick, setArrowClick] = useState(0)
   const [pageNumberCount, setPageNumberCount] = useState(0)
+  const imageUrl = [
+    '/BestImage(1).png',
+    '/BestImage(2).png',
+    '/BestImage(3).png',
+    '/BestImage(4).png'
+  ]
 
   const { data, fetchMore } = useQuery(FETCH_BOARDS, {
     variables: { page: currentPage + pageNumberCount }
   })
 
   const { data: countData } = useQuery(FETCH_BOARDSCOUNT)
+
+  const { data: countBestData } = useQuery(FETCH_BOARDSOFTHEBEST)
 
   console.log(countData)
   const dataBundle = Math.floor(countData?.fetchBoardsCount / 100)
@@ -69,6 +81,8 @@ const ListPage = () => {
       onClickLeftArrowButton={onClickLeftArrowButton}
       dataBundle={dataBundle}
       countData={countData}
+      countBestData={countBestData}
+      imageUrl={imageUrl}
     />
   )
 }
