@@ -217,16 +217,18 @@ export default function CommentPage() {
         page: page + 1
       },
       updateQuery: (prev, { fetchMoreResult }) => {
+        console.log('2222222222')
         if (!fetchMoreResult) return prev
-        return Object.assign({}, prev, {
+        const aaa = Object.assign({}, prev, {
           fetchBoardComments: [
             ...prev.fetchBoardComments,
             ...fetchMoreResult.fetchBoardComments
           ]
         })
+        setPage((prev) => prev + 1)
+        return aaa
       }
     })
-    setPage((prev) => prev + 1)
   }
 
   const [updateBoardComment] =

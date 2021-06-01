@@ -277,7 +277,7 @@ export default function CommentBoard(props: Iprops) {
         }}
       >
         <InfiniteScroll
-          dataLength={10}
+          dataLength={100}
           next={props.onLoadMore}
           style={{ display: 'flex', flexDirection: 'column' }}
           inverse={false} //
