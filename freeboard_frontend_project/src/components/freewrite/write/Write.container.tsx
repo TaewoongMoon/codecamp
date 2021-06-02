@@ -80,6 +80,10 @@ export default function WriteContainer() {
 
   const [createBoard] = useMutation(CREATE_BOARD)
 
+  const onClickCancel = () => {
+    router.back()
+  }
+
   const RegisterButton = async () => {
     if (
       boardWritePackage.headWriter.length > 3 ||
@@ -131,6 +135,7 @@ export default function WriteContainer() {
       buttonColor={buttonColor}
       handleComplete={handleComplete}
       addressDetails={addressDetails}
+      onClickCancel={onClickCancel}
     />
   )
 }
