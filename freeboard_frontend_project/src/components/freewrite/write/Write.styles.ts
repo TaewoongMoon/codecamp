@@ -6,7 +6,8 @@ export const TotalBox = styled.div`
   height: 100%;
 `
 export const Wrapper = styled.div`
-  width: 1200px;
+  max-width: 1200px;
+  width: 100%;
   height: 1847px;
   border: 1px solid black;
   padding-top: 80px;
@@ -15,8 +16,9 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: none;
   box-shadow: 0px 0px 10px gray;
+  outline: none;
+  overflow-y: auto;
 `
 
 export const Title = styled.div`
