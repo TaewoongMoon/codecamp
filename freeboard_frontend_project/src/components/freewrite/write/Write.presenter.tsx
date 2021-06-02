@@ -129,7 +129,7 @@ export const WriteUI = (props: any) => {
           <RadioLabel htmlFor="image">사진</RadioLabel>
         </OptionWrapper>
         <ButtonWrapper>
-          <CancelButton>취소하기</CancelButton>
+          <CancelButton onClick={props.onClickCancel}>취소하기</CancelButton>
           <SubmitButton
             onClick={props.RegisterButton}
             disabled={props.buttonColor}
