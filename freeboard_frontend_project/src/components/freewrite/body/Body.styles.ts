@@ -1,6 +1,12 @@
 import styled from '@emotion/styled'
 import Slider from 'react-slick'
 
+export const MainWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`
+
 export const Header = styled.div`
   margin-top: 54px;
   width: 100%;
@@ -125,9 +131,9 @@ export const FreeWriteWhiteBar = styled.div`
   background-color: #ffffff;
 `
 export const MainBoxWrapper = styled.div`
+  max-width: 1200px;
   width: 100%;
-  display: flex;
-  justify-content: center;
+  height: 2000px;
   padding-top: 80px;
 `
 
@@ -440,6 +446,7 @@ export const DislikeNumber = styled.div`
 `
 
 export const RouterButtonBigWrapper = styled.div`
+  max-width: 1200px;
   width: 100%;
   height: 212px;
   display: flex;

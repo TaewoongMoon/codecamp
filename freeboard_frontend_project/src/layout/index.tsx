@@ -5,8 +5,9 @@ interface ILayoutProps {
 }
 
 const Body = styled.div`
-  margin-right: 360px;
-  margin-left: 360px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   margin-top: 80px;
 `
 

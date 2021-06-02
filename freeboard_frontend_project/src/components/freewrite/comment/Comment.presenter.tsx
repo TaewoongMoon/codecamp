@@ -81,6 +81,7 @@ interface Iprops {
   CommentFixRegisterButton: any
   fetchMore: any
   onLoadMore: any
+  hasMore: any
 }
 
 export default function CommentBoard(props: Iprops) {
@@ -177,7 +178,6 @@ export default function CommentBoard(props: Iprops) {
           </CommentBoxSmallInputWrapper>
         </CommentBoxSmallWrapper>
       </CommentBoxBigWrapper>
-      {console.log(props.commentFix)}
       {props.commentFix === true && (
         <>
           <RatingBigWrapper2>
@@ -277,7 +277,7 @@ export default function CommentBoard(props: Iprops) {
         }}
       >
         <InfiniteScroll
-          dataLength={100}
+          dataLength={props.commentData?.fetchBoardComments.length || 0}
           next={props.onLoadMore}
           style={{ display: 'flex', flexDirection: 'column' }}
           inverse={false} //
