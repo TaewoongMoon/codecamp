@@ -12,6 +12,10 @@ export default function Header() {
     secondhandmarket: '',
     mypage: ''
   })
+
+  const headerLogo = () => {
+    router.push(`/board/detailwrite/${boardId}/list`)
+  }
   async function onClickMenuSelector(event: any) {
     const data = {
       ...menuSelector,
@@ -36,6 +40,7 @@ export default function Header() {
       onClickMenuSelector={onClickMenuSelector}
       currentMenu={currentMenu}
       menuSelector={menuSelector}
+      headerLogo={headerLogo}
     />
   )
 }

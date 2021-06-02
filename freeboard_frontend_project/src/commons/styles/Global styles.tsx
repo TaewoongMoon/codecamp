@@ -6,6 +6,14 @@ const reset = css`
     padding: 0px;
     box-sizing: border-box;
   }
+
+  body {
+    -ms-overflow-style: none;
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
   @font-face {
     font-family: 'notoSansKR';
     src: url('/fonts/NotoSansKR-Light.otf');

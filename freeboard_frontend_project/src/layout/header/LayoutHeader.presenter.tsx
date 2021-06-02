@@ -20,6 +20,7 @@ interface IProps {
   onClickMenuSelector: any
   currentMenu: any
   menuSelector: any
+  headerLogo: any
 }
 export default function HeaderUI(props: IProps) {
   return (
@@ -27,7 +28,10 @@ export default function HeaderUI(props: IProps) {
       <Header>
         <LogoWrapper>
           <CodeCampWrapper>
-            <CodeCampImage src="/logo (1).png"></CodeCampImage>
+            <CodeCampImage
+              src="/logo (1).png"
+              onClick={props.headerLogo}
+            ></CodeCampImage>
           </CodeCampWrapper>
           <LoginRegisterWrapper>
             <LoginButton>로그인</LoginButton>
