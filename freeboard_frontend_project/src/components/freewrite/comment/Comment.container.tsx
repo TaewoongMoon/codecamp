@@ -18,7 +18,7 @@ import {
 export default function CommentPage() {
   const router = useRouter()
   const boardId = String(router.query._id)
-  const [page, setPage] = useState(1)
+  const [page] = useState(1)
   const [textNumber, setTextNumber] = useState({
     contents: ''
   })
@@ -26,6 +26,7 @@ export default function CommentPage() {
   const [numberofStars, setNumberofStars] = useState(tempStars)
   const tempRating = numberofStars.filter((data) => data === true).length
   const [commentFix, setCommentFix] = useState(false)
+  const [hasMore] = useState(true)
   const [boardCommentId, setBoardCommentId] = useState('')
   const [commentFixNumberofStars, setCommentFixNumberofStars] =
     useState(tempStars)
@@ -130,7 +131,6 @@ export default function CommentPage() {
       rating: tempRating
     }
     setRegisterPackage(data)
-    console.log(data)
   }
 
   function onChangeCommentFixBox(event: any) {
@@ -145,7 +145,6 @@ export default function CommentPage() {
       commentFixRating: commentTempRating
     }
     setCommentFixRegisterPackage(data)
-    console.log(data)
   }
 
   function onChangeNamePassword(event: any) {
@@ -206,29 +205,33 @@ export default function CommentPage() {
       setCommentFix(true)
       setBoardCommentId(event.target.id)
     }
-    console.log(event)
   }
 
   const onLoadMore = () => {
-    console.log('asdf')
+    if (!commentData) return
+    if (commentData?.fetchBoardComments?.length % 10 !== 0) return
+
+    console.log('asdfasdf1')
+
     fetchMore({
       variables: {
         boardId: String(router.query._id),
-        page: page + 1
+        page: Math.floor(commentData?.fetchBoardComments?.length / 10) + 1
       },
       updateQuery: (prev, { fetchMoreResult }) => {
-        console.log('2222222222')
-        if (!fetchMoreResult) return prev
+        console.log(prev, fetchMoreResult)
         const aaa = Object.assign({}, prev, {
           fetchBoardComments: [
             ...prev.fetchBoardComments,
             ...fetchMoreResult.fetchBoardComments
           ]
         })
-        setPage((prev) => prev + 1)
+        // setPage((prev) => prev + 1)
         return aaa
       }
     })
+
+    console.log('asdfasdf2')
   }
 
   const [updateBoardComment] =
@@ -246,8 +249,6 @@ export default function CommentPage() {
       page: page
     }
   })
-
-  console.log(commentData?.fetchBoardComments.length)
 
   return (
     <CommentBoard
@@ -268,6 +269,7 @@ export default function CommentPage() {
       CommentFixRegisterButton={CommentFixRegisterButton}
       fetchMore={fetchMore}
       onLoadMore={onLoadMore}
+      hasMore={hasMore}
     />
   )
 }

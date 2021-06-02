@@ -469,3 +469,10 @@ export const SearchButton = styled.button`
   border: none;
   cursor: pointer;
 `
+
+export const TestWrapper = styled.div`
+  width: 100%;
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+`
