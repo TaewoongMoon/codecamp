@@ -1,12 +1,12 @@
 import axios from 'axios'
 import { useState } from 'react'
-export default function AsyncAwaitPage (props) {
+export default function AsyncAwaitPage(props: any) {
   const [id, setId] = useState('')
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [date, setDate] = useState('')
 
-  async function handleClickGetPost () {
+  async function handleClickGetPost() {
     console.log('게시물 가져와주세요.')
     const data = await axios.get('https://koreanjson.com/posts/1')
     console.log(data)

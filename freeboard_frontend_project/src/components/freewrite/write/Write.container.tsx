@@ -1,12 +1,13 @@
 import { ChangeEvent, useState } from 'react'
-import { useMutation, gql } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { WriteUI } from './Write.presenter'
+import { CREATE_BOARD } from './Write.queries'
 
 export default function WriteContainer() {
   const router = useRouter()
   console.log(router.query)
-  const [buttonColor, setButtonColor] = useState(true)
+  const [buttonColor, setButtonColor] = useState<boolean>(true)
   const [addressDetails, setAddressDetails] = useState({
     zipcode: '',
     address: ''
@@ -22,32 +23,6 @@ export default function WriteContainer() {
     headYoutube: '',
     headOption: ''
   })
-
-  const CREATE_BOARD = gql`
-    mutation createBoard(
-      $headWriter: String
-      $headPassword: String
-      $headTitle: String!
-      $headContent: String!
-      $headYoutube: String
-    ) {
-      createBoard(
-        createBoardInput: {
-          writer: $headWriter
-          password: $headPassword
-          title: $headTitle
-          contents: $headContent
-          youtubeUrl: $headYoutube
-        }
-      ) {
-        _id
-        writer
-        title
-        contents
-        youtubeUrl
-      }
-    }
-  `
 
   const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     const data = {

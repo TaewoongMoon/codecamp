@@ -1,3 +1,4 @@
+import { WriteImage } from '../Image/WriteImage.container'
 import {
   Wrapper,
   Title,
@@ -14,7 +15,6 @@ import {
   Address,
   Youtube,
   ImageWrapper,
-  UploadButton,
   OptionWrapper,
   RadioButton,
   RadioLabel,
@@ -93,19 +93,9 @@ export const WriteUI = (props: any) => {
         />
       </InputWrapper>
       <ImageWrapper>
-        <Label>사진첨부</Label>
-        <UploadButton>
-          <div>+</div>
-          <div>Upload</div>
-        </UploadButton>
-        <UploadButton>
-          <div>+</div>
-          <div>Upload</div>
-        </UploadButton>
-        <UploadButton>
-          <div>+</div>
-          <div>Upload</div>
-        </UploadButton>
+        {new Array(3).fill(1).map((_, index) => (
+          <WriteImage key="" id={index}></WriteImage>
+        ))}
       </ImageWrapper>
       <OptionWrapper>
         <Label>메인설정</Label>
