@@ -104,14 +104,8 @@ export const Youtube = styled.input`
 export const ImageWrapper = styled.div`
   width: 996px;
   padding-top: 40px;
-`
-
-export const UploadButton = styled.button`
-  width: 78px;
-  height: 78px;
-  background-color: #bdbdbd;
-  margin-right: 24px;
-  cursor: pointer;
+  display: flex;
+  flex-direction: row;
 `
 
 export const OptionWrapper = styled.div`

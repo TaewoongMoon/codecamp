@@ -1,6 +1,6 @@
 import DaumPostcode from 'react-daum-postcode'
 function PostcodePage() {
-  const handleComplete = (data) => {
+  const handleComplete = (data: any) => {
     console.log(data)
   }
 

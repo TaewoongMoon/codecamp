@@ -2,7 +2,7 @@ import { useMutation, gql } from '@apollo/client'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 
-export default function MutationPage () {
+export default function MutationPage() {
   // const[writer, setWriter] = useState('')
   // const[password, setPassword] = useState('')
   // const[title, setTitle] = useState('')
@@ -32,7 +32,7 @@ export default function MutationPage () {
       }
     }
   `
-  const onChangeInput = (event) => {
+  const onChangeInput = (event: any) => {
     const data = {
       ...package22,
       [event.target.name]: event.target.value
@@ -69,7 +69,7 @@ export default function MutationPage () {
 
   const [createBoard] = useMutation(CREATE_BOARD)
 
-  async function onClickPost () {
+  async function onClickPost() {
     try {
       const result = await createBoard({
         variables: {
