@@ -99,6 +99,8 @@ export const WriteUI = (props: any) => {
             data={data}
             setFileUrl={props.setFileUrl}
             fileUrl={props.fileUrl}
+            commentUrl={props.commentUrl}
+            setCommentUrl={props.setCommentUrl}
           ></WriteImage>
         ))}
         {new Array(3 - props.fileUrl.length).fill(1).map((_, index) => (
@@ -107,6 +109,8 @@ export const WriteUI = (props: any) => {
             data=""
             setFileUrl={props.setFileUrl}
             fileUrl={props.fileUrl}
+            commentUrl={props.commentUrl}
+            setCommentUrl={props.setCommentUrl}
           ></WriteImage>
         ))}
       </ImageWrapper>

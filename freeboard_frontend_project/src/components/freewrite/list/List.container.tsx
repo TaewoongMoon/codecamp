@@ -21,7 +21,7 @@ const ListPage = () => {
     '/BestImage(4).png'
   ]
 
-  const { data, fetchMore } = useQuery(FETCH_BOARDS, {
+  const { data, fetchMore, refetch } = useQuery(FETCH_BOARDS, {
     variables: { page: currentPage + pageNumberCount }
   })
 
