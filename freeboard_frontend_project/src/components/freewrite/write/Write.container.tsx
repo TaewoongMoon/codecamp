@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useRef, useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { WriteUI } from './Write.presenter'
@@ -6,12 +6,14 @@ import { CREATE_BOARD } from './Write.queries'
 
 export default function WriteContainer() {
   const router = useRouter()
-  console.log(router.query)
+  const tempRef = useRef<HTMLDivElement>(null)
   const [buttonColor, setButtonColor] = useState<boolean>(true)
   const [addressDetails, setAddressDetails] = useState({
     zipcode: '',
     address: ''
   })
+
+  const [fileUrl, setFileUrl] = useState<string[]>([])
 
   const [boardWritePackage, setBoardWritePackage] = useState({
     headWriter: '',
@@ -31,8 +33,6 @@ export default function WriteContainer() {
     }
 
     setBoardWritePackage(data)
-
-    console.log(boardWritePackage)
 
     if (
       boardWritePackage.headWriter.length > 0 &&
@@ -111,6 +111,9 @@ export default function WriteContainer() {
       handleComplete={handleComplete}
       addressDetails={addressDetails}
       onClickCancel={onClickCancel}
+      tempRef={tempRef}
+      fileUrl={fileUrl}
+      setFileUrl={setFileUrl}
     />
   )
 }

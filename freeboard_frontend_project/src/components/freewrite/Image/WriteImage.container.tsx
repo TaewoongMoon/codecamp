@@ -1,18 +1,20 @@
-import {} from '@apollo/client'
-import { useRef, useState } from 'react'
+import { useMutation } from '@apollo/client'
+import { useRef } from 'react'
 import { checkImage } from '../../../commons/libraries/validation'
-import {} from '../../../commons/types/generated/types'
+import {
+  IMutation,
+  IMutationUploadFileArgs
+} from '../../../commons/types/generated/types'
 import { WriteImageUI } from './WriteImage.presenter'
-import {} from './WriteImage.queries'
+import { UPLOAD_FILE } from './WriteImage.queries'
 
 interface Iprops {
-  id: any
+  setFileUrl: any
+  data: any
+  fileUrl: any
 }
 
 export const WriteImage = (props: Iprops) => {
-  const [fileUrl, setFileUrl] = useState<string>()
-  const [buttonOrImage, setButtonOrImage] = useState<boolean>(false)
-  const [temp, setTemp] = useState<boolean[]>([false, false, false])
   const fileRef = useRef<HTMLInputElement>(null)
 
   const onChangeFile = (event: any) => {
@@ -22,9 +24,7 @@ export const WriteImage = (props: Iprops) => {
     const reader = new FileReader()
     reader.readAsDataURL(file)
     reader.onload = (event: any) => {
-      setFileUrl(String(event.target.result))
-      setButtonOrImage(true)
-      setTemp([true, true, true])
+      props.setFileUrl((prev: any) => [...prev, String(event.target.result)])
     }
     event.target.value = ''
   }
@@ -34,20 +34,21 @@ export const WriteImage = (props: Iprops) => {
   }
 
   const onClickCancelButton = (event: any) => {
-    setButtonOrImage(false)
-    console.log(event.target.id)
+    const aaa = [...props.fileUrl]
+    aaa?.splice(aaa.indexOf(props.data), 1)
+    props.setFileUrl(aaa)
   }
-  console.log(temp)
+
+  const [uploadFile] =
+    useMutation<IMutation, IMutationUploadFileArgs>(UPLOAD_FILE)
 
   return (
     <WriteImageUI
       fileRef={fileRef}
       onClickImage={onClickImage}
       onChangeFile={onChangeFile}
-      fileUrl={fileUrl}
-      buttonOrImage={buttonOrImage}
       onClickCancelButton={onClickCancelButton}
-      id={props.id}
+      data={props.data}
     />
   )
 }

@@ -11,18 +11,16 @@ interface Iprops {
   fileRef: RefObject<HTMLInputElement>
   onClickImage: any
   onChangeFile: any
-  fileUrl: any
-  buttonOrImage: any
+  data: any
   onClickCancelButton: any
-  id: any
 }
 
 export const WriteImageUI = (props: Iprops) => {
   return (
     <>
-      {!props?.buttonOrImage ? (
+      {!props.data ? (
         <>
-          <UploadButton onClick={props?.onClickImage} id={props.id}>
+          <UploadButton onClick={props?.onClickImage}>
             <div>+</div>
             <div>Upload</div>
           </UploadButton>
@@ -30,10 +28,8 @@ export const WriteImageUI = (props: Iprops) => {
       ) : (
         <>
           <UploadImageContainer>
-            <CancelImage onClick={props.onClickCancelButton} id={props.id}>
-              X
-            </CancelImage>
-            <UploadImage src={props.fileUrl} />
+            <CancelImage onClick={props.onClickCancelButton}>X</CancelImage>
+            <UploadImage src={props.data} />
           </UploadImageContainer>
         </>
       )}
@@ -41,7 +37,6 @@ export const WriteImageUI = (props: Iprops) => {
         type="file"
         ref={props.fileRef}
         onChange={props.onChangeFile}
-        id={props.id}
       />
     </>
   )
