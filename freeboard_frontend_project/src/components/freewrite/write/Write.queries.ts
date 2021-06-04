@@ -7,6 +7,7 @@ export const CREATE_BOARD = gql`
     $headTitle: String!
     $headContent: String!
     $headYoutube: String
+    $commentUrl: [String!]
   ) {
     createBoard(
       createBoardInput: {
@@ -15,6 +16,7 @@ export const CREATE_BOARD = gql`
         title: $headTitle
         contents: $headContent
         youtubeUrl: $headYoutube
+        images: $commentUrl
       }
     ) {
       _id

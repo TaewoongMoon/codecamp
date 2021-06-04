@@ -14,6 +14,7 @@ export default function WriteContainer() {
   })
 
   const [fileUrl, setFileUrl] = useState<string[]>([])
+  const [commentUrl, setCommentUrl] = useState<any>([])
 
   const [boardWritePackage, setBoardWritePackage] = useState({
     headWriter: '',
@@ -90,7 +91,8 @@ export default function WriteContainer() {
             headPassword: boardWritePackage.headPassword,
             headTitle: boardWritePackage.headTitle,
             headContent: boardWritePackage.headContent,
-            headYoutube: boardWritePackage.headYoutube
+            headYoutube: boardWritePackage.headYoutube,
+            commentUrl
           }
         })
         const message = '입력을 완료하였습니다.'
@@ -114,6 +116,8 @@ export default function WriteContainer() {
       tempRef={tempRef}
       fileUrl={fileUrl}
       setFileUrl={setFileUrl}
+      commentUrl={commentUrl}
+      setCommentUrl={setCommentUrl}
     />
   )
 }

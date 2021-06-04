@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { checkImage } from '../../../commons/libraries/validation'
 import {
   IMutation,
@@ -12,21 +12,36 @@ interface Iprops {
   setFileUrl: any
   data: any
   fileUrl: any
+  commentUrl: any
+  setCommentUrl: any
 }
 
 export const WriteImage = (props: Iprops) => {
   const fileRef = useRef<HTMLInputElement>(null)
 
-  const onChangeFile = (event: any) => {
-    const file = event.target.files[0]
-    if (!checkImage(file)) return
-
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
-    reader.onload = (event: any) => {
-      props.setFileUrl((prev: any) => [...prev, String(event.target.result)])
+  const onChangeFile = async (event: any) => {
+    try {
+      const file = event.target.files[0]
+      if (!checkImage(file)) return
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = (event: any) => {
+        props.setFileUrl((prev: any) => [...prev, String(event.target.result)])
+      }
+      event.target.value = ''
+      const result = await uploadFile({
+        variables: {
+          file: file
+        }
+      })
+      props.setCommentUrl((prev: any) => [
+        ...prev,
+        `https://storage.cloud.google.com/${result.data?.uploadFile.url}`
+      ])
+      console.log(result.data?.uploadFile.url)
+    } catch (error) {
+      alert(error.message)
     }
-    event.target.value = ''
   }
 
   const onClickImage = (event: any) => {
@@ -37,7 +52,12 @@ export const WriteImage = (props: Iprops) => {
     const aaa = [...props.fileUrl]
     aaa?.splice(aaa.indexOf(props.data), 1)
     props.setFileUrl(aaa)
+    const bbb = [...props.commentUrl]
+    bbb.pop()
+    props.setCommentUrl(bbb)
   }
+
+  console.log(props.commentUrl)
 
   const [uploadFile] =
     useMutation<IMutation, IMutationUploadFileArgs>(UPLOAD_FILE)
