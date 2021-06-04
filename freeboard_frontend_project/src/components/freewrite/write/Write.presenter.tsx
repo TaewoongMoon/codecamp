@@ -92,9 +92,22 @@ export const WriteUI = (props: any) => {
           name="headYoutube"
         />
       </InputWrapper>
-      <ImageWrapper>
-        {new Array(3).fill(1).map((_, index) => (
-          <WriteImage key="" id={index}></WriteImage>
+      <ImageWrapper ref={props.tempRef}>
+        {props.fileUrl.map((data: any) => (
+          <WriteImage
+            key=""
+            data={data}
+            setFileUrl={props.setFileUrl}
+            fileUrl={props.fileUrl}
+          ></WriteImage>
+        ))}
+        {new Array(3 - props.fileUrl.length).fill(1).map((_, index) => (
+          <WriteImage
+            key=""
+            data=""
+            setFileUrl={props.setFileUrl}
+            fileUrl={props.fileUrl}
+          ></WriteImage>
         ))}
       </ImageWrapper>
       <OptionWrapper>
