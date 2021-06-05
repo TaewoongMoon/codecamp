@@ -126,10 +126,13 @@ const ListPageUI = (props: any) => {
               <SearchInputBox
                 type="text"
                 placeholder="제목을 검색해주세요"
+                onChange={props.onChangeSearchBox}
               ></SearchInputBox>
             </SearchBoxWrapper>
             <CalendarWrapper></CalendarWrapper>
-            <SearchButton>검색하기</SearchButton>
+            <SearchButton onClick={props.onClickSearchButton}>
+              검색하기
+            </SearchButton>
           </SearchMiddleWrapper>
         </SearchSecWrapper>
         <Wrapper>
