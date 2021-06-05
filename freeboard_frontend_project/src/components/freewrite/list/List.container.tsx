@@ -14,6 +14,7 @@ const ListPage = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [arrowClick, setArrowClick] = useState(0)
   const [pageNumberCount, setPageNumberCount] = useState(0)
+  const [search, setSearch] = useState(null)
   const imageUrl = [
     '/BestImage(1).png',
     '/BestImage(2).png',
@@ -21,11 +22,15 @@ const ListPage = () => {
     '/BestImage(4).png'
   ]
 
-  const { data, fetchMore, refetch } = useQuery(FETCH_BOARDS, {
-    variables: { page: currentPage + pageNumberCount }
+  const {
+    data,
+    fetchMore,
+    refetch: pageRefetch
+  } = useQuery(FETCH_BOARDS, {
+    variables: { page: 1, search: null }
   })
 
-  const { data: countData } = useQuery(FETCH_BOARDSCOUNT)
+  const { data: countData, refetch: countRefetch } = useQuery(FETCH_BOARDSCOUNT)
 
   const { data: countBestData } = useQuery(FETCH_BOARDSOFTHEBEST)
 
@@ -36,11 +41,28 @@ const ListPage = () => {
     router.push('/board/write')
   }
 
+  function onClickSearchButton() {
+    pageRefetch({
+      search: search,
+      page: currentPage + pageNumberCount
+    })
+    countRefetch({
+      search: search
+    })
+  }
+
+  function onChangeSearchBox(event: any) {
+    setSearch(event.target.value)
+  }
+
   function onClickRegisterPageThroughText(event: any) {
     router.push(`/board/detailwrite/${String(event.target.id)}`)
-    console.log(event.target.id)
   }
   const onClickpage = (event: any) => {
+    const temp = Number(event.target.id)
+    pageRefetch({
+      page: temp + pageNumberCount
+    })
     setCurrentPage(Number(event.target.id))
   }
 
@@ -83,6 +105,8 @@ const ListPage = () => {
       countData={countData}
       countBestData={countBestData}
       imageUrl={imageUrl}
+      onChangeSearchBox={onChangeSearchBox}
+      onClickSearchButton={onClickSearchButton}
     />
   )
 }
