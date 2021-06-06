@@ -49,9 +49,9 @@ export const WriteImage = (props: Iprops) => {
   }
 
   const onClickCancelButton = (event: any) => {
-    const aaa = [...props.fileUrl]
-    aaa?.splice(aaa.indexOf(props.data), 1)
-    props.setFileUrl(aaa)
+    const aaaa = [...props.fileUrl]
+    aaaa?.splice(aaaa.indexOf(props.data), 1)
+    props.setFileUrl(aaaa)
     const bbb = [...props.commentUrl]
     bbb.pop()
     props.setCommentUrl(bbb)
