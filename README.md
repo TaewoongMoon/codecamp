@@ -15,8 +15,8 @@
 3. [기술스택 소개](#기술스택-소개)
 4. [기능구현 목록](#기능구현-목록)
 5. [배운점](#배운점)
-6. 개선해야될 점
-7. Others
+6. [개선해야될 점](#개선해야될-점)
+7. [Others](#Others)
 
 ________________________________________________
 
@@ -65,23 +65,27 @@ ________________________________________________
 </br>
 </br>
 </br>
-</br>
-</br>
-</br>
 
 ## 기술스택 소개 
 
-🛠
-- Frontend: Next.Js, React.Js, Next.JS-Router, Material-UI, Styled-components, Apollo-GraphQL, ESLint, TypeScript, Github, Husky, Prettier, AntDesign
-- Backend: Node.js, Apollo-graphql, ... etc
+🛠</br>
+
+Frontend: 
+- Next.Js, React.Js, Next.JS-Router 
+- Material-UI, Styled-components, Apollo-GraphQL, 
+- ESLint, TypeScript, Husky, Prettier, AntDesign
+- Github, Notion, Trello, Slack
+</br>
+</br>
+
+Backend: 
+- Node.js, Apollo-graphql, ... etc
 
 </br>
 </br>
 </br>
 </br>
-</br>
-</br>
-</br>
+
 
 ## 기능구현 목록 
 
@@ -126,13 +130,34 @@ ________________________________________________
 </br>
 </br>
 </br>
-</br>
-</br>
-</br>
+
 
 ## 배운점
 - 배운점들을 현재 제 velog에 정리중입니다. 아래 링크를 타고 들어와 확인해주시면 감사하겠습니다.
 - [Velog 일지](https://velog.io/@moony_moon)
+
+
+</br>
+</br>
+</br>
+</br>
+
+
+## 개선해야될 점
+- 회원가입/로그인 구현
+- 권한분기 구현
+- 좋아요 유저마다 한개씩만 올라가게끔 구현
+- Media-query 사용을 통한 모바일 사이즈 구현
+- 반응형 최적화
+
+</br>
+</br>
+</br>
+</br>
+
+
+## Others
+
 
 
 
