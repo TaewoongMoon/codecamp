@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { checkImage } from '../../../commons/libraries/validation'
 import {
   IMutation,

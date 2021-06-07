@@ -111,7 +111,7 @@ export default function MainBoardPage(props: Iprops) {
         </TitleTotalWrapper>
         <ImageTotalWrapper>
           <ImageWrapper>
-            <Image1></Image1>
+            <Image1 src={props.data?.fetchBoard.images[0]}></Image1>
           </ImageWrapper>
         </ImageTotalWrapper>
         <MainTextTotalWrapper>

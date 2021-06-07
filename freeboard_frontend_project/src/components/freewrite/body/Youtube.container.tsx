@@ -4,6 +4,7 @@ interface Iprops {
   data: any
 }
 export default function YoutubePage(props: Iprops) {
+  console.log(props?.data?.fetchBoard.youtubeUrl)
   return (
     <ReactPlayer
       url={props?.data?.fetchBoard.youtubeUrl}

@@ -58,6 +58,15 @@ import {
   SearchButton
 } from './List.styles'
 
+import 'date-fns'
+import Grid from '@material-ui/core/Grid'
+import DateFnsUtils from '@date-io/date-fns'
+import {
+  KeyboardDatePicker,
+  MuiPickersUtilsProvider
+} from '@material-ui/pickers'
+import { useState } from 'react'
+
 const useStyles = makeStyles({
   root: {
     width: 282,
@@ -70,6 +79,12 @@ const useStyles = makeStyles({
 })
 const ListPageUI = (props: any) => {
   const classes = useStyles()
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date())
+
+  const handleDateChange = (date: Date | null) => {
+    setSelectedDate(date)
+  }
+  console.log(props.countBestdata?.fetchBoardsOfTheBest)
 
   return (
     <>
@@ -129,7 +144,33 @@ const ListPageUI = (props: any) => {
                 onChange={props.onChangeSearchBox}
               ></SearchInputBox>
             </SearchBoxWrapper>
-            <CalendarWrapper></CalendarWrapper>
+            <CalendarWrapper>
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <Grid
+                  container
+                  justify="space-around"
+                  style={{
+                    height: '52px',
+                    display: 'flex',
+                    flexDirection: 'column'
+                  }}
+                >
+                  <KeyboardDatePicker
+                    style={{ height: '52px', margin: '10px' }}
+                    disableToolbar
+                    variant="inline"
+                    format="MM/dd/yyyy"
+                    margin="normal"
+                    id="date-picker-inline"
+                    value={selectedDate}
+                    onChange={handleDateChange}
+                    KeyboardButtonProps={{
+                      'aria-label': 'change date'
+                    }}
+                  />
+                </Grid>
+              </MuiPickersUtilsProvider>
+            </CalendarWrapper>
             <SearchButton onClick={props.onClickSearchButton}>
               검색하기
             </SearchButton>
