@@ -22,6 +22,7 @@ export default function BodyPage() {
       }
     }
   )
+  console.log(boardData?.fetchBoard.images)
   const [likeDislikeNumber, setLikeDislikeNumber] = useState({
     likeNumber: 0,
     dislikeNumber: 0

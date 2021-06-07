@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { Card } from '@material-ui/core'
+import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 
 export const TotalWrapper = styled.div`
   width: 100%;
@@ -455,7 +456,10 @@ export const CalendarWrapper = styled.div`
   background-color: #ffffff;
   border: 1px solid #f2f2f2;
   border-radius: 10px;
+  display: flex;
+  flex-direction: row;
 `
+export const Calendar2Wrapper = styled(MuiPickersUtilsProvider)``
 export const SearchButton = styled.button`
   max-width: 94px;
   width: 100%;

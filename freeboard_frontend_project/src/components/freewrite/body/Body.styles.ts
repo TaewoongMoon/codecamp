@@ -334,9 +334,12 @@ export const ImageWrapper = styled.div`
   width: 100%;
   height: 480px;
   margin-top: 40px;
-  background-color: #000000;
 `
-export const Image1 = styled.img``
+export const Image1 = styled.img`
+  max-width: 996px;
+  width: 100%;
+  height: 488px;
+`
 
 export const MainTextTotalWrapper = styled.div`
   max-width: 1200px;

@@ -34,7 +34,8 @@ const ListPage = () => {
 
   const { data: countBestData } = useQuery(FETCH_BOARDSOFTHEBEST)
 
-  console.log(countData)
+  console.log(countBestData)
+
   const dataBundle = Math.floor(countData?.fetchBoardsCount / 100) // 최대 클릭할 수 있는 숫자
 
   function onClickRegisterPage() {
