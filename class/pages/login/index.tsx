@@ -75,7 +75,7 @@ const LoginPage = () => {
   }
 
   return (
-    <form>
+    <>
       <HeadTitle>로그인</HeadTitle>
       <ContextWrapper>
         <EmailDirectionWrapper>
@@ -96,7 +96,7 @@ const LoginPage = () => {
           <Button onClick={setErrorIdPw}>로그인하기</Button>
         </ButtonDirectionWrapper>
       </ContextWrapper>
-    </form>
+    </>
   )
 }
 

@@ -2,9 +2,10 @@
 
 import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
+import withAuth from '../../src/components/commons/hocs/withAuth'
 import { GlobalContext } from '../_app'
 
-const TokenTest2Page = () => {
+const TokenTest2Page = (onChangeInputBox: any) => {
   const router = useRouter()
 
   const { accessToken } = useContext(GlobalContext)
@@ -18,4 +19,4 @@ const TokenTest2Page = () => {
   return <button onClick={onClickMove}>전체공개 페이지로 이동하기</button>
 }
 
-export default TokenTest2Page
+export default withAuth(TokenTest2Page)

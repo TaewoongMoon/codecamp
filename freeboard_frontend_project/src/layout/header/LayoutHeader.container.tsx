@@ -9,7 +9,7 @@ export default function Header() {
 
   const [menuSelector, setMenuSelector] = useState({
     freeboard: 'freeboard',
-    secondhandmarket: '',
+    clonecoding: '',
     mypage: ''
   })
 
@@ -28,10 +28,10 @@ export default function Header() {
 
     if (temp === 'freeboard') {
       router.push(`/board/detailwrite/${boardId}`)
-    } else if (temp === 'secondhandmarket') {
-      router.push(`/board/detailwrite/${boardId}/secondhandmarket`)
+    } else if (temp === 'clonecoding') {
+      router.push('/clonecoding')
     } else if (temp === 'mypage') {
-      router.push(`/board/detailwrite/${boardId}/mypage`)
+      router.push('/mypage')
     }
   }
 
