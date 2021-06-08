@@ -53,7 +53,7 @@ export default function HeaderUI(props: IProps) {
           </FreeWriteMenuText>
           <FreeWriteWhiteBar></FreeWriteWhiteBar>
           <FreeWriteUsedMarketText
-            id="secondhandmarket"
+            id="clonecoding"
             isActive={props.menuSelector.secondhandmarket === props.currentMenu}
             onClick={props.onClickMenuSelector}
           >
