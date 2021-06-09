@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router'
-import { Router } from 'next/router'
 import { useState } from 'react'
-import LoginUI from './Login.presenter'
+import SignUpUI from './SignUp.presenter'
 
-const LoginPage = () => {
+const SignUpPage = () => {
   const router = useRouter()
+  const [signUpHandler, setSignUpHandler] = useState(true)
   const [loginButtonHandler, setLoginButtonHandler] = useState(true)
   const [inputPackage, setInputPackage] = useState({
     password: '',
@@ -37,17 +37,22 @@ const LoginPage = () => {
     router.push('/clonecoding/login')
   }
   const onClickSignUpPage = () => {
-    router.push('/clonecoding/signup')
+    setSignUpHandler(false)
   }
 
+  const onClickSignUpCancel = () => {
+    router.back()
+  }
   return (
-    <LoginUI
+    <SignUpUI
       onChangeInputBox={onChangeInputBox}
       loginButtonHandler={loginButtonHandler}
       onClickLoginPageLogo={onClickLoginPageLogo}
+      signUpHandler={signUpHandler}
       onClickSignUpPage={onClickSignUpPage}
+      onClickSignUpCancel={onClickSignUpCancel}
     />
   )
 }
 
-export default LoginPage
+export default SignUpPage

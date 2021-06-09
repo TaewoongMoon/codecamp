@@ -34,8 +34,8 @@ export const SignUpCancelImage = styled.img`
 export const LoginSmallWrapper = styled.div`
   max-width: 384px;
   width: 100%;
-  height: 510px;
-  margin-top: 240px;
+  height: 664px;
+  margin-top: 159px;
   display: flex;
   flex-direction: column;
 `
@@ -51,7 +51,6 @@ export const CodeCampLogo = styled.img`
   max-width: 288px;
   width: 100%;
   height: 44px;
-  cursor: pointer;
 `
 
 export const SignUpText = styled.div`
@@ -72,7 +71,7 @@ export const EmailText = styled.div`
   font-size: 16px;
 `
 export const IdInputBox = styled.div`
-  margin-top: 80px;
+  margin-top: 12px;
   max-width: 384px;
   width: 100%;
   height: 64px;
@@ -145,7 +144,7 @@ export const PasswordText = styled.div`
 `
 
 export const PasswordInputBox = styled.div`
-  margin-top: 20px;
+  margin-top: 12px;
   max-width: 384px;
   width: 100%;
   height: 64px;
