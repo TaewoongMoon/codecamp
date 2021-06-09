@@ -21,29 +21,41 @@ import {
   SignUpWrapper,
   MenuWrapper,
   CodeCampLogo,
-  CodeCampLogoWrapper
-} from './Login.styles'
+  SignUpText,
+  SignUpCancelImage,
+  EmailText,
+  CodeCampLogoWrapper,
+  NameText,
+  NameInputBox,
+  NameInput,
+  PasswordText,
+  PasswordDoubleCheckText,
+  PasswordDoubleCheckInputBox,
+  PasswordDoubleCheckInput
+} from './SignUp.styles'
 
 interface Iprops {
   onChangeInputBox: any
   loginButtonHandler: any
   onClickLoginPageLogo: any
+  signUpHandler: any
   onClickSignUpPage: any
+  onClickSignUpCancel: any
 }
 
-const LoginUI = (props: Iprops) => {
+const SignUpUI = (props: Iprops) => {
   return (
     <>
       <TotalWrapper>
         <LoginImage src="/LoginImage.png"></LoginImage>
         <LoginWrapper>
+          <SignUpCancelImage
+            src="/SignUpCancelImage.png"
+            onClick={props.onClickSignUpCancel}
+          />
           <LoginSmallWrapper>
-            <CodeCampLogoWrapper>
-              <CodeCampLogo
-                src="/codecamplogo.png"
-                onClick={props.onClickLoginPageLogo}
-              ></CodeCampLogo>
-            </CodeCampLogoWrapper>
+            <SignUpText>회원가입</SignUpText>
+            <EmailText>이메일</EmailText>
             <IdInputBox>
               <IdInput
                 type="text"
@@ -52,6 +64,15 @@ const LoginUI = (props: Iprops) => {
                 onChange={props.onChangeInputBox}
               ></IdInput>
             </IdInputBox>
+            <NameText>이름</NameText>
+            <NameInputBox>
+              <NameInput
+                type="text"
+                placeholder="이름을 입력해주세요."
+                id="name"
+              />
+            </NameInputBox>
+            <PasswordText>비밀번호</PasswordText>
             <PasswordInputBox>
               <PasswordInput
                 type="text"
@@ -60,6 +81,14 @@ const LoginUI = (props: Iprops) => {
                 onChange={props.onChangeInputBox}
               ></PasswordInput>
             </PasswordInputBox>
+            <PasswordDoubleCheckText>비밀번호 확인</PasswordDoubleCheckText>
+            <PasswordDoubleCheckInputBox>
+              <PasswordDoubleCheckInput
+                type="text"
+                placeholder="비밀번호를 입력해주세요"
+                id="idDoubleCheck"
+              ></PasswordDoubleCheckInput>
+            </PasswordDoubleCheckInputBox>
             <CheckBoxWrapper>
               <CheckBoxSmallWrapper>
                 <CheckBox src="/LoginStateImage.png" />
@@ -69,18 +98,6 @@ const LoginUI = (props: Iprops) => {
             <LoginButton disabled={props.loginButtonHandler}>
               로그인하기
             </LoginButton>
-            <LoginBottomLine></LoginBottomLine>
-            <MenuWrapper>
-              <MenuSmallWrapper>
-                <EmailWrapper>이메일 찾기</EmailWrapper>
-                <DivideBar1></DivideBar1>
-                <PasswordWrapper>비밀번호 찾기</PasswordWrapper>
-                <DivideBar2></DivideBar2>
-                <SignUpWrapper onClick={props.onClickSignUpPage}>
-                  회원가입
-                </SignUpWrapper>
-              </MenuSmallWrapper>
-            </MenuWrapper>
           </LoginSmallWrapper>
         </LoginWrapper>
       </TotalWrapper>
@@ -88,4 +105,4 @@ const LoginUI = (props: Iprops) => {
   )
 }
 
-export default LoginUI
+export default SignUpUI
