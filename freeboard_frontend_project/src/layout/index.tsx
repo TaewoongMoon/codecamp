@@ -12,7 +12,7 @@ const Body = styled.div`
   margin-top: 80px;
 `
 export default function Layout({ children }: ILayoutProps) {
-  const isNavigation = ['/clonecoding', '/mypage']
+  const isNavigation = ['/clonecoding/login', '/clonecoding/signup', '/mypage']
   const router = useRouter()
   const result = isNavigation.includes(router.pathname)
   return (
