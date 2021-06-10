@@ -4,11 +4,19 @@ import SignUpUI from './SignUp.presenter'
 
 const SignUpPage = () => {
   const router = useRouter()
+  const [loginStatus, setLoginStatus] = useState(true)
+  const [idChanger, setIdChanger] = useState(false)
+  const [nameChanger, setNameChanger] = useState(false)
+  const [passwordChanger, setPasswordChanger] = useState(false)
+  const [passwordDoubleCheckChanger, setPasswordDoubleCheckChanger] =
+    useState(false)
   const [signUpHandler, setSignUpHandler] = useState(true)
   const [loginButtonHandler, setLoginButtonHandler] = useState(true)
   const [inputPackage, setInputPackage] = useState({
     password: '',
-    id: ''
+    passwordDoubleCheck: '',
+    id: '',
+    name: ''
   })
 
   const onChangeInputBox = async (event: any) => {
@@ -26,16 +34,18 @@ const SignUpPage = () => {
     //   }
     //   return prev
     // })
-    if (result.password && result.id) {
+    if (
+      result.password.length > 8 &&
+      result.id.includes('@') &&
+      result.passwordDoubleCheck === result.password &&
+      result.name.length >= 3
+    ) {
       setLoginButtonHandler(false)
     } else {
       setLoginButtonHandler(true)
     }
   }
 
-  const onClickLoginPageLogo = () => {
-    router.push('/clonecoding/login')
-  }
   const onClickSignUpPage = () => {
     setSignUpHandler(false)
   }
@@ -43,14 +53,48 @@ const SignUpPage = () => {
   const onClickSignUpCancel = () => {
     router.back()
   }
+
+  const onClickIdChanger = () => {
+    setIdChanger(true)
+  }
+
+  const onClickNameChanger = () => {
+    setNameChanger(true)
+  }
+
+  const onClickPasswordChanger = () => {
+    setPasswordChanger(true)
+  }
+
+  const onClickPasswordDoubleCheckChanger = () => {
+    setPasswordDoubleCheckChanger(true)
+  }
+
+  const onClickLoginStatus = () => {
+    if (loginStatus === true) {
+      setLoginStatus(false)
+    } else {
+      setLoginStatus(true)
+    }
+  }
+
   return (
     <SignUpUI
       onChangeInputBox={onChangeInputBox}
       loginButtonHandler={loginButtonHandler}
-      onClickLoginPageLogo={onClickLoginPageLogo}
       signUpHandler={signUpHandler}
       onClickSignUpPage={onClickSignUpPage}
       onClickSignUpCancel={onClickSignUpCancel}
+      onClickIdChanger={onClickIdChanger}
+      onClickPasswordChanger={onClickPasswordChanger}
+      onClickNameChanger={onClickNameChanger}
+      onClickPasswordDoubleCheckChanger={onClickPasswordDoubleCheckChanger}
+      idChanger={idChanger}
+      passwordChanger={passwordChanger}
+      nameChanger={nameChanger}
+      passwordDoubleCheckChanger={passwordDoubleCheckChanger}
+      onClickLoginStatus={onClickLoginStatus}
+      loginStatus={loginStatus}
     />
   )
 }

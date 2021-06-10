@@ -12,19 +12,9 @@ import {
   CheckBox,
   LoginBox,
   LoginButton,
-  LoginBottomLine,
-  MenuSmallWrapper,
-  EmailWrapper,
-  DivideBar1,
-  PasswordWrapper,
-  DivideBar2,
-  SignUpWrapper,
-  MenuWrapper,
-  CodeCampLogo,
   SignUpText,
   SignUpCancelImage,
   EmailText,
-  CodeCampLogoWrapper,
   NameText,
   NameInputBox,
   NameInput,
@@ -37,10 +27,19 @@ import {
 interface Iprops {
   onChangeInputBox: any
   loginButtonHandler: any
-  onClickLoginPageLogo: any
   signUpHandler: any
   onClickSignUpPage: any
   onClickSignUpCancel: any
+  onClickIdChanger: any
+  onClickPasswordChanger: any
+  onClickNameChanger: any
+  onClickPasswordDoubleCheckChanger: any
+  idChanger: any
+  passwordChanger: any
+  nameChanger: any
+  passwordDoubleCheckChanger: any
+  onClickLoginStatus: any
+  loginStatus: any
 }
 
 const SignUpUI = (props: Iprops) => {
@@ -70,12 +69,13 @@ const SignUpUI = (props: Iprops) => {
                 type="text"
                 placeholder="이름을 입력해주세요."
                 id="name"
+                onChange={props.onChangeInputBox}
               />
             </NameInputBox>
             <PasswordText>비밀번호</PasswordText>
             <PasswordInputBox>
               <PasswordInput
-                type="text"
+                type="password"
                 placeholder="비밀번호를 입력해주세요."
                 id="password"
                 onChange={props.onChangeInputBox}
@@ -84,15 +84,24 @@ const SignUpUI = (props: Iprops) => {
             <PasswordDoubleCheckText>비밀번호 확인</PasswordDoubleCheckText>
             <PasswordDoubleCheckInputBox>
               <PasswordDoubleCheckInput
-                type="text"
+                type="password"
                 placeholder="비밀번호를 입력해주세요"
-                id="idDoubleCheck"
+                id="passwordDoubleCheck"
+                onChange={props.onChangeInputBox}
               ></PasswordDoubleCheckInput>
             </PasswordDoubleCheckInputBox>
             <CheckBoxWrapper>
               <CheckBoxSmallWrapper>
-                <CheckBox src="/LoginStateImage.png" />
-                <LoginBox>로그인 상태 유지</LoginBox>
+                <CheckBox
+                  isActive={props.loginStatus}
+                  onClick={props.onClickLoginStatus}
+                />
+                <LoginBox
+                  isActive={props.loginStatus}
+                  onClick={props.onClickLoginStatus}
+                >
+                  로그인 상태 유지
+                </LoginBox>
               </CheckBoxSmallWrapper>
             </CheckBoxWrapper>
             <LoginButton disabled={props.loginButtonHandler}>

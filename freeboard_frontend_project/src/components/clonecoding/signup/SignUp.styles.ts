@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline'
 
 export const TotalWrapper = styled.div`
   width: 100%;
@@ -27,8 +28,8 @@ export const SignUpCancelImage = styled.img`
   width: 100%;
   height: 24px;
   position: fixed;
-  top: 79px;
-  left: 1816px;
+  top: 10%;
+  left: 90%;
   cursor: pointer;
 `
 export const LoginSmallWrapper = styled.div`
@@ -224,19 +225,25 @@ export const CheckBoxSmallWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
 `
-export const CheckBox = styled.img`
-  max-width: 20px;
+interface Iprops {
+  isActive: any
+}
+export const CheckBox = styled(CheckCircleOutlineIcon)`
+  max-width: 30px;
   width: 100%;
-  height: 20px;
+  height: 30px;
   cursor: pointer;
+  color: ${(props: Iprops) => (props.isActive ? '#ffffff' : '#FFFF00')};
 `
 export const LoginBox = styled.div`
   max-width: 111px;
   width: 100%;
   height: 24px;
-  color: #ffffff;
+  color: ${(props: Iprops) => (props.isActive ? '#ffffff' : '#FFFF00')};
   font-size: 16px;
   text-align: center;
+  display: flex;
+  align-items: flex-end;
 `
 export const LoginButton = styled.button`
   margin-top: 42px;
