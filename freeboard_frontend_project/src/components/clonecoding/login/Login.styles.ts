@@ -1,10 +1,14 @@
 import styled from '@emotion/styled'
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline'
 
 export const TotalWrapper = styled.div`
   width: 100%;
-  height: 100vh;
   position: relative;
-  overflow: hidden;
+  min-height: 100%;
+  min-width: 1024px;
+  position: fixed;
+  top: 0;
+  left: 0;
 `
 export const LoginImage = styled.img`
   width: 100%;
@@ -63,14 +67,6 @@ export const SignUpText = styled.div`
   font-size: 28px;
   text-align: center;
 `
-export const EmailText = styled.div`
-  margin-top: 40px;
-  max-width: 45px;
-  width: 100%;
-  height: 24px;
-  color: #ffffff;
-  font-size: 16px;
-`
 export const IdInputBox = styled.div`
   margin-top: 80px;
   max-width: 384px;
@@ -99,40 +95,12 @@ export const IdInput = styled.input`
   }
 `
 
-export const NameText = styled.div`
-  margin-top: 20px;
-  max-width: 45px;
-  width: 100%;
-  height: 24px;
-  color: #ffffff;
-  font-size: 16px;
-`
-export const NameInputBox = styled.div`
-  margin-top: 12px;
-  max-width: 384px;
-  width: 100%;
-  height: 64px;
-  outline: none;
-  border: 1px solid #ffffff;
-  border-radius: 16px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-`
-export const NameInput = styled.input`
-  max-width: 352px;
-  width: 100%;
-  height: 64px;
-  outline: none;
-  border: none;
-  background-color: rgba(255, 255, 255, 0.05);
-  color: #ffffff;
-  ::placeholder {
-    color: #ffffff;
-    font-size: 16px;
-    opacity: 0.6;
-    margin-left: 16px;
-  }
+export const IdWarningSign = styled.div`
+  margin-top: 5px;
+  color: red;
+  font-size: ${(props: Iprops) => (!props.isActive ? '0px' : '12px')};
+  opacity: ${(props: Iprops) => (!props.isActive ? 0 : 10)};
+  transition: opacity 0.5s linear;
 `
 
 export const PasswordText = styled.div`
@@ -155,6 +123,14 @@ export const PasswordInputBox = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+`
+
+export const PasswordWarningSign = styled.div`
+  margin-top: 5px;
+  color: red;
+  font-size: ${(props: Iprops) => (!props.isActive ? '0px' : '12px')};
+  opacity: ${(props: Iprops) => (!props.isActive ? 0 : 10)};
+  transition: opacity 0.5s linear;
 `
 
 export const PasswordInput = styled.input`
@@ -225,25 +201,31 @@ export const CheckBoxSmallWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
 `
-export const CheckBox = styled.img`
-  max-width: 20px;
+interface Iprops {
+  isActive: any
+}
+export const CheckBox = styled(CheckCircleOutlineIcon)`
+  max-width: 30px;
   width: 100%;
-  height: 20px;
+  height: 30px;
   cursor: pointer;
+  color: ${(props: Iprops) => (props.isActive ? '#ffffff' : '#FFFF00')};
 `
 export const LoginBox = styled.div`
   max-width: 111px;
   width: 100%;
   height: 24px;
-  color: #ffffff;
+  color: ${(props: Iprops) => (props.isActive ? '#ffffff' : '#FFFF00')};
   font-size: 16px;
   text-align: center;
+  display: flex;
+  align-items: flex-end;
 `
 export const LoginButton = styled.button`
   margin-top: 42px;
   max-width: 384px;
   width: 100%;
-  height: 64px;
+  min-height: 64px;
   border-radius: 16px;
   color: ${(props: any) => (props.disabled ? '#bdbdbd' : '#000000')};
   background-color: ${(props: any) => (props.disabled ? '#4f4f4f' : '#FFD600')};

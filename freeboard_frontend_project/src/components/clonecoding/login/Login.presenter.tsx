@@ -21,7 +21,9 @@ import {
   SignUpWrapper,
   MenuWrapper,
   CodeCampLogo,
-  CodeCampLogoWrapper
+  CodeCampLogoWrapper,
+  IdWarningSign,
+  PasswordWarningSign
 } from './Login.styles'
 
 interface Iprops {
@@ -29,6 +31,13 @@ interface Iprops {
   loginButtonHandler: any
   onClickLoginPageLogo: any
   onClickSignUpPage: any
+  onClickLoginStatus: any
+  loginStatus: any
+  emailRef: any
+  idChanger: any
+  onClickIdSignChange: any
+  onClickPasswordSignChange: any
+  passwordChanger: any
 }
 
 const LoginUI = (props: Iprops) => {
@@ -50,20 +59,37 @@ const LoginUI = (props: Iprops) => {
                 placeholder="이메일을 입력해주세요."
                 id="id"
                 onChange={props.onChangeInputBox}
+                onClick={props.onClickIdSignChange}
+                ref={props.emailRef}
               ></IdInput>
             </IdInputBox>
+            <IdWarningSign isActive={props.idChanger}>
+              이메일을 입력을 확인해주세요.
+            </IdWarningSign>
             <PasswordInputBox>
               <PasswordInput
                 type="text"
                 placeholder="비밀번호를 입력해주세요."
                 id="password"
                 onChange={props.onChangeInputBox}
+                onClick={props.onClickPasswordSignChange}
               ></PasswordInput>
             </PasswordInputBox>
+            <PasswordWarningSign isActive={props.passwordChanger}>
+              비밀번호 입력을 확인해주세요.
+            </PasswordWarningSign>
             <CheckBoxWrapper>
               <CheckBoxSmallWrapper>
-                <CheckBox src="/LoginStateImage.png" />
-                <LoginBox>로그인 상태 유지</LoginBox>
+                <CheckBox
+                  isActive={props.loginStatus}
+                  onClick={props.onClickLoginStatus}
+                />
+                <LoginBox
+                  isActive={props.loginStatus}
+                  onClick={props.onClickLoginStatus}
+                >
+                  로그인 상태 유지
+                </LoginBox>
               </CheckBoxSmallWrapper>
             </CheckBoxWrapper>
             <LoginButton disabled={props.loginButtonHandler}>
