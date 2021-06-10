@@ -1,3 +1,4 @@
+import { WriteImage } from '../Image/WriteImage.container'
 import {
   Wrapper,
   Title,
@@ -14,7 +15,6 @@ import {
   Address,
   Youtube,
   ImageWrapper,
-  UploadButton,
   OptionWrapper,
   RadioButton,
   RadioLabel,
@@ -67,10 +67,21 @@ export const WriteUI = (props: any) => {
       <InputWrapper>
         <Label>주소</Label>
         <ZipcodeWrapper>
-          <Zipcode placeholder="07250" />
-          <SearchButton>우편번호 검색</SearchButton>
+          <Zipcode
+            placeholder="07250"
+            type="text"
+            defaultValue={props.addressDetails.zipcode}
+            disabled
+          />
+          <SearchButton handleComplete={props.handleComplete}>
+            우편번호 검색
+          </SearchButton>
         </ZipcodeWrapper>
-        <Address onChange={props.onChangeInput} name="simpleAddress" />
+        <Address
+          onChange={props.onChangeInput}
+          name="simpleAddress"
+          defaultValue={props.addressDetails.address}
+        />
         <Address onChange={props.onChangeInput} name="detailAddress" />
       </InputWrapper>
       <InputWrapper>
@@ -81,20 +92,27 @@ export const WriteUI = (props: any) => {
           name="headYoutube"
         />
       </InputWrapper>
-      <ImageWrapper>
-        <Label>사진첨부</Label>
-        <UploadButton>
-          <div>+</div>
-          <div>Upload</div>
-        </UploadButton>
-        <UploadButton>
-          <div>+</div>
-          <div>Upload</div>
-        </UploadButton>
-        <UploadButton>
-          <div>+</div>
-          <div>Upload</div>
-        </UploadButton>
+      <ImageWrapper ref={props.tempRef}>
+        {props.fileUrl.map((data: any) => (
+          <WriteImage
+            key=""
+            data={data}
+            setFileUrl={props.setFileUrl}
+            fileUrl={props.fileUrl}
+            commentUrl={props.commentUrl}
+            setCommentUrl={props.setCommentUrl}
+          ></WriteImage>
+        ))}
+        {new Array(3 - props.fileUrl.length).fill(1).map((_, index) => (
+          <WriteImage
+            key=""
+            data=""
+            setFileUrl={props.setFileUrl}
+            fileUrl={props.fileUrl}
+            commentUrl={props.commentUrl}
+            setCommentUrl={props.setCommentUrl}
+          ></WriteImage>
+        ))}
       </ImageWrapper>
       <OptionWrapper>
         <Label>메인설정</Label>
@@ -116,7 +134,7 @@ export const WriteUI = (props: any) => {
         <RadioLabel htmlFor="image">사진</RadioLabel>
       </OptionWrapper>
       <ButtonWrapper>
-        <CancelButton>취소하기</CancelButton>
+        <CancelButton onClick={props.onClickCancel}>취소하기</CancelButton>
         <SubmitButton
           onClick={props.RegisterButton}
           disabled={props.buttonColor}

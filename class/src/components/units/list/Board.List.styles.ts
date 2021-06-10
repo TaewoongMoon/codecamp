@@ -133,3 +133,12 @@ export const SelectEraseButton = styled.button`
   border-radius: 125px;
   cursor: pointer;
 `
+interface IProps {
+  isActive: boolean
+}
+export const Page = styled.span`
+  padding-left: 15px;
+  padding-right: 15px;
+  cursor: pointer;
+  color: ${(props: IProps) => (props.isActive ? 'red' : 'black')};
+`
