@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import LoginUI from './Login.presenter'
 
 const LoginPage = () => {
@@ -52,6 +52,7 @@ const LoginPage = () => {
     // if (emailRef.current?.id === 'id' && !result.id) {
     //   setIdChanger(true)
     // }
+    // 이건 테스트 용도
   }
 
   const onClickIdSignChange = () => {

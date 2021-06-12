@@ -22,7 +22,13 @@ import {
   MenuWrapper,
   CodeCampLogo,
 <<<<<<< HEAD
+<<<<<<< HEAD
   CodeCampLogoWrapper
+=======
+  CodeCampLogoWrapper,
+  IdWarningSign,
+  PasswordWarningSign
+>>>>>>> queryprofile-#6
 =======
   CodeCampLogoWrapper,
   IdWarningSign,
@@ -36,7 +42,10 @@ interface Iprops {
   onClickLoginPageLogo: any
   onClickSignUpPage: any
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> queryprofile-#6
   onClickLoginStatus: any
   loginStatus: any
   emailRef: any
@@ -44,6 +53,9 @@ interface Iprops {
   onClickIdSignChange: any
   onClickPasswordSignChange: any
   passwordChanger: any
+<<<<<<< HEAD
+>>>>>>> queryprofile-#6
+=======
 >>>>>>> queryprofile-#6
 }
 
@@ -67,9 +79,12 @@ const LoginUI = (props: Iprops) => {
                 id="id"
                 onChange={props.onChangeInputBox}
 <<<<<<< HEAD
+<<<<<<< HEAD
               ></IdInput>
             </IdInputBox>
 =======
+=======
+>>>>>>> queryprofile-#6
                 onClick={props.onClickIdSignChange}
                 ref={props.emailRef}
               ></IdInput>
@@ -77,6 +92,9 @@ const LoginUI = (props: Iprops) => {
             <IdWarningSign isActive={props.idChanger}>
               이메일을 입력을 확인해주세요.
             </IdWarningSign>
+<<<<<<< HEAD
+>>>>>>> queryprofile-#6
+=======
 >>>>>>> queryprofile-#6
             <PasswordInputBox>
               <PasswordInput
@@ -85,6 +103,7 @@ const LoginUI = (props: Iprops) => {
                 id="password"
                 onChange={props.onChangeInputBox}
 <<<<<<< HEAD
+<<<<<<< HEAD
               ></PasswordInput>
             </PasswordInputBox>
             <CheckBoxWrapper>
@@ -92,6 +111,8 @@ const LoginUI = (props: Iprops) => {
                 <CheckBox src="/LoginStateImage.png" />
                 <LoginBox>로그인 상태 유지</LoginBox>
 =======
+=======
+>>>>>>> queryprofile-#6
                 onClick={props.onClickPasswordSignChange}
               ></PasswordInput>
             </PasswordInputBox>
@@ -110,6 +131,9 @@ const LoginUI = (props: Iprops) => {
                 >
                   로그인 상태 유지
                 </LoginBox>
+<<<<<<< HEAD
+>>>>>>> queryprofile-#6
+=======
 >>>>>>> queryprofile-#6
               </CheckBoxSmallWrapper>
             </CheckBoxWrapper>
