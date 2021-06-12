@@ -94,7 +94,9 @@ export const IdInput = styled.input`
     margin-left: 16px;
   }
 `
-
+interface Iprops {
+  isActive: any
+}
 export const IdWarningSign = styled.div`
   margin-top: 5px;
   color: red;
@@ -201,9 +203,6 @@ export const CheckBoxSmallWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
 `
-interface Iprops {
-  isActive: any
-}
 export const CheckBox = styled(CheckCircleOutlineIcon)`
   max-width: 30px;
   width: 100%;
