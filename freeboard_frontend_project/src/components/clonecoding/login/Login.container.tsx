@@ -52,7 +52,7 @@ const LoginPage = () => {
     // if (emailRef.current?.id === 'id' && !result.id) {
     //   setIdChanger(true)
     // }
-    // 이건 테스트 용도
+    // 이건 테스트 용도 2
   }
 
   const onClickIdSignChange = () => {
