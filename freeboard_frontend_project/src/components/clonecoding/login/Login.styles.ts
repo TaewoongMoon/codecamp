@@ -31,8 +31,8 @@ export const SignUpCancelImage = styled.img`
   width: 100%;
   height: 24px;
   position: fixed;
-  top: 79px;
-  left: 1816px;
+  top: 10%;
+  left: 90%;
   cursor: pointer;
 `
 export const LoginSmallWrapper = styled.div`
