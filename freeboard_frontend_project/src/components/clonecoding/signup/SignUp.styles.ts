@@ -1,11 +1,14 @@
 import styled from '@emotion/styled'
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline'
 
-export const TotalWrapper = styled.div`
+export const TotalWrapper = styled.form`
   width: 100%;
-  height: 100vh;
   position: relative;
-  overflow: hidden;
+  min-height: 100%;
+  min-width: 1024px;
+  position: fixed;
+  top: 0;
+  left: 0;
 `
 export const LoginImage = styled.img`
   width: 100%;
@@ -35,8 +38,8 @@ export const SignUpCancelImage = styled.img`
 export const LoginSmallWrapper = styled.div`
   max-width: 384px;
   width: 100%;
-  height: 664px;
-  margin-top: 159px;
+  height: 800px;
+  margin-top: 100px;
   display: flex;
   flex-direction: column;
 `
@@ -317,4 +320,33 @@ export const DivideBar2 = styled.div`
   width: 100%;
   height: 12px;
   background-color: #ffffff;
+`
+export const EmailWarningSign = styled.div`
+  margin-top: 5px;
+  color: red;
+  font-size: ${(props: Iprops) => (!props.isActive ? '0px' : '12px')};
+  opacity: ${(props: Iprops) => (!props.isActive ? 0 : 10)};
+  transition: opacity 0.5s linear;
+`
+export const NameWarningSign = styled.div`
+  margin-top: 5px;
+  color: red;
+  font-size: ${(props: Iprops) => (!props.isActive ? '0px' : '12px')};
+  opacity: ${(props: Iprops) => (!props.isActive ? 0 : 10)};
+  transition: opacity 0.5s linear;
+`
+export const PasswordWarningSign = styled.div`
+  margin-top: 5px;
+  color: red;
+  font-size: ${(props: Iprops) => (!props.isActive ? '0px' : '12px')};
+  opacity: ${(props: Iprops) => (!props.isActive ? 0 : 10)};
+  transition: opacity 0.5s linear;
+`
+
+export const PasswordDoubleCheckSign = styled.div`
+  margin-top: 5px;
+  color: red;
+  font-size: ${(props: Iprops) => (!props.isActive ? '0px' : '12px')};
+  opacity: ${(props: Iprops) => (!props.isActive ? 0 : 10)};
+  transition: opacity 0.5s linear;
 `
