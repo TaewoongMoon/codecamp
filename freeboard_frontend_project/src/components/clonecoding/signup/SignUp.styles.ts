@@ -1,15 +1,28 @@
 import styled from '@emotion/styled'
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline'
-
+interface Iprops {
+  isActive: any
+}
 export const TotalWrapper = styled.form`
   width: 100%;
   position: relative;
   min-height: 100%;
   min-width: 1024px;
   position: fixed;
+  opacity: ${(props: Iprops) => (props.isActive ? 0.2 : 1)};
   top: 0;
   left: 0;
 `
+export const ModalBox = styled.div`
+  background-color: white;
+  width: 300px;
+  height: 300px;
+  z-index: 1;
+  /* position: fixed; */
+  text-align: center;
+  font-size: 20px;
+`
+
 export const LoginImage = styled.img`
   width: 100%;
   height: 100vh;
@@ -42,6 +55,7 @@ export const LoginSmallWrapper = styled.div`
   margin-top: 100px;
   display: flex;
   flex-direction: column;
+  /* opacity: 0.1; */
 `
 export const CodeCampLogoWrapper = styled.div`
   max-width: 384px;
@@ -228,9 +242,7 @@ export const CheckBoxSmallWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
 `
-interface Iprops {
-  isActive: any
-}
+
 export const CheckBox = styled(CheckCircleOutlineIcon)`
   max-width: 30px;
   width: 100%;
