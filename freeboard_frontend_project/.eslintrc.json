@@ -20,6 +20,7 @@
     "react/prop-types": "off",
     "space-before-function-paren": "off",
     "no-useless-return": "off",
-    "multiline-ternary": "off"
+    "multiline-ternary": "off",
+    "no-useless-escape": "off"
   }
 }
