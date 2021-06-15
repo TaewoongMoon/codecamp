@@ -21,19 +21,9 @@ import {
   SignUpWrapper,
   MenuWrapper,
   CodeCampLogo,
-<<<<<<< HEAD
-<<<<<<< HEAD
-  CodeCampLogoWrapper
-=======
-  CodeCampLogoWrapper,
   IdWarningSign,
-  PasswordWarningSign
->>>>>>> queryprofile-#6
-=======
   CodeCampLogoWrapper,
-  IdWarningSign,
   PasswordWarningSign
->>>>>>> queryprofile-#6
 } from './Login.styles'
 
 interface Iprops {
@@ -41,11 +31,6 @@ interface Iprops {
   loginButtonHandler: any
   onClickLoginPageLogo: any
   onClickSignUpPage: any
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> queryprofile-#6
   onClickLoginStatus: any
   loginStatus: any
   emailRef: any
@@ -53,10 +38,7 @@ interface Iprops {
   onClickIdSignChange: any
   onClickPasswordSignChange: any
   passwordChanger: any
-<<<<<<< HEAD
->>>>>>> queryprofile-#6
-=======
->>>>>>> queryprofile-#6
+  onClickLogin: any
 }
 
 const LoginUI = (props: Iprops) => {
@@ -72,48 +54,15 @@ const LoginUI = (props: Iprops) => {
                 onClick={props.onClickLoginPageLogo}
               ></CodeCampLogo>
             </CodeCampLogoWrapper>
-            <IdInputBox>
-              <IdInput
-                type="text"
-                placeholder="이메일을 입력해주세요."
-                id="id"
-                onChange={props.onChangeInputBox}
-<<<<<<< HEAD
-<<<<<<< HEAD
-              ></IdInput>
-            </IdInputBox>
-=======
-=======
->>>>>>> queryprofile-#6
-                onClick={props.onClickIdSignChange}
-                ref={props.emailRef}
-              ></IdInput>
-            </IdInputBox>
             <IdWarningSign isActive={props.idChanger}>
               이메일을 입력을 확인해주세요.
             </IdWarningSign>
-<<<<<<< HEAD
->>>>>>> queryprofile-#6
-=======
->>>>>>> queryprofile-#6
             <PasswordInputBox>
               <PasswordInput
-                type="text"
+                type="password"
                 placeholder="비밀번호를 입력해주세요."
                 id="password"
                 onChange={props.onChangeInputBox}
-<<<<<<< HEAD
-<<<<<<< HEAD
-              ></PasswordInput>
-            </PasswordInputBox>
-            <CheckBoxWrapper>
-              <CheckBoxSmallWrapper>
-                <CheckBox src="/LoginStateImage.png" />
-                <LoginBox>로그인 상태 유지</LoginBox>
-=======
-=======
->>>>>>> queryprofile-#6
-                onClick={props.onClickPasswordSignChange}
               ></PasswordInput>
             </PasswordInputBox>
             <PasswordWarningSign isActive={props.passwordChanger}>
@@ -131,13 +80,12 @@ const LoginUI = (props: Iprops) => {
                 >
                   로그인 상태 유지
                 </LoginBox>
-<<<<<<< HEAD
->>>>>>> queryprofile-#6
-=======
->>>>>>> queryprofile-#6
               </CheckBoxSmallWrapper>
             </CheckBoxWrapper>
-            <LoginButton disabled={props.loginButtonHandler}>
+            <LoginButton
+              disabled={props.loginButtonHandler}
+              onClick={props.onClickLogin}
+            >
               로그인하기
             </LoginButton>
             <LoginBottomLine></LoginBottomLine>

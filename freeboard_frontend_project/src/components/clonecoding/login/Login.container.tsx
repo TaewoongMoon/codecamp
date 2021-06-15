@@ -1,6 +1,9 @@
+import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
-import { useRef, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
+import { GlobalContext } from '../../../../pages/_app'
 import LoginUI from './Login.presenter'
+import { LOGIN_USER } from './Login.queries'
 
 const LoginPage = () => {
   const router = useRouter()
@@ -14,6 +17,8 @@ const LoginPage = () => {
   })
 
   const [loginStatus, setLoginStatus] = useState(true)
+  const [loginUser] = useMutation(LOGIN_USER)
+  const { setAccessToken } = useContext(GlobalContext)
 
   console.log(emailRef.current?.value)
   const onChangeInputBox = async (event: any) => {
@@ -82,6 +87,23 @@ const LoginPage = () => {
     }
   }
 
+  const onClickLogin = async (event: any) => {
+    event.preventDefault() // event.preventDefault의 역할은?
+
+    try {
+      const { data } = await loginUser({
+        variables: {
+          password: inputPackage.password,
+          email: inputPackage.id
+        }
+      })
+      setAccessToken(data?.loginUser.accessToken)
+      router.push('/clonecoding/main')
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
   return (
     <LoginUI
       onChangeInputBox={onChangeInputBox}
@@ -95,6 +117,7 @@ const LoginPage = () => {
       onClickIdSignChange={onClickIdSignChange}
       onClickPasswordSignChange={onClickPasswordSignChange}
       passwordChanger={passwordChanger}
+      onClickLogin={onClickLogin}
     />
   )
 }

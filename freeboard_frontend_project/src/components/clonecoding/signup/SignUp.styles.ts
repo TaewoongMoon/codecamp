@@ -14,13 +14,58 @@ export const TotalWrapper = styled.form`
   left: 0;
 `
 export const ModalBox = styled.div`
-  background-color: white;
-  width: 300px;
-  height: 300px;
-  z-index: 1;
-  /* position: fixed; */
+  background-color: #ffffff;
+  max-width: 464px;
+  width: 100%;
+  height: ${(props: any) => (props.isActive ? '306px' : '0px')};
+  position: fixed;
+  z-index: ${(props: any) => (props.isActive ? 1 : -1)};
   text-align: center;
   font-size: 20px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: height 0.5s linear;
+`
+
+export const ModalCancelImage = styled.img`
+  max-width: 24px;
+  width: 100%;
+  height: 24px;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+`
+
+export const CodeCampImageModal = styled.img`
+  max-width: 236px;
+  width: 100%;
+  height: 36px;
+  margin-top: 60px;
+`
+export const SignUpSuccessMessage = styled.div`
+  margin-top: 40px;
+  max-width: 214px;
+  width: 100%;
+  height: 26px;
+  font-size: 22px;
+  color: #000000;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+`
+export const SignUpSuccessButton = styled.button`
+  margin-top: 40px;
+  max-width: 384px;
+  width: 100%;
+  height: 64px;
+  background-color: #ffd600;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
 `
 
 export const LoginImage = styled.img`

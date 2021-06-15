@@ -44,7 +44,6 @@ const SignUpPage = () => {
   }
 
   const onClickSignUpButton = async (data: any) => {
-    console.log(data)
     try {
       await createUser({
         variables: {
@@ -60,6 +59,10 @@ const SignUpPage = () => {
       alert(error.message)
     }
   }
+  const onClickModalCancel = () => {
+    setIsOpen(false)
+    router.push('/clonecoding/login')
+  }
 
   return (
     <SignUpUI
@@ -74,6 +77,7 @@ const SignUpPage = () => {
       onClickSignUpButton={onClickSignUpButton}
       createUser={createUser}
       isOpen={isOpen}
+      onClickModalCancel={onClickModalCancel}
     />
   )
 }

@@ -35,12 +35,21 @@ export default function Header() {
     }
   }
 
+  const onClickLoginPageDirection = () => {
+    router.push('/clonecoding/login')
+  }
+
+  const onClickSignUpPageDirection = () => {
+    router.push('/clonecoding/signup')
+  }
   return (
     <HeaderUI
       onClickMenuSelector={onClickMenuSelector}
       currentMenu={currentMenu}
       menuSelector={menuSelector}
       headerLogo={headerLogo}
+      onClickLoginPageDirection={onClickLoginPageDirection}
+      onClickSignUpPageDirection={onClickSignUpPageDirection}
     />
   )
 }
