@@ -38,6 +38,7 @@ interface Iprops {
   onClickIdSignChange: any
   onClickPasswordSignChange: any
   passwordChanger: any
+  onClickLogin: any
 }
 
 const LoginUI = (props: Iprops) => {
@@ -68,7 +69,7 @@ const LoginUI = (props: Iprops) => {
             </IdWarningSign>
             <PasswordInputBox>
               <PasswordInput
-                type="text"
+                type="password"
                 placeholder="비밀번호를 입력해주세요."
                 id="password"
                 onChange={props.onChangeInputBox}
@@ -92,7 +93,10 @@ const LoginUI = (props: Iprops) => {
                 </LoginBox>
               </CheckBoxSmallWrapper>
             </CheckBoxWrapper>
-            <LoginButton disabled={props.loginButtonHandler}>
+            <LoginButton
+              disabled={props.loginButtonHandler}
+              onClick={props.onClickLogin}
+            >
               로그인하기
             </LoginButton>
             <LoginBottomLine></LoginBottomLine>

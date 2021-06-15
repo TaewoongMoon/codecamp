@@ -26,7 +26,11 @@ import {
   NameWarningSign,
   PasswordWarningSign,
   PasswordDoubleCheckSign,
-  ModalBox
+  ModalBox,
+  CodeCampImageModal,
+  SignUpSuccessMessage,
+  SignUpSuccessButton,
+  ModalCancelImage
 } from './SignUp.styles'
 
 interface Iprops {
@@ -41,12 +45,34 @@ interface Iprops {
   onClickSignUpButton: any
   createUser: any
   isOpen: any
+  onClickModalCancel: any
 }
 
 const SignUpUI = (props: Iprops) => {
   return (
     <>
-      <div style={{ backgroundColor: 'black', width: '100%', height: '100vh' }}>
+      <div
+        style={{
+          backgroundColor: 'black',
+          width: '100%',
+          height: '100vh',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
+      >
+        <ModalBox isActive={props.isOpen}>
+          <ModalCancelImage
+            src="/ModalCancel.svg"
+            onClick={props.onClickModalCancel}
+          ></ModalCancelImage>
+          <CodeCampImageModal src="/codecamplogo2.svg" />
+          <SignUpSuccessMessage>회원가입을 축하합니다!</SignUpSuccessMessage>
+          <SignUpSuccessButton onClick={props.onClickModalCancel}>
+            확인
+          </SignUpSuccessButton>
+        </ModalBox>
+
         <TotalWrapper
           onSubmit={props.handleSubmit((data: any) =>
             props.onClickSignUpButton(data)
@@ -161,7 +187,6 @@ const SignUpUI = (props: Iprops) => {
           </LoginWrapper>
         </TotalWrapper>
       </div>
-      <ModalBox>테스트입니다</ModalBox>
     </>
   )
 }

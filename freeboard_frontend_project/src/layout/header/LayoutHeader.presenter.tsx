@@ -21,6 +21,8 @@ interface IProps {
   currentMenu: any
   menuSelector: any
   headerLogo: any
+  onClickLoginPageDirection: any
+  onClickSignUpPageDirection: any
 }
 export default function HeaderUI(props: IProps) {
   return (
@@ -34,8 +36,12 @@ export default function HeaderUI(props: IProps) {
             ></CodeCampImage>
           </CodeCampWrapper>
           <LoginRegisterWrapper>
-            <LoginButton>로그인</LoginButton>
-            <RegisterButton>회원가입</RegisterButton>
+            <LoginButton onClick={props.onClickLoginPageDirection}>
+              로그인
+            </LoginButton>
+            <RegisterButton onClick={props.onClickSignUpPageDirection}>
+              회원가입
+            </RegisterButton>
           </LoginRegisterWrapper>
         </LogoWrapper>
       </Header>
