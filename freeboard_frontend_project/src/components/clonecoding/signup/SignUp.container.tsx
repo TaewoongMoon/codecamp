@@ -20,7 +20,6 @@ const SignUpPage = () => {
   const router = useRouter()
   const [loginStatus, setLoginStatus] = useState(true)
   const [isOpen, setIsOpen] = useState(false)
-
   const [createUser] =
     useMutation<IMutation, IMutationCreateUserArgs>(CREATE_USER)
 
@@ -64,6 +63,11 @@ const SignUpPage = () => {
     router.push('/clonecoding/login')
   }
 
+  const onClickModalCancelfromBackground = () => {
+    if (isOpen) {
+      router.push('/clonecoding/login')
+    }
+  }
   return (
     <SignUpUI
       onClickSignUpCancel={onClickSignUpCancel}
@@ -78,6 +82,7 @@ const SignUpPage = () => {
       createUser={createUser}
       isOpen={isOpen}
       onClickModalCancel={onClickModalCancel}
+      onClickModalCancelfromBackground={onClickModalCancelfromBackground}
     />
   )
 }

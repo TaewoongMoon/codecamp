@@ -46,6 +46,7 @@ interface Iprops {
   createUser: any
   isOpen: any
   onClickModalCancel: any
+  onClickModalCancelfromBackground: any
 }
 
 const SignUpUI = (props: Iprops) => {
@@ -78,6 +79,7 @@ const SignUpUI = (props: Iprops) => {
             props.onClickSignUpButton(data)
           )}
           isActive={props.isOpen}
+          onClick={props.onClickModalCancelfromBackground}
         >
           <LoginImage src="/LoginImage.png"></LoginImage>
           <LoginWrapper>
