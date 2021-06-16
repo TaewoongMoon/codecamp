@@ -93,6 +93,16 @@ export const IdInput = styled.input`
     opacity: 0.6;
     margin-left: 16px;
   }
+  :-webkit-autofill,
+  :-webkit-autofill:hover,
+  :-webkit-autofill:focus,
+  :-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-transition: background-color 9999s ease-out;
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+    box-shadow: 0 0 0px white inset !important;
+    -webkit-text-fill-color: #fff !important;
+  }
 `
 interface Iprops {
   isActive: any
@@ -148,6 +158,16 @@ export const PasswordInput = styled.input`
     font-size: 16px;
     opacity: 0.6;
     margin-left: 16px;
+  }
+  :-webkit-autofill,
+  :-webkit-autofill:hover,
+  :-webkit-autofill:focus,
+  :-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-transition: background-color 9999s ease-out;
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+    box-shadow: 0 0 0px white inset !important;
+    -webkit-text-fill-color: #fff !important;
   }
 `
 

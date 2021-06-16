@@ -1,7 +1,6 @@
-import withAuth from '../../../src/commons/hocs/withAuth'
-
+import CloneMainPage from '../../../src/components/clonecoding/main/Main.container'
 const MainPage = () => {
-  return <div></div>
+  return <CloneMainPage></CloneMainPage>
 }
 
-export default withAuth(MainPage)
+export default MainPage

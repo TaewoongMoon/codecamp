@@ -12,11 +12,14 @@ import { createContext, useState } from 'react'
 
 export const GlobalContext = createContext({
   accessToken: '',
-  setAccessToken: (_: any) => {}
+  setAccessToken: (_: any) => {},
+  userId: '',
+  setUserId: (_: any) => {}
 })
 
 function MyApp({ Component, pageProps }: { Component: any; pageProps: any }) {
   const [accessToken, setAccessToken] = useState('')
+  const [userId, setUserId] = useState('')
 
   const uploadLink = createUploadLink({
     uri: 'http://backend.codebootcamp.co.kr/graphql',
@@ -31,7 +34,9 @@ function MyApp({ Component, pageProps }: { Component: any; pageProps: any }) {
   })
 
   return (
-    <GlobalContext.Provider value={{ accessToken, setAccessToken }}>
+    <GlobalContext.Provider
+      value={{ accessToken, setAccessToken, userId, setUserId }}
+    >
       <ApolloProvider client={client}>
         <Globalstyles></Globalstyles>
         <Layout>
