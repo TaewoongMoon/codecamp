@@ -1,0 +1,36 @@
+Arguments: 
+  /Users/taewoongmoon/.nvm/versions/node/v12.18.4/bin/node /Users/taewoongmoon/.nvm/versions/node/v12.18.4/bin/yarn add reac-quill
+
+PATH: 
+  /Users/taewoongmoon/.nvm/versions/node/v12.18.4/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  12.18.4
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/reac-quill: Not found
+      at Request.params.callback [as _callback] (/Users/taewoongmoon/.nvm/versions/node/v12.18.4/lib/node_modules/yarn/lib/cli.js:66988:18)
+      at Request.self.callback (/Users/taewoongmoon/.nvm/versions/node/v12.18.4/lib/node_modules/yarn/lib/cli.js:140662:22)
+      at Request.emit (events.js:315:20)
+      at Request.<anonymous> (/Users/taewoongmoon/.nvm/versions/node/v12.18.4/lib/node_modules/yarn/lib/cli.js:141634:10)
+      at Request.emit (events.js:315:20)
+      at IncomingMessage.<anonymous> (/Users/taewoongmoon/.nvm/versions/node/v12.18.4/lib/node_modules/yarn/lib/cli.js:141556:12)
+      at Object.onceWrapper (events.js:421:28)
+      at IncomingMessage.emit (events.js:327:22)
+      at endReadableNT (_stream_readable.js:1220:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
