@@ -17,7 +17,7 @@ export const ModalBox = styled.div`
   background-color: #ffffff;
   max-width: 464px;
   width: 100%;
-  height: ${(props: any) => (props.isActive ? '306px' : '0px')};
+  height: ${(props: Iprops) => (props.isActive ? '306px' : '0px')};
   position: fixed;
   z-index: ${(props: any) => (props.isActive ? 1 : -1)};
   text-align: center;
