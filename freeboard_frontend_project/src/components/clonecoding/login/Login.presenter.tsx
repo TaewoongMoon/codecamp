@@ -21,8 +21,8 @@ import {
   SignUpWrapper,
   MenuWrapper,
   CodeCampLogo,
-  IdWarningSign,
   CodeCampLogoWrapper,
+  IdWarningSign,
   PasswordWarningSign
 } from './Login.styles'
 
@@ -54,6 +54,16 @@ const LoginUI = (props: Iprops) => {
                 onClick={props.onClickLoginPageLogo}
               ></CodeCampLogo>
             </CodeCampLogoWrapper>
+            <IdInputBox>
+              <IdInput
+                type="text"
+                placeholder="이메일을 입력해주세요."
+                id="id"
+                onChange={props.onChangeInputBox}
+                onClick={props.onClickIdSignChange}
+                ref={props.emailRef}
+              ></IdInput>
+            </IdInputBox>
             <IdWarningSign isActive={props.idChanger}>
               이메일을 입력을 확인해주세요.
             </IdWarningSign>
@@ -63,6 +73,7 @@ const LoginUI = (props: Iprops) => {
                 placeholder="비밀번호를 입력해주세요."
                 id="password"
                 onChange={props.onChangeInputBox}
+                onClick={props.onClickPasswordSignChange}
               ></PasswordInput>
             </PasswordInputBox>
             <PasswordWarningSign isActive={props.passwordChanger}>
