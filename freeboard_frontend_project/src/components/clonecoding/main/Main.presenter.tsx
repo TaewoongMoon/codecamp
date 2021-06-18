@@ -25,7 +25,14 @@ import {
   HeaderWrapper,
   HeaderZigZagLogo,
   MenuLineDivider,
-  FirstBodyMenuList
+  FirstBodyMenuList,
+  FirstBodyContentWrapper,
+  FirstBodyContentTextWrapper,
+  FirstBodyContentTextTypeOneWrapper,
+  FirstBodyContentTextTypeOneHead,
+  FirstBodyContentTextTypeOneBody,
+  FirstBodyImageWrapper,
+  FirstBodyImage
 } from './Main.styles'
 
 interface Iprops {
@@ -132,6 +139,74 @@ const MENUS = [
   { id: 'myItem', name: '내아이템', delay: '0.6s' }
 ]
 
+const CONTENTS = [
+  {
+    divBr: true,
+    pBr: false,
+    divHeadOne: '4000개 이상 쇼핑몰에',
+    divHeadTwo: '브랜드까지',
+    divHeadThree: '한 번에 즐겨찾기',
+    pHeadOne: '4000개 이상 여성쇼핑몰 매일 업데이트',
+    pHeadTwo: '내 스타일 쇼핑몰만 담기',
+    pHeadThree: null,
+    name: 'favorite',
+    backgroundImage:
+      'https://zigzag.kr/_next/static/images/display1@2x-4e469970eedd506d52c0d09f1156e6f9.png'
+  },
+  {
+    divBr: false,
+    pBr: false,
+    divHeadOne: '결제는 한 번만',
+    divHeadTwo: '포인트는 한 곳에',
+    divHeadThree: null,
+    pHeadOne: '4,000개 쇼핑몰, 가입도 결제도 한 번에',
+    pHeadTwo: '쇼핑은 여러 곳에서, 포인트는 한 곳에',
+    pHeadThree: null,
+    name: 'zPayment',
+    backgroundImage:
+      'https://zigzag.kr/_next/static/images/display2@2x-984fd0d549262e6acf8df57e71bc17bf.png'
+  },
+  {
+    divBr: true,
+    pBr: true,
+    divHeadOne: '고퀄리티',
+    divHeadTwo: '자체제작은',
+    divHeadThree: '지그재그에만',
+    pHeadOne: '지그재그에만 있는 고퀄리티 자체제작',
+    pHeadTwo: '제트 온리는 배송부터 반품까지 무료',
+    pHeadThree: '오늘 주문하면 내일 도착!',
+    name: 'zOnly',
+    backgroundImage:
+      'https://zigzag.kr/_next/static/images/display3@2x-46379a6a2b5592e15fb22342bb427804.png'
+  },
+  {
+    divBr: false,
+    pBr: true,
+    divHeadOne: '까다로운 검색도',
+    divHeadTwo: '필터로 한 번에',
+    divHeadThree: null,
+    pHeadOne: '카테고리, 가격, 소재, 컬러까지',
+    pHeadTwo: '내 마음대로 보고 싶은 상품만',
+    pHeadThree: '쏙쏙 골라 볼 수 있어요.',
+    name: 'smartSearch',
+    backgroundImage:
+      'https://zigzag.kr/_next/static/images/display4@2x-133c098d8647b8f42d80a804163134be.png'
+  },
+  {
+    divBr: false,
+    pBr: true,
+    divHeadOne: '모든 아이템을',
+    divHeadTwo: '내 상품에 저장!',
+    divHeadThree: null,
+    pHeadOne: '내가 좋아하는 상품만 모아모아 저장!',
+    pHeadTwo: '특별한 선택으로 가득한 나만의 옷장을',
+    pHeadThree: '지그재그로 만들어보세요!',
+    name: 'myItem',
+    backgroundImage:
+      'https://zigzag.kr/_next/static/images/display5@2x-086029f54a3d31df542f68c31d5a5e01.png'
+  }
+]
+
 export default function CloneMainUI(props: Iprops) {
   return (
     <>
@@ -200,6 +275,38 @@ export default function CloneMainUI(props: Iprops) {
               </FirstBodyMenuList>
             ))}
           </FirstBodyMenuWrapper>
+          <FirstBodyContentWrapper>
+            <FirstBodyContentTextWrapper>
+              {CONTENTS.map((data) => (
+                <>
+                  <FirstBodyContentTextTypeOneWrapper
+                    isActive={data.name === props.selectedId}
+                  >
+                    <FirstBodyContentTextTypeOneHead key="">
+                      {data.divHeadOne}
+                      <br />
+                      {data.divHeadTwo}
+                      {data.divBr && <br />}
+                      {data.divHeadThree}
+                    </FirstBodyContentTextTypeOneHead>
+                    <FirstBodyContentTextTypeOneBody>
+                      {data.pHeadOne}
+                      <br />
+                      {data.pHeadTwo}
+                      {data.pBr && <br />}
+                      {data.pHeadThree}
+                    </FirstBodyContentTextTypeOneBody>
+                  </FirstBodyContentTextTypeOneWrapper>
+                  <FirstBodyImageWrapper>
+                    <FirstBodyImage
+                      isActive={data.name === props.selectedId}
+                      data={data}
+                    ></FirstBodyImage>
+                  </FirstBodyImageWrapper>
+                </>
+              ))}
+            </FirstBodyContentTextWrapper>
+          </FirstBodyContentWrapper>
         </FirstBodyMiddleWrapper>
       </FirstBodyWrapper>
     </>

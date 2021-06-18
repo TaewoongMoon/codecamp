@@ -9,6 +9,11 @@ interface IpropsSakura {
   data: any
 }
 
+interface IpropsFirstBody {
+  isActive: any
+  data?: any
+}
+
 export const HeaderWrapper = styled.div`
   min-width: 750px;
   position: relative;
@@ -344,4 +349,86 @@ export const MenuLineDivider = styled.li`
   left: 0;
   bottom: -4px;
   background-color: #ff349c;
+`
+export const FirstBodyContentWrapper = styled.div`
+  position: relative;
+  margin-top: 176px;
+  margin-left: 500px;
+  color: #212529;
+  z-index: 2;
+  display: block;
+`
+export const FirstBodyContentTextWrapper = styled.div`
+  position: relative;
+  margin-top: 94px;
+  height: 300px;
+  display: block;
+`
+export const FirstBodyContentTextTypeOneWrapper = styled.div`
+  top: 0;
+  left: 0;
+  position: absolute;
+  transition: ${(props: IpropsFirstBody) =>
+    props.isActive ? 'all 750ms ease' : 'all 750ms ease 0s'};
+  transition-delay: ${(props: IpropsFirstBody) =>
+    props.isActive ? '200ms' : '0ms'};
+  width: 100%;
+  transform: ${(props: IpropsFirstBody) =>
+    props.isActive ? null : 'translateX(-75px)'};
+  opacity: ${(props: IpropsFirstBody) => (props.isActive ? 1 : 0)};
+`
+
+export const FirstBodyContentTextTypeOneHead = styled.h2`
+  font-size: 46px;
+  line-height: 1.2;
+  letter-spacing: -2px;
+  font-family: 'GothicA1';
+  animation: animation-10no5g2 0.75s 0.5s ease-out both;
+  @keyframes animation-10no5g2 {
+    0% {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+`
+
+export const FirstBodyContentTextTypeOneBody = styled.p`
+  margin-top: 17px;
+  font-size: 18px;
+  line-height: 1.56;
+  font-family: 'GothicA1';
+  color: #aaa;
+`
+export const FirstBodyImageWrapper = styled.div`
+  position: absolute;
+  top: -155px;
+  left: -400px;
+  width: 320px;
+  height: 529px;
+  margin-top: 76px;
+  overflow: hidden;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
+  display: block;
+`
+
+export const FirstBodyImage = styled.div`
+  width: 320px;
+  height: 529px;
+  background-size: 320px 529px;
+  position: absolute;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+  ${(props: IpropsFirstBody) =>
+    `background-image: url(${props.data.backgroundImage});`}
+  opacity: ${(props: IpropsFirstBody) => (props.isActive ? 1 : 0)};
+  transition: opacity 1s;
+  margin: 0;
+  padding: 0;
 `

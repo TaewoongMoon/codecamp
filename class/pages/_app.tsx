@@ -13,7 +13,9 @@ import axios from 'axios'
 
 export const GlobalContext = createContext({
   accessToken: '',
-  setAccessToken: (_: any) => {}
+  setAccessToken: (_: any) => {},
+  setUserInfo: (_: any) => {},
+  userInfo: {}
 })
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -25,6 +27,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     },
     credentials: 'include'
   })
+  const [userInfo, setUserInfo] = useState({})
+
   // @ts-ignore
   const errorLink = onError(async ({ graphQLErrors, operation, forward }) => {
     if (graphQLErrors) {
@@ -72,11 +76,15 @@ function MyApp({ Component, pageProps }: AppProps) {
   })
 
   return (
-    <GlobalContext.Provider value={{ accessToken, setAccessToken }}>
-      <ApolloProvider client={client}>
-        <Component {...pageProps} />
-      </ApolloProvider>
-    </GlobalContext.Provider>
+    <>
+      <GlobalContext.Provider
+        value={{ accessToken, setAccessToken, setUserInfo, userInfo }}
+      >
+        <ApolloProvider client={client}>
+          <Component {...pageProps} />
+        </ApolloProvider>
+      </GlobalContext.Provider>
+    </>
   )
 }
 

@@ -1,4 +1,4 @@
-import { gql, useMutation } from '@apollo/client'
+import { gql, useApolloClient, useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { useContext, useState } from 'react'
 import {
@@ -26,6 +26,20 @@ const LOGIN_USER_EXAMPLE = gql`
     }
   }
 `
+const FETCH_USER_LOGGED_IN = gql`
+  query fetchUserLoggedIn {
+    fetchUserLoggedIn {
+      email
+      name
+      userPoint {
+        amount
+      }
+    }
+  }
+`
+
+// apollo를 axios처럼 사용하는 방법
+const client = useApolloClient()
 
 const LoginPage = () => {
   const router = useRouter()
@@ -34,7 +48,7 @@ const LoginPage = () => {
   const [errorId, setErrorId] = useState('')
   const [errorPw] = useState('')
 
-  const { setAccessToken } = useContext(GlobalContext)
+  const { setAccessToken, setUserInfo } = useContext(GlobalContext)
 
   const [loginUserExample] = useMutation(LOGIN_USER_EXAMPLE)
 
@@ -51,6 +65,15 @@ const LoginPage = () => {
           }
         })
         setAccessToken(data?.loginUserExample.accessToken)
+        const userInfo = await client.query({
+          query: FETCH_USER_LOGGED_IN,
+          context: {
+            headers: {
+              authorization: data?.loginUserExample.accessToken
+            }
+          }
+        })
+        setUserInfo(userInfo.data.fetchUserLoggedIn)
         const message = '회원가입에 성공하셨습니다. 로그인페이지로 이동합니다.'
         alert(message)
         const LoginSuccess = message
