@@ -5,7 +5,14 @@ const CloneMainPage = () => {
   const [selectedId, setSelectedId] = useState('favorite')
   const [scrollY, setScrollY] = useState(0)
   const [scrollOn, setScrollOn] = useState(false)
-  const arr = ['zPayment', 'zOnly', 'smartSearch', 'myItem', 'favorite']
+  const arr = [
+    'favorite',
+    'zPayment',
+    'zOnly',
+    'smartSearch',
+    'myItem',
+    'favorite'
+  ]
   const [temp, setTemp] = useState()
 
   let index = 0
@@ -17,11 +24,11 @@ const CloneMainPage = () => {
     setTemp(
       // @ts-ignore
       setInterval(function () {
-        setSelectedId(arr[index2++])
+        setSelectedId(arr[++index2])
         if (index2 === arr.length) {
           clearInterval(temp)
         }
-      }, 1000)
+      }, 3000)
     )
   }
 
@@ -31,15 +38,19 @@ const CloneMainPage = () => {
       setTemp(
         // @ts-ignore
         setInterval(function () {
-          setSelectedId(arr[index++])
+          setSelectedId(arr[++index])
           if (index === arr.length) {
             clearInterval(temp)
           }
-        }, 1000)
+        }, 3000)
       )
     }
+
+    setSelectedId('favorite')
   }, [scrollY])
 
+  console.log(selectedId)
+  console.log(temp)
   //   useEffect(() => {
   //     const temp = setInterval(function () {
   //       const arrow = arr[index++]
