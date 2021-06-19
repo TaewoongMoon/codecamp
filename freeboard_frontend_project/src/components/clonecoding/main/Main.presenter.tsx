@@ -32,7 +32,55 @@ import {
   FirstBodyContentTextTypeOneHead,
   FirstBodyContentTextTypeOneBody,
   FirstBodyImageWrapper,
-  FirstBodyImage
+  FirstBodyImage,
+  SecondBodyWrapper,
+  SecondBodyMiddleWrapper,
+  SecondBodyH2Text,
+  SecondBodyPText,
+  SecondBodyImage,
+  SecondBodyButtonWrapper,
+  SecondBodyFirstButton,
+  SecondBodyFirstButtonText,
+  SecondBodySecondButton,
+  SecondBodySecondButtonText,
+  ThirdBodyWrapper,
+  ThirdBodyMiddleWrapper,
+  ThirdBodyTextWrapper,
+  ThirdBodyFirstTextWrapper,
+  ThirdBodyFirstTextSpanOne,
+  ThirdBodyFirstTextSpanTwo,
+  ThirdBodyFirstTextSpanThree,
+  ThirdBodyMonthIndicationText,
+  FourthBodyWrapper,
+  FourthBodyMiddleWrapper,
+  FourthBodySmallWrapper,
+  FourthBodyFirstText,
+  FourthBodyButtonWrapper,
+  FourthBodyQrCodeWrapper,
+  FourthBodyQrCodeText,
+  FourthBodyQrImage,
+  FourthBodyButtonDivider,
+  FourthBodyAppDownloadWrapper,
+  FourthBodyAppDownloadText,
+  FourthBodyAppStoreDownload,
+  FourthBodyAppStoreDownloadButton,
+  FourthBodyGooglePlayDownload,
+  FourthBodyGooglePlayDownloadButton,
+  FooterWrapper,
+  FooterMiddleWrapper,
+  FooterSmallWrapper,
+  TextEmoticonWrapper,
+  FirstLineFirstText,
+  FirstLineSecondText,
+  FooterImageWithLink,
+  FooterImageWrapper,
+  SecondLineFirstText,
+  SecondLineSecondText,
+  ThirdLineText,
+  FourthLineText,
+  FourthLineSecondText,
+  FifthLineText,
+  FifthLineSecondText
 } from './Main.styles'
 
 interface Iprops {
@@ -207,6 +255,32 @@ const CONTENTS = [
   }
 ]
 
+const THIRD_BODY = [
+  { first: '여성 쇼핑몰', second: '4,000', third: '개' },
+  { first: '2020년 거래액', second: '7,500', third: '억' },
+  { first: '매월 사용자', second: '340', third: '만' },
+  { first: '앱 다운로드', second: '3,000', third: '만' }
+]
+
+const FOOTER_IMAGE = [
+  {
+    url: 'https://zigzag.kr/_next/static/images/social_instagram-4a461158e50d6ae04b21b727603f6817.svg',
+    href: 'https://www.instagram.com/zigzag_korea/'
+  },
+  {
+    url: 'https://zigzag.kr/_next/static/images/social_kakao1boon-fc64a2b756b5c214dfc10b31de6eeea0.svg',
+    href: 'https://content.v.kakao.com/3500/home'
+  },
+  {
+    url: 'https://zigzag.kr/_next/static/images/social_kakaoplus-deb9eae5dcadeff740c07b26885a9dfa.svg',
+    href: 'https://pf.kakao.com/_eddbM'
+  },
+  {
+    url: 'https://zigzag.kr/_next/static/images/social_youtube-ea5132fd0fe70b65f29909af250d4175.svg',
+    href: 'https://www.youtube.com/channel/UC5CTLf-G91F8BCEKMPQEDDg'
+  }
+]
+
 export default function CloneMainUI(props: Iprops) {
   return (
     <>
@@ -309,6 +383,169 @@ export default function CloneMainUI(props: Iprops) {
           </FirstBodyContentWrapper>
         </FirstBodyMiddleWrapper>
       </FirstBodyWrapper>
+      <SecondBodyWrapper>
+        <SecondBodyMiddleWrapper>
+          <SecondBodyH2Text>
+            지그재그는
+            <br />
+            입점 파트너와
+            <br />
+            함께 성장합니다.
+          </SecondBodyH2Text>
+          <SecondBodyPText>
+            매월 340만 고객이 이용하는 성공 플랫폼
+            <br />
+            지그재그, 지금 바로 시작하세요.
+          </SecondBodyPText>
+          <SecondBodyImage></SecondBodyImage>
+          <SecondBodyButtonWrapper>
+            <SecondBodyFirstButton
+              href="https://zigzag.kr/partners/"
+              target="_blank"
+            >
+              <SecondBodyFirstButtonText>신규 파트너</SecondBodyFirstButtonText>
+              플랫폼 입점 안내
+            </SecondBodyFirstButton>
+            <SecondBodySecondButton
+              href="https://shop.zigzag.kr/#!/login"
+              target="_blank"
+            >
+              <SecondBodySecondButtonText>
+                기존 파트너
+              </SecondBodySecondButtonText>
+              플랫폼 입점 안내
+            </SecondBodySecondButton>
+          </SecondBodyButtonWrapper>
+        </SecondBodyMiddleWrapper>
+      </SecondBodyWrapper>
+      <ThirdBodyWrapper>
+        <ThirdBodyMiddleWrapper>
+          <ThirdBodyTextWrapper>
+            {THIRD_BODY.map((data) => (
+              <ThirdBodyFirstTextWrapper key="">
+                <ThirdBodyFirstTextSpanOne>
+                  {data.first}
+                </ThirdBodyFirstTextSpanOne>
+                <ThirdBodyFirstTextSpanTwo>
+                  {data.second}
+                </ThirdBodyFirstTextSpanTwo>
+                <ThirdBodyFirstTextSpanThree>
+                  {data.third}
+                </ThirdBodyFirstTextSpanThree>
+              </ThirdBodyFirstTextWrapper>
+            ))}
+            <ThirdBodyMonthIndicationText>
+              2021년 4월 기준
+            </ThirdBodyMonthIndicationText>
+          </ThirdBodyTextWrapper>
+        </ThirdBodyMiddleWrapper>
+      </ThirdBodyWrapper>
+      <FourthBodyWrapper>
+        <FourthBodyMiddleWrapper>
+          <FourthBodySmallWrapper>
+            <FourthBodyFirstText>
+              지금 바로 지그재그를
+              <br />
+              다운로드 하세요.
+            </FourthBodyFirstText>
+            <FourthBodyButtonWrapper>
+              <FourthBodyQrCodeWrapper>
+                <FourthBodyQrCodeText>QR코드 다운로드</FourthBodyQrCodeText>
+                <FourthBodyQrImage></FourthBodyQrImage>
+              </FourthBodyQrCodeWrapper>
+              <FourthBodyButtonDivider></FourthBodyButtonDivider>
+              <FourthBodyAppDownloadWrapper>
+                <FourthBodyAppDownloadText>
+                  앱스토어 다운로드
+                </FourthBodyAppDownloadText>
+                <FourthBodyAppStoreDownload
+                  target="_blank"
+                  href="https://apps.apple.com/KR/app/id976131101?mt=8"
+                >
+                  <FourthBodyAppStoreDownloadButton />
+                </FourthBodyAppStoreDownload>
+                <FourthBodyGooglePlayDownload
+                  target="_blank"
+                  href="https://play.google.com/store/apps/details?id=com.croquis.zigzag&referrer=af_tranid%3DIUp1vj0seqlZKXN8xL9sww%26shortlink%3D189189a0%26pid%3Dzigzag_website_aos%26af_click_lookback%3D1d%26af_web_id%3Dda3697a4-f9a5-4298-b8c3-a71d218fcc5b-p%26utm_source%3Dzigzag_website_aos"
+                >
+                  <FourthBodyGooglePlayDownloadButton />
+                </FourthBodyGooglePlayDownload>
+              </FourthBodyAppDownloadWrapper>
+            </FourthBodyButtonWrapper>
+          </FourthBodySmallWrapper>
+        </FourthBodyMiddleWrapper>
+      </FourthBodyWrapper>
+      <FooterWrapper>
+        <FooterMiddleWrapper>
+          <FooterSmallWrapper>
+            <TextEmoticonWrapper>
+              <FirstLineFirstText>크로키닷컴(주)</FirstLineFirstText>
+              <FirstLineSecondText>
+                서울시 강남구 테헤란로 521, 파르나스타워, 27층
+              </FirstLineSecondText>
+              <br />
+              <SecondLineFirstText>
+                <span style={{ position: 'relative', marginRight: '6px' }}>
+                  대표
+                </span>
+                <span style={{ position: 'relative' }}>서정훈</span>
+              </SecondLineFirstText>
+              <SecondLineSecondText>
+                <span style={{ position: 'relative', marginRight: '6px' }}>
+                  사업자 등록번호
+                </span>
+                <span style={{ position: 'relative' }}>214-88-91525</span>
+              </SecondLineSecondText>
+              <ThirdLineText>
+                <span style={{ position: 'relative', marginRight: '6px' }}>
+                  통신판매업
+                </span>
+                <span style={{ position: 'relative' }}>서울 강남-03345</span>
+              </ThirdLineText>
+              <br />
+              <FourthLineText>
+                <span style={{ position: 'relative', marginRight: '6px' }}>
+                  쇼핑몰제휴문의
+                </span>
+                <span style={{ position: 'relative' }}>shop@zigzag.kr</span>
+              </FourthLineText>
+              <FourthLineSecondText>
+                <span style={{ position: 'relative', marginRight: '6px' }}>
+                  마케팅제휴문의
+                </span>
+                <span style={{ position: 'relative' }}>
+                  marketing@zigzag.kr
+                </span>
+              </FourthLineSecondText>
+              <br />
+              <FifthLineText>
+                <span style={{ position: 'relative', marginRight: '6px' }}>
+                  홍보문의
+                </span>
+                <span style={{ position: 'relative' }}>pr@zigzag.kr</span>
+              </FifthLineText>
+              <FifthLineSecondText>
+                <span style={{ position: 'relative', marginRight: '6px' }}>
+                  고객문의
+                </span>
+                <span style={{ position: 'relative' }}>
+                  support@zigzag.kr / 1670-8050 (09:00 ~ 18:00)
+                </span>
+              </FifthLineSecondText>
+            </TextEmoticonWrapper>
+            <FooterImageWrapper>
+              {FOOTER_IMAGE.map((data) => (
+                <FooterImageWithLink
+                  target="_blank"
+                  href={data.href}
+                  key=""
+                  data={data}
+                />
+              ))}
+            </FooterImageWrapper>
+          </FooterSmallWrapper>
+        </FooterMiddleWrapper>
+      </FooterWrapper>
     </>
   )
 }

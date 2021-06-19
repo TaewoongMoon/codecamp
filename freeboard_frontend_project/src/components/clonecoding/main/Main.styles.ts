@@ -432,3 +432,418 @@ export const FirstBodyImage = styled.div`
   margin: 0;
   padding: 0;
 `
+
+export const SecondBodyWrapper = styled.section`
+  height: 700px;
+  min-width: 750px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: white;
+`
+
+export const SecondBodyMiddleWrapper = styled.article`
+  position: relative;
+  width: 865.7px;
+  height: 100%;
+  margin: 0 auto;
+  padding-top: 90px;
+  color: #212529;
+`
+
+export const SecondBodyH2Text = styled.h2`
+  margin-top: 95px;
+  font-size: 46px;
+  line-height: 1.24;
+  letter-spacing: -0.96;
+  font-family: 'GothicA1';
+  font-weight: 400;
+  color: rgb(39, 39, 39);
+  animation: 0.75s ease-out 0s 1 normal both running animation-10no5g2;
+  @keyframes animation-10no5g2 {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+`
+
+export const SecondBodyPText = styled.p`
+  margin: 0px;
+  padding: 10px 0px 0px;
+  font-family: 'GothicA1';
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: rgb(170, 170, 170);
+  animation: 0.75s ease-out 0.4s 1 normal both running animation-10no5g2;
+  @keyframes animation-10no5g2 {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+`
+
+export const SecondBodyImage = styled.figure`
+  position: absolute;
+  top: 135px;
+  right: 0px;
+  width: 447.5px;
+  height: 335px;
+  background-size: 447.5px 335px;
+  margin: 48px auto 88px;
+  background-image: url('https://zigzag.kr/_next/static/images/marketing-center@2x-6108bd095de0c202f0d084f6c0a68636.jpg');
+  animation: 1s ease-out 0.75s 1 normal both running animation-plwpox;
+  @keyframes animation-plwpox {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+`
+export const SecondBodyButtonWrapper = styled.div`
+  margin-top: 12px;
+  animation: 1s ease 0.5s 1 normal both running animation-plwpox;
+  @keyframes animation-plwpox {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+`
+export const SecondBodyFirstButton = styled.a`
+  margin-right: 10px;
+  padding: 16px 0px 0px;
+  width: 187px;
+  height: 77px;
+  font-size: 18px;
+  border-radius: 38.5px;
+  display: inline-block;
+  font-family: 'GothicA1';
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  border: 3px solid rgb(255, 49, 162);
+  box-sizing: border-box;
+  background-color: rgb(255, 49, 162);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  animation: 1s ease 0.5s 1 normal both running animation-plwpox;
+  @keyframes animation-plwpox {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+`
+export const SecondBodyFirstButtonText = styled.span`
+  font-size: 14px;
+  display: block;
+  margin: 0px;
+  padding: 0px 0px 5px;
+  font-family: 'GothicA1';
+  font-weight: 400;
+  text-align: center;
+`
+export const SecondBodySecondButton = styled.a`
+  padding: 16px 0px 0px;
+  width: 187px;
+  height: 77px;
+  font-size: 18px;
+  border-radius: 38.5px;
+  display: inline-block;
+  font-family: 'GothicA1';
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+  margin: 0px;
+  border: 3px solid rgb(255, 49, 162);
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255);
+  color: rgb(255, 49, 162);
+`
+export const SecondBodySecondButtonText = styled.span`
+  font-size: 14px;
+  display: block;
+  margin: 0px;
+  padding: 0px 0px 5px;
+  font-family: 'GothicA1';
+  font-weight: 400;
+  text-align: center;
+  border: 0px;
+`
+
+export const ThirdBodyWrapper = styled.section`
+  height: 490px;
+  min-width: 750px;
+  box-sizing: border-box;
+  font-family: 'GothicA1';
+  background-size: auto 100%;
+  background-position: 50%;
+  background-image: url('https://zigzag.kr/_next/static/images/usage@2x-f297226d1c89afb77348f823006e5aa8.jpg');
+`
+
+export const ThirdBodyMiddleWrapper = styled.article`
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+`
+
+export const ThirdBodyTextWrapper = styled.ul`
+  text-align: center;
+  padding-top: 106px;
+  animation: animation-plwpox 2s ease-out both;
+  color: white;
+  list-style: none;
+  @keyframes animation-plwpox {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+`
+export const ThirdBodyFirstTextWrapper = styled.li`
+  margin-left: 170px;
+  position: relative;
+  height: 69px;
+  font-size: 50px;
+  line-height: 69px;
+`
+export const ThirdBodyFirstTextSpanOne = styled.span`
+  position: absolute;
+  left: calc(50% - 440px);
+  width: 344px;
+  text-align: right;
+  vertical-align: top;
+`
+export const ThirdBodyFirstTextSpanTwo = styled.span`
+  display: inline-block;
+  width: 157px;
+  vertical-align: top;
+  text-align: right;
+`
+export const ThirdBodyFirstTextSpanThree = styled.span`
+  position: absolute;
+  width: 101px;
+  right: calc(50% - 191px);
+  text-align: left;
+  vertical-align: top;
+`
+export const ThirdBodyMonthIndicationText = styled.li`
+  font-size: 18px;
+  margin-top: 18px;
+`
+export const FourthBodyWrapper = styled.section`
+  display: block;
+  height: 283px;
+  min-width: 750px;
+  box-sizing: border-box;
+`
+export const FourthBodyMiddleWrapper = styled.article`
+  width: 1000px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+`
+
+export const FourthBodySmallWrapper = styled.div`
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+`
+
+export const FourthBodyFirstText = styled.span`
+  font-family: 'GothicA1';
+  font-size: 44px;
+  line-height: 1.3;
+  letter-spacing: -0.91px;
+  color: #ff49a6;
+  margin-right: 78px;
+`
+
+export const FourthBodyButtonWrapper = styled.div`
+  display: flex;
+`
+
+export const FourthBodyQrCodeWrapper = styled.div`
+  display: inline-block;
+  width: 112px;
+  background-color: transparent;
+`
+export const FourthBodyQrCodeText = styled.div`
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  font-family: 'GothicA1';
+  font-size: 13px;
+  line-height: 2.15;
+  letter-spacing: -0.36px;
+  color: #bcbcbc;
+`
+
+export const FourthBodyQrImage = styled.div`
+  width: 112px;
+  height: 112px;
+  background-size: 112px;
+  background-image: url('https://zigzag.kr/_next/static/images/qrcode-pink@3x-05d34eb2ba0d098f9c38164a9f33bee0.png');
+`
+export const FourthBodyButtonDivider = styled.div`
+  display: inline-block;
+  width: 1px;
+  margin: 0 29px;
+  background-color: #dddddd;
+`
+export const FourthBodyAppDownloadWrapper = styled.div`
+  width: 154px;
+`
+export const FourthBodyAppDownloadText = styled.div`
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  font-family: 'GothicA1';
+  font-size: 13px;
+  line-height: 2.15;
+  letter-spacing: -0.36px;
+  color: #bcbcbc;
+`
+
+export const FourthBodyAppStoreDownload = styled.a`
+  display: inline-block;
+  margin-bottom: 18px;
+  text-decoration: none;
+`
+
+export const FourthBodyAppStoreDownloadButton = styled.figure`
+  width: 154px;
+  height: 47px;
+  background-size: 154px 47px;
+  background-image: url('https://zigzag.kr/_next/static/images/app-store-pink-b99193f6c5914956af64adcf8dcfb5e7.svg');
+`
+
+export const FourthBodyGooglePlayDownload = styled.a`
+  display: inline-block;
+  margin-bottom: 18px;
+  text-decoration: none;
+`
+
+export const FourthBodyGooglePlayDownloadButton = styled.figure`
+  width: 154px;
+  height: 47px;
+  background-size: 154px 47px;
+  background-image: url('	https://zigzag.kr/_next/static/images/google-play-pink-14f673955a9736a8570f9fe0b51006f8.svg');
+`
+export const FooterWrapper = styled.footer`
+  border-top: 1px solid #f0f0f0;
+  background-color: #fafafa;
+  display: block;
+`
+
+export const FooterMiddleWrapper = styled.article`
+  width: 990px;
+  margin: 0 auto;
+  padding: 40px 0 115px;
+  display: block;
+`
+
+export const FooterSmallWrapper = styled.section`
+  position: relative;
+  color: #545454;
+`
+
+export const TextEmoticonWrapper = styled.ul`
+  font-size: 15px;
+  line-height: 1.47;
+  list-style: none;
+  vertical-align: baseline;
+`
+
+export const FirstLineFirstText = styled.li`
+  display: inline-block;
+  margin-right: 24px;
+`
+export const FirstLineSecondText = styled.li`
+  display: inline-block;
+  margin-right: 24px;
+`
+
+export const FooterImageWrapper = styled.nav`
+  position: absolute;
+  top: 6px;
+  right: 0;
+  display: block;
+`
+
+export const FooterImageWithLink = styled.a`
+  display: inline-block;
+  margin-left: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: no-repeat #d8d8d8 50%;
+  background-position: center;
+  background-size: 28px 28px;
+  ${(props: IpropsSakura) => `background-image: url(${props.data.url});`}
+`
+export const SecondLineFirstText = styled.li`
+  display: inline-block;
+  margin-right: 24px;
+  text-align: -webkit-match-parent;
+`
+export const SecondLineSecondText = styled.li`
+  display: inline-block;
+  margin-right: 24px;
+  text-align: -webkit-match-parent;
+`
+
+export const ThirdLineText = styled.li`
+  display: inline-block;
+  margin-right: 24px;
+  text-align: -webkit-match-parent;
+`
+export const FourthLineText = styled.li`
+  display: inline-block;
+  margin-right: 24px;
+  text-align: -webkit-match-parent;
+`
+export const FourthLineSecondText = styled.li`
+  display: inline-block;
+  margin-right: 24px;
+  text-align: -webkit-match-parent;
+`
+export const FifthLineText = styled.li`
+  display: inline-block;
+  margin-right: 24px;
+  text-align: -webkit-match-parent;
+`
+export const FifthLineSecondText = styled.li`
+  display: inline-block;
+  margin-right: 24px;
+  text-align: -webkit-match-parent;
+`
