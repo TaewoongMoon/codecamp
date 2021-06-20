@@ -86,6 +86,7 @@ import {
 interface Iprops {
   onClickMenuList: any
   selectedId: any
+  observer: any
 }
 
 const ANIMATION = [
@@ -384,7 +385,7 @@ export default function CloneMainUI(props: Iprops) {
         </FirstBodyMiddleWrapper>
       </FirstBodyWrapper>
       <SecondBodyWrapper>
-        <SecondBodyMiddleWrapper>
+        <SecondBodyMiddleWrapper ref={props.observer}>
           <SecondBodyH2Text>
             지그재그는
             <br />

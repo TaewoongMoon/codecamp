@@ -15,21 +15,28 @@ const CloneMainPage = () => {
   const rootMargin = '0px'
   const threshold = 0
 
-  const observer = useRef(
-    new window.IntersectionObserver(([entry]) => updateEntry(entry), {
-      root,
-      rootMargin,
-      threshold
-    })
-  )
+  const observer = useRef(null)
 
   useEffect(() => {
+    // @ts-ignore
+    // if (observer.current) observer.current.disconenct()
+    // @ts-ignore
+    observer.current = new window.IntersectionObserver(
+      ([entry]) => updateEntry(entry),
+      {
+        root,
+        rootMargin,
+        threshold
+      }
+    )
     const { current: currentObserver } = observer
     // @ts-ignore
     if (node) currentObserver.observe(node)
+    // @ts-ignore
+    return () => currentObserver.disconnect()
+  }, [node, root, rootMargin, threshold])
 
-    return () => observer.current.disconnect()
-  }, [node])
+  console.log(observer)
 
   const arr = [
     'favorite',
@@ -68,10 +75,6 @@ const CloneMainPage = () => {
       // @ts-ignore
       timer.temp = setInterval(function () {
         setSelectedId(arr[index++])
-        console.log('=======================')
-        console.log('index', index)
-        console.log('arr[++index]', arr[index])
-        console.log('=======================')
         if (index === arr.length) {
           // @ts-ignore
           clearInterval(timer.temp)
@@ -88,14 +91,17 @@ const CloneMainPage = () => {
       window.addEventListener('scroll', handleFollow)
     }
     watch()
-    console.log(scrollY)
     return () => {
       window.removeEventListener('scroll', handleFollow)
     }
   })
 
   return (
-    <CloneMainUI onClickMenuList={onClickMenuList} selectedId={selectedId} />
+    <CloneMainUI
+      onClickMenuList={onClickMenuList}
+      selectedId={selectedId}
+      observer={observer}
+    />
   )
 }
 
