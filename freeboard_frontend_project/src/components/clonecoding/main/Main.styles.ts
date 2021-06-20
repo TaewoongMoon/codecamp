@@ -757,7 +757,7 @@ export const FourthBodyGooglePlayDownloadButton = styled.figure`
   width: 154px;
   height: 47px;
   background-size: 154px 47px;
-  background-image: url('	https://zigzag.kr/_next/static/images/google-play-pink-14f673955a9736a8570f9fe0b51006f8.svg');
+  background-image: url('https://zigzag.kr/_next/static/images/google-play-pink-14f673955a9736a8570f9fe0b51006f8.svg');
 `
 export const FooterWrapper = styled.footer`
   border-top: 1px solid #f0f0f0;
