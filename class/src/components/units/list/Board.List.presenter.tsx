@@ -1,4 +1,4 @@
-import { BoardReturn } from '../../../commons/types/generated/types'
+// import { BoardReturn } from '../../../commons/types/generated/types'
 import {
   BoxWrapper,
   HeaderCheckBox,
@@ -7,11 +7,11 @@ import {
   HeaderNumber,
   HeaderTitle,
   HeaderDate,
-  BodyWrapper,
-  BodyCheckBox,
-  BodyNumber,
-  BodyTitle,
-  BodyDate,
+  // BodyWrapper,
+  // BodyCheckBox,
+  // BodyNumber,
+  // BodyTitle,
+  // BodyDate,
   HrLine,
   SelectEraseButtonWrapper,
   Page
@@ -43,7 +43,7 @@ export default function BoardUI(props: IProps) {
             <HeaderTitle>제목</HeaderTitle>
             <HeaderDate>작성일</HeaderDate>
           </HeaderWrapper>
-          {props.data?.fetchBoards.map((data: BoardReturn) => (
+          {/* {props.data?.fetchBoards.map((data: BoardReturn) => (
             <BodyWrapper key={data?.number}>
               <BodyCheckBox
                 type="checkbox"
@@ -59,7 +59,7 @@ export default function BoardUI(props: IProps) {
                 {String(new Date(data?.createdAt).getDay())}
               </BodyDate>
             </BodyWrapper>
-          ))}
+          ))} */}
           <HrLine></HrLine>
           <SelectEraseButtonWrapper>
             {new Array(10).fill(1).map((_, index) => (

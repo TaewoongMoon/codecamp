@@ -87,6 +87,9 @@ interface Iprops {
   onClickMenuList: any
   selectedId: any
   observer: any
+  setNode: any
+  entry: any
+  onClickListPage: any
 }
 
 const ANIMATION = [
@@ -288,7 +291,9 @@ export default function CloneMainUI(props: Iprops) {
       <HeaderWrapper>
         <HeaderMiddleWrapper>
           <HeaderZigZagLogo></HeaderZigZagLogo>
-          <HeaderButton>중고마켓 안내</HeaderButton>
+          <HeaderButton onClick={props.onClickListPage}>
+            중고마켓 안내
+          </HeaderButton>
           <HeaderImage></HeaderImage>
           <HeaderTextWrapper>
             <HeaderTextTop>
@@ -385,24 +390,30 @@ export default function CloneMainUI(props: Iprops) {
         </FirstBodyMiddleWrapper>
       </FirstBodyWrapper>
       <SecondBodyWrapper>
-        <SecondBodyMiddleWrapper ref={props.observer}>
-          <SecondBodyH2Text>
+        <SecondBodyMiddleWrapper
+          ref={props.setNode}
+          ratio={props.entry.intersectionRatio}
+        >
+          <SecondBodyH2Text ratio={props.entry.intersectionRatio}>
             지그재그는
             <br />
             입점 파트너와
             <br />
             함께 성장합니다.
           </SecondBodyH2Text>
-          <SecondBodyPText>
+          <SecondBodyPText ratio={props.entry.intersectionRatio}>
             매월 340만 고객이 이용하는 성공 플랫폼
             <br />
             지그재그, 지금 바로 시작하세요.
           </SecondBodyPText>
-          <SecondBodyImage></SecondBodyImage>
-          <SecondBodyButtonWrapper>
+          <SecondBodyImage
+            ratio={props.entry.intersectionRatio}
+          ></SecondBodyImage>
+          <SecondBodyButtonWrapper ratio={props.entry.intersectionRatio}>
             <SecondBodyFirstButton
               href="https://zigzag.kr/partners/"
               target="_blank"
+              ratio={props.entry.intersectionRatio}
             >
               <SecondBodyFirstButtonText>신규 파트너</SecondBodyFirstButtonText>
               플랫폼 입점 안내

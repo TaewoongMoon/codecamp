@@ -9,7 +9,7 @@ import { AppProps } from 'next/dist/next-server/lib/router/router'
 import { createUploadLink } from 'apollo-upload-client'
 import { createContext, useState } from 'react'
 import { onError } from '@apollo/client/link/error'
-import axios from 'axios'
+import getAccessToken from '../src/commons/libraries/getAccessToken'
 
 export const GlobalContext = createContext({
   accessToken: '',
@@ -21,7 +21,7 @@ export const GlobalContext = createContext({
 function MyApp({ Component, pageProps }: AppProps) {
   const [accessToken, setAccessToken] = useState('')
   const uploadLink = createUploadLink({
-    uri: 'http://backend.codebootcamp.co.kr/graphql',
+    uri: 'https://backend.codebootcamp.co.kr/graphql',
     headers: {
       authorization: `Bearer ${accessToken}`
     },
@@ -35,25 +35,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       for (const err of graphQLErrors) {
         if (err.extensions?.code === 'UNAUTHENTICATED') {
           // 만료된 토큰을 재발급 받기
-          const response = await axios.post(
-            'http://backend.codebootcamp.co.kr/graphql',
-            {
-              query: `
-              mutation restoreAccessToken {
-                restoreAccessToken {
-                  accessToken
-                }
-              }
-            `
-            },
-            {
-              headers: { 'Content-type': 'application/json' },
-              withCredentials: true // 쿠키를 넘길때 credential 데이터를 넘긴다는 의미이다.
-            }
-          )
-          const newAccessToken =
-            response.data.data.restoreAccessToken.accessToken
-          setAccessToken(newAccessToken)
+          const newAccessToken = getAccessToken({ setAccessToken })
 
           // 재발급 받은 토큰으로 실패했던 쿼리 다시 날리기
           operation.setContext({

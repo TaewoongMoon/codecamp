@@ -29,7 +29,7 @@ export default function Header() {
     if (temp === 'freeboard') {
       router.push(`/board/detailwrite/${boardId}`)
     } else if (temp === 'clonecoding') {
-      router.push('/clonecoding')
+      router.push('/clonecoding/login')
     } else if (temp === 'mypage') {
       router.push('/mypage')
     }
