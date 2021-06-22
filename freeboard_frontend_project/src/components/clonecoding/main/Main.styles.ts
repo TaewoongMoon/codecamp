@@ -1,8 +1,9 @@
 import styled from '@emotion/styled'
 
 interface Iprops {
-  isActive: any
-  delay: any
+  isActive?: any
+  delay?: any
+  ratio?: any
 }
 
 interface IpropsSakura {
@@ -448,6 +449,7 @@ export const SecondBodyMiddleWrapper = styled.article`
   margin: 0 auto;
   padding-top: 90px;
   color: #212529;
+  opacity: ${(props: Iprops) => (props.ratio ? 1 : 0)};
 `
 
 export const SecondBodyH2Text = styled.h2`
@@ -458,7 +460,8 @@ export const SecondBodyH2Text = styled.h2`
   font-family: 'GothicA1';
   font-weight: 400;
   color: rgb(39, 39, 39);
-  animation: 0.75s ease-out 0s 1 normal both running animation-10no5g2;
+  animation: ${(props: Iprops) =>
+    props.ratio && '0.75s ease-out 0s 1 normal both running animation-10no5g2'};
   @keyframes animation-10no5g2 {
     0% {
       opacity: 0;
@@ -479,7 +482,9 @@ export const SecondBodyPText = styled.p`
   font-weight: 400;
   line-height: 1.4;
   color: rgb(170, 170, 170);
-  animation: 0.75s ease-out 0.4s 1 normal both running animation-10no5g2;
+  animation: ${(props: Iprops) =>
+    props.ratio &&
+    '0.75s ease-out 0.4s 1 normal both running animation-10no5g2'};
   @keyframes animation-10no5g2 {
     0% {
       opacity: 0;
@@ -502,7 +507,8 @@ export const SecondBodyImage = styled.figure`
   background-size: 447.5px 335px;
   margin: 48px auto 88px;
   background-image: url('https://zigzag.kr/_next/static/images/marketing-center@2x-6108bd095de0c202f0d084f6c0a68636.jpg');
-  animation: 1s ease-out 0.75s 1 normal both running animation-plwpox;
+  animation: ${(props: Iprops) =>
+    props.ratio && '1s ease-out 0.75s 1 normal both running animation-plwpox'};
   @keyframes animation-plwpox {
     0% {
       opacity: 0;
@@ -515,7 +521,8 @@ export const SecondBodyImage = styled.figure`
 `
 export const SecondBodyButtonWrapper = styled.div`
   margin-top: 12px;
-  animation: 1s ease 0.5s 1 normal both running animation-plwpox;
+  animation: ${(props: Iprops) =>
+    props.ratio && '1s ease 0.5s 1 normal both running animation-plwpox'};
   @keyframes animation-plwpox {
     0% {
       opacity: 0;
@@ -546,7 +553,8 @@ export const SecondBodyFirstButton = styled.a`
   background-color: rgb(255, 49, 162);
   color: rgb(255, 255, 255);
   cursor: pointer;
-  animation: 1s ease 0.5s 1 normal both running animation-plwpox;
+  animation: ${(props: Iprops) =>
+    props.ratio && '1s ease 0.5s 1 normal both running animation-plwpox'};
   @keyframes animation-plwpox {
     0% {
       opacity: 0;

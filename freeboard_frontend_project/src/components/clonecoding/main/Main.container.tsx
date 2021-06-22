@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
 import withAuth from '../../../commons/hocs/withAuth'
 import CloneMainUI from './Main.presenter'
@@ -10,33 +11,41 @@ const CloneMainPage = () => {
   const [scrollOn, setScrollOn] = useState(false)
   const [entry, updateEntry] = useState({})
   const [node, setNode] = useState(null)
+  const router = useRouter()
 
+  const buildThresholdArray = () =>
+    Array.from(Array(100).keys(), (i) => i / 100)
   const root = null
   const rootMargin = '0px'
-  const threshold = 0
 
-  const observer = useRef(null)
+  const observer = useRef(
+    new window.IntersectionObserver(([entry]) => updateEntry(entry), {
+      root,
+      rootMargin,
+      threshold: buildThresholdArray()
+    })
+  )
 
   useEffect(() => {
     // @ts-ignore
     // if (observer.current) observer.current.disconenct()
     // @ts-ignore
-    observer.current = new window.IntersectionObserver(
-      ([entry]) => updateEntry(entry),
-      {
-        root,
-        rootMargin,
-        threshold
-      }
-    )
+
     const { current: currentObserver } = observer
+    currentObserver.disconnect()
     // @ts-ignore
     if (node) currentObserver.observe(node)
+    console.log(node)
+
     // @ts-ignore
     return () => currentObserver.disconnect()
-  }, [node, root, rootMargin, threshold])
+  }, [node])
 
-  console.log(observer)
+  // console.log(observer.current)
+  // console.log(node)
+  // console.log(node)
+
+  // console.log(entry.intersectionRatio)
 
   const arr = [
     'favorite',
@@ -61,7 +70,11 @@ const CloneMainPage = () => {
         // @ts-ignore
         clearInterval(timer.temp)
       }
-    }, 1000)
+    }, 3000)
+  }
+
+  const onClickListPage = () => {
+    router.push('/clonecoding/list')
   }
 
   useEffect(() => {
@@ -79,7 +92,7 @@ const CloneMainPage = () => {
           // @ts-ignore
           clearInterval(timer.temp)
         }
-      }, 1000)
+      }, 3000)
     }
   }, [scrollY])
 
@@ -101,6 +114,9 @@ const CloneMainPage = () => {
       onClickMenuList={onClickMenuList}
       selectedId={selectedId}
       observer={observer}
+      setNode={setNode}
+      entry={entry}
+      onClickListPage={onClickListPage}
     />
   )
 }

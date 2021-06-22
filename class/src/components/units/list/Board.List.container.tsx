@@ -1,7 +1,7 @@
 import { ChangeEvent, MouseEvent, useState } from 'react'
 import BoardUI from './Board.List.presenter'
 import { gql, useQuery } from '@apollo/client'
-import { BoardReturn } from '../../../commons/types/generated/types'
+// import { BoardReturn } from '../../../commons/types/generated/types'
 
 export default function BoardMain() {
   const [checkedAll, setCheckedAll] = useState(true)
@@ -34,9 +34,9 @@ export default function BoardMain() {
       setChecked(newCheck)
     } else if (event.target.checked === true) {
       const newCheck: INewCheck = {}
-      data?.fetchBoards.forEach((data: BoardReturn) => {
-        newCheck[data.number as number] = true
-      })
+      // data?.fetchBoards.forEach((data: BoardReturn) => {
+      //   newCheck[data.number as number] = true
+      // })
       setCheckedAll(true)
       setChecked(newCheck)
     }

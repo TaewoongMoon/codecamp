@@ -1,6 +1,6 @@
 import { memo } from 'react'
-
-const PresenterPage = ({ onClickCountState }) => {
+// @ts-check
+const PresenterPage = ({ onClickCountState }: any) => {
   return <div>프리젠터(자식)입니다.</div>
 }
 // 기억을하고 제 랜더링이 될 필요없는 부분은 memo를 통해서 최적화할 수 있다.
