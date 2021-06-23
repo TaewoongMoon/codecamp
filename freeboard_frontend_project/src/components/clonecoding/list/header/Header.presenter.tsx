@@ -32,6 +32,8 @@ interface Iprops {
   onClickHeaderModal: any
   handleOpen: any
   setSearchColor: any
+  onClickLogOut: any
+  data: any
 }
 
 const HeaderUI = (props: Iprops) => {
@@ -69,7 +71,7 @@ const HeaderUI = (props: Iprops) => {
           <HeaderBarMenu>
             <HeaderDownloadWrapper>
               <HeaderDownloadText>
-                문태웅님
+                {props.data?.fetchUserLoggedIn.name}님
                 <HeaderDownloadImage
                   viewBox="0 0 12 7"
                   xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +89,7 @@ const HeaderUI = (props: Iprops) => {
                 <SecondModalText>자유게시판 보러가기</SecondModalText>
               </ModalBox>
             </HeaderDownloadWrapper>
-            <LogOutButton>
+            <LogOutButton onClick={props.onClickLogOut}>
               <LogOutButtonFirstText>로그아웃</LogOutButtonFirstText>
               <LogOutButtonSecondText>Beta</LogOutButtonSecondText>
             </LogOutButton>

@@ -17,7 +17,8 @@ export default function Layout({ children }: ILayoutProps) {
     '/clonecoding/signup',
     '/clonecoding/main',
     '/mypage',
-    '/clonecoding/list'
+    '/clonecoding/list',
+    '/clonecoding/list/detail'
   ]
   const router = useRouter()
   const result = isNavigation.includes(router.pathname)

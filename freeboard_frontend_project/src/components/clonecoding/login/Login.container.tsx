@@ -98,6 +98,7 @@ const LoginPage = () => {
         }
       })
       setAccessToken(data?.loginUser.accessToken)
+      console.log(data?.loginUser.accessToken)
       router.push('/clonecoding/main')
     } catch (error) {
       alert(error.message)

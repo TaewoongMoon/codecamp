@@ -44,6 +44,9 @@ export const LogoLink = styled.a`
   -webkit-tap-highlight-color: rgba(73, 80, 87, 0.05);
   color: -webkit-link;
   cursor: pointer;
+  :hover {
+    opacity: 0.7;
+  }
 `
 export const LogoText = styled.span`
   position: absolute;
@@ -191,6 +194,9 @@ export const LogOutButton = styled.button`
   background-color: #fff;
   text-decoration: none;
   outline: none;
+  :hover {
+    opacity: 0.7;
+  }
 `
 export const LogOutButtonFirstText = styled.span`
   color: #4d5159;
@@ -536,4 +542,23 @@ export const CardLikeNameWrapper = styled.div`
 export const CardHeartImage = styled.img`
   width: 16px;
   height: 16px;
+`
+export const HotItemList = styled.div`
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  display: block;
+`
+
+export const HotItemText = styled.a`
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 16px !important;
+  line-height: 1.5;
+  letter-spacing: -0.3px;
+  color: #212529;
+  font-weight: bold;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `

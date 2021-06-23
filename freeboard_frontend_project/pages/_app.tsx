@@ -9,6 +9,8 @@ import Layout from '../src/layout'
 import Globalstyles from '../src/commons/styles/Global styles'
 import { createUploadLink } from 'apollo-upload-client'
 import { createContext, useState } from 'react'
+import { onError } from '@apollo/client/link/error'
+import getAccessToken from '../src/commons/libraries/getAccessToeken'
 
 export const GlobalContext = createContext({
   accessToken: '',
@@ -22,17 +24,38 @@ function MyApp({ Component, pageProps }: { Component: any; pageProps: any }) {
   const [userId, setUserId] = useState('')
 
   const uploadLink = createUploadLink({
-    uri: 'http://backend.codebootcamp.co.kr/graphql',
+    uri: 'https://backend.codebootcamp.co.kr/graphql',
     headers: {
-      authorization: `Bearer ${accessToken}`
+      authorization: `Bearer ${accessToken || ''}`
     },
     credentials: 'include'
   })
+
+  // @ts-ignore
+  const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+    if (graphQLErrors) {
+      for (const err of graphQLErrors) {
+        if (err.extensions?.code === 'UNAUTHENTICATED') {
+          // 만료된 토큰을 재발급 받기
+          const newAccessToken = getAccessToken({ setAccessToken })
+
+          // 재발급 받은 토큰으로 실패했던 쿼리 다시 날리기
+          operation.setContext({
+            headers: {
+              ...operation.getContext().headers,
+              authorization: `Bearer ${newAccessToken || ''}`
+            }
+          })
+
+          return forward(operation)
+        }
+      }
+    }
+  })
   const client = new ApolloClient({
-    link: ApolloLink.from([uploadLink as unknown as ApolloLink]),
+    link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
     cache: new InMemoryCache()
   })
-
   return (
     <GlobalContext.Provider
       value={{ accessToken, setAccessToken, userId, setUserId }}
