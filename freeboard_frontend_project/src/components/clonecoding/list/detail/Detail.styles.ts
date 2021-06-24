@@ -1,7 +1,13 @@
 import styled from '@emotion/styled'
 
+interface Iprops {
+  translateChange?: any
+  slickDot?: any
+  id?: any
+}
+
 export const ContentArticle = styled.article`
-  margin-top: 100px;
+  margin-top: 110px;
   padding-bottom: 0;
   display: block;
   padding: 0;
@@ -74,7 +80,7 @@ export const SliderSlickPrevButton = styled.button`
   cursor: pointer;
 `
 export const SlickDraggableWrapper = styled.div`
-  transform: translate3d(0, 0, 0);
+  /* transform: translate3d(0, 0, 0); */
   position: relative;
   display: block;
   overflow: hidden;
@@ -86,8 +92,9 @@ export const SlickDraggableWrapper = styled.div`
 
 export const SlickTrackWrapper = styled.div`
   opacity: 1;
-  width: 5103px;
-  transform: translate3d(-729px, 0px 0px);
+  width: 2187px;
+  ${(props: Iprops) => `transform: translateX(${props.translateChange}px);`}
+  height: 500px;
   position: relative;
   top: 0;
   left: 0;
@@ -96,6 +103,7 @@ export const SlickTrackWrapper = styled.div`
   margin-right: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  transition: transform 500ms ease 0s;
 `
 
 export const SlickTrackWrapperOne = styled.div`
@@ -121,8 +129,8 @@ export const SlickTrackWrapperOneImage = styled.img`
   border-radius: 8px;
   position: relative;
   min-width: 100%;
-  left: 50%;
-  top: 50%;
+  /* left: 50%;
+  top: 50%; */
   transform: (-50%, -50%);
   color: transparent;
 `
@@ -149,8 +157,8 @@ export const SlickTrackWrapperTwoImage = styled.img`
   border-radius: 8px;
   position: relative;
   min-width: 100%;
-  left: 50%;
-  top: 50%;
+  /* left: 50%;
+  top: 50%; */
   transform: (-50%, -50%);
   color: transparent;
 `
@@ -177,8 +185,8 @@ export const SlickTrackWrapperThreeImage = styled.img`
   border-radius: 8px;
   position: relative;
   min-width: 100%;
-  left: 50%;
-  top: 50%;
+  /* left: 50%;
+  top: 50%; */
   transform: (-50%, -50%);
   color: transparent;
 `
@@ -199,7 +207,7 @@ export const SliderSlickNextButton = styled.button`
   cursor: pointer;
 `
 
-export const SlickDotsWrapper = styled.div`
+export const SlickDotsWrapper = styled.ul`
   display: block;
   position: absolute;
   bottom: 3px;
@@ -225,6 +233,8 @@ export const SlickDot = styled.li`
   cursor: pointer;
   text-align: -webkit-match-parent;
   list-style: none;
+  width: 16px;
+  height: 12px;
 `
 export const SlickDotButton = styled.button`
   display: block;
@@ -232,12 +242,213 @@ export const SlickDotButton = styled.button`
   color: transparent;
   border: 0;
   outline: none;
-  background: transparent;
+  background-color: #fff;
+  opacity: ${(props: Iprops) => (props.id === props.slickDot ? 0.8 : 0.3)};
   margin: 0 4px;
   width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: absolute;
   appearance: auto;
   -webkit-writing-mode: horizontal-tb !important;
   text-rendering: auto;
   text-align: center;
   align-items: flex-start;
+`
+export const ProfileSection = styled.section`
+  width: 677px;
+  height: 68px;
+  margin: 0 auto;
+  display: block;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #212529;
+  -webkit-font-smoothing: antialiased;
+`
+
+export const ProfilePageDirection = styled.a`
+  text-decoration: none;
+  display: block;
+  position: relative;
+  border-bottom: 1px solid #e9ecef;
+  color: -webkit-link;
+  cursor: pointer;
+`
+export const SpaceBetweenWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 677px;
+  height: 68px;
+  margin-top: 25px;
+  margin-bottom: 23px;
+`
+
+export const ProfileLeftWrapper = styled.div``
+
+export const ProfileLeftImageWrapper = styled.div`
+  display: inline-block;
+`
+export const ProfileLeftImage = styled.img`
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  -webkit-border-radius: 50%;
+`
+
+export const ProfileRightWrapper = styled.div`
+  display: inline-block;
+  margin-left: 8px;
+`
+export const ProfileRightFirstText = styled.div`
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.5;
+  letter-spacing: -0.6px;
+  color: #212529;
+`
+
+export const ProfileRightSecondText = styled.div`
+  font-size: 13px;
+  line-height: 1.46;
+  letter-spacing: -0.6px;
+  color: #212529;
+`
+
+export const TemperatureWrapper = styled.div`
+  position: absolute;
+  right: 0;
+  padding-right: 36px;
+`
+
+export const TemperatureMiddleWrapper = styled.dl`
+  display: block;
+  width: 100px;
+`
+
+export const TemperatureText = styled.dt`
+  position: absolute;
+  top: 36px;
+  right: 0px;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: -0.6px;
+  color: #868e96;
+`
+
+export const Temperature = styled.dd`
+  color: #1561a9;
+  position: absolute;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1;
+  letter-spacing: -0.5px;
+  margin-top: 1px;
+  width: 100px;
+  text-align: right;
+`
+
+export const TemperatureDegree = styled.span`
+  color: #1561a9;
+`
+
+export const MetersWrapper = styled.div`
+  clear: both;
+  display: block;
+  width: 100px;
+  background-color: #e9ecef;
+  height: 4px;
+  -webkit-border-radius: 100px;
+  position: relative;
+  margin-top: 24px;
+`
+
+export const MetersPercentageBar = styled.div`
+  width: 37%;
+  background-color: #1561a9;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  -webkit-border-radius: 100px;
+`
+export const SmileImage = styled.div`
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  overflow: hidden;
+  text-indent: -9999px;
+  text-align: left;
+  background: url('https://d1unjqcospf8gs.cloudfront.net/assets/home/articles/face-icon-set-0cffc52be32961b0bb4a308c272d8f526ddcdeda66dbde6eb32618eeb22b74e6.png')
+    no-repeat;
+  background-position-x: 0px;
+  background-position-y: -75px;
+  background-size: 29px 147px;
+`
+
+export const ContentWrapper = styled.section`
+  padding: 32px 0;
+  width: 677px;
+  margin: 0 auto;
+  border-radius: 1px solid #e9ecef;
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  border-bottom: 1px solid #e9ecef;
+`
+
+export const ContentTitle = styled.h1`
+  margin-top: 0px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.6px;
+`
+
+export const ContentCategory = styled.p`
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.46;
+  letter-spacing: -0.6px;
+  color: #868e96;
+  padding: 0;
+`
+
+export const ContentTime = styled.span`
+  font-size: 13px;
+  line-height: 1.46;
+  letter-spacing: -0.6px;
+  color: #868e96;
+`
+
+export const ContentPrice = styled.p`
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 4px;
+  line-height: 1.76;
+  letter-spacing: -0.6px;
+`
+export const ContentDetailWrapper = styled.div`
+  margin-bottom: 16px;
+  margin-top: 8px;
+`
+
+export const ContentDetailText = styled.p`
+  font-size: 17px;
+  line-height: 1.6;
+  letter-spacing: -0.6px;
+  margin: 16px 0;
+  word-break: break-all;
+`
+export const ContentCounts = styled.p`
+  font-size: 13px;
+  line-height: 1.46;
+  letter-spacing: -0.6px;
+  color: #868e96;
+  cursor: pointer;
 `

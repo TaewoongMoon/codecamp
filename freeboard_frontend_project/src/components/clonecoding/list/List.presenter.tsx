@@ -123,7 +123,7 @@ const ListUI = (props: Iprops) => {
             {props.bestData?.fetchUseditemsOfTheBest.map((data: any) => (
               <>
                 <ItemCard key="">
-                  <CardLink href="https://www.daangn.com/articles/250788128">
+                  <CardLink href={`/clonecoding/list/${data._id}`}>
                     <CardPhotoWrapper>
                       <CardPhoto src="https://dnvefa72aowie.cloudfront.net/origin/article/202106/930bb3072e828f709b1ea72d4577edbf99e7c9b1d864d11c50aa7c538f95019b.webp?q=82&s=300x300&t=crop"></CardPhoto>
                     </CardPhotoWrapper>
