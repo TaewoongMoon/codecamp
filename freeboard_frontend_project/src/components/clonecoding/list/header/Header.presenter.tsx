@@ -42,7 +42,7 @@ const HeaderUI = (props: Iprops) => {
       <HeaderWrapper>
         <HeaderFixedBarWrapper>
           <FixedBarLogoTitle>
-            <LogoLink href="https://www.daangn.com/">
+            <LogoLink href="/clonecoding/list">
               <LogoText>당근마켓</LogoText>
               <LogoImage
                 alt="당근마켓"

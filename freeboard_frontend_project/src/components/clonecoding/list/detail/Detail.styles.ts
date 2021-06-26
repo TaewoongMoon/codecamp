@@ -452,3 +452,113 @@ export const ContentCounts = styled.p`
   color: #868e96;
   cursor: pointer;
 `
+export const ReplySection = styled.section`
+  width: 677px;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #212529;
+  -webkit-font-smoothing: antialiased;
+  border-bottom: 1px solid #e9ecef;
+  position: relative;
+`
+export const ReplyImageWrapper = styled.div`
+  display: inline-block;
+`
+export const ReplyInfoWrapper = styled.div`
+  display: inline-block;
+  margin-left: 8px;
+`
+export const ReplyImage = styled.img`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+`
+export const ReplyInfoTextOne = styled.div`
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 1.46;
+  letter-spacing: -0.6px;
+`
+
+export const ReplyInfoTextTwo = styled.div`
+  font-size: 16px;
+  line-height: 1.46;
+  letter-spacing: -0.6px;
+`
+
+export const ReplyInfoDate = styled.div`
+  font-size: 12px;
+  line-height: 1.46;
+  letter-spacing: -0.6px;
+  margin-top: 10px;
+  color: #bdbdbd;
+`
+export const DoubleReplyWrapper = styled.div`
+  margin-bottom: 10px;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: row;
+  color: #212529;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+`
+export const DoubleReplyArrowWrapper = styled.div`
+  margin-top: 10px;
+  display: inline-block;
+`
+export const DoubleReplyArrowImage = styled.img`
+  width: 15px;
+  height: 15px;
+`
+export const DoubleReplyImageWrapper = styled.div`
+  margin-left: 8px;
+`
+export const DoubleReplyImage = styled.img`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+`
+export const DoubleReplyTextWrapper = styled.div`
+  margin-left: 8px;
+`
+
+export const DoubleReplyTextOne = styled.div`
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 1.46;
+  letter-spacing: -0.6px;
+`
+
+export const DoubleReplyTextTwo = styled.div`
+  font-size: 16px;
+  line-height: 1.46;
+  letter-spacing: -0.6px;
+`
+export const ReplyEmojiWrapper = styled.div`
+  position: absolute;
+  left: 590px;
+  display: flex;
+  flex-direction: row;
+`
+export const ReplyPencilImage = styled.img`
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+`
+export const ReplyCancelImage = styled.img`
+  margin-left: 18px;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+`
+
+export const ReplyMessageImage = styled.img`
+  margin-left: 18px;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+`
