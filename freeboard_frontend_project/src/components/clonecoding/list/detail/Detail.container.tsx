@@ -3,20 +3,30 @@ import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import withAuth from '../../../../commons/hocs/withAuth'
+import { FETCH_USERLOGGEDIN } from '../header/Header.queries'
 import ListDetailUI from './Detail.presenter'
-import { FETCH_USEDITEM } from './Detail.queries'
+import { FETCH_USEDITEM, FETCH_USEDITEMQUESTIONS } from './Detail.queries'
 
 const ListDetailPage = () => {
   const [translateChange, setTranslateChange] = useState(0)
   const [slickDot, setSlickDot] = useState('one')
-  console.log(translateChange)
   const router = useRouter()
-
+  const [replyButton, setReplyButton] = useState(false)
   const { data: fetchData } = useQuery(FETCH_USEDITEM, {
     variables: {
       useditemId: String(router.query._id)
     }
   })
+
+  const { data: fetchUsedItemReplyData } = useQuery(FETCH_USEDITEMQUESTIONS, {
+    variables: {
+      useditemId: String(router.query._id)
+    }
+  })
+
+  console.log(fetchUsedItemReplyData?.fetchUseditemQuestions)
+
+  const { data: fetchUserLoggedIn } = useQuery(FETCH_USERLOGGEDIN)
 
   const timeDifference = Math.floor(
     (new Date().getTime() -
@@ -25,9 +35,15 @@ const ListDetailPage = () => {
       60 /
       60
   )
-  console.log(timeDifference)
 
-  console.log('data', fetchData)
+  const onClickReplyButton = () => {
+    if (replyButton === false) {
+      setReplyButton(true)
+    } else {
+      setReplyButton(false)
+    }
+  }
+
   const onClickTranslateChangeMinus = () => {
     setTranslateChange((prev) => prev - 729)
 
@@ -64,6 +80,10 @@ const ListDetailPage = () => {
       onClickSlickDot={onClickSlickDot}
       fetchData={fetchData}
       timeDifference={timeDifference}
+      fetchUsedItemReplyData={fetchUsedItemReplyData}
+      onClickReplyButton={onClickReplyButton}
+      replyButton={replyButton}
+      fetchUserLoggedIn={fetchUserLoggedIn}
     />
   )
 }

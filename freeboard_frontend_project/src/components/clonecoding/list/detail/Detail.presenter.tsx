@@ -45,7 +45,26 @@ import {
   ContentPrice,
   ContentDetailWrapper,
   ContentDetailText,
-  ContentCounts
+  ContentCounts,
+  ReplySection,
+  ReplyImageWrapper,
+  ReplyInfoWrapper,
+  ReplyImage,
+  ReplyInfoTextOne,
+  ReplyInfoTextTwo,
+  ReplyInfoDate,
+  ReplyEmojiWrapper,
+  ReplyPencilImage,
+  ReplyCancelImage,
+  ReplyMessageImage,
+  DoubleReplyWrapper,
+  DoubleReplyArrowWrapper,
+  DoubleReplyImageWrapper,
+  DoubleReplyTextWrapper,
+  DoubleReplyArrowImage,
+  DoubleReplyImage,
+  DoubleReplyTextOne,
+  DoubleReplyTextTwo
 } from './Detail.styles'
 
 interface Iprops {
@@ -56,6 +75,10 @@ interface Iprops {
   onClickSlickDot: any
   fetchData: any
   timeDifference: any
+  fetchUsedItemReplyData: any
+  onClickReplyButton: any
+  replyButton: any
+  fetchUserLoggedIn: any
 }
 
 const ListDetailUI = (props: Iprops) => {
@@ -146,7 +169,7 @@ const ListDetailUI = (props: Iprops) => {
             {props.fetchData?.fetchUseditem.remarks} ∙
             <ContentTime>
               {props.timeDifference > 24
-                ? `${Math.floor(props.timeDifference / 24)}일 전`
+                ? `${' '}${Math.floor(props.timeDifference / 24)}일 전`
                 : `${props.timeDifference}시간 전`}
             </ContentTime>
           </ContentCategory>
@@ -156,8 +179,64 @@ const ListDetailUI = (props: Iprops) => {
               {props.fetchData?.fetchUseditem.contents}
             </ContentDetailText>
           </ContentDetailWrapper>
-          <ContentCounts> 채팅 20 ∙ 관심 5 ∙ 조회 141</ContentCounts>
+          <ContentCounts onClick={props.onClickReplyButton}>
+            {' '}
+            채팅 20 ∙ 관심 5 ∙ 조회 141
+          </ContentCounts>
         </ContentWrapper>
+        {props.replyButton &&
+          (props.fetchUsedItemReplyData?.fetchUseditemQuestions.length > 0 ? (
+            props.fetchUsedItemReplyData?.fetchUseditemQuestions.map(
+              (data: any) => (
+                <ReplySection key="">
+                  <ReplyImageWrapper>
+                    <ReplyImage src="https://dnvefa72aowie.cloudfront.net/origin/profile/202010/A100F45448BF4ACD444D166B81D33CE7CC1CF5D785327C719A9028F9A2097242.jpg?q=82&s=80x80&t=crop" />
+                  </ReplyImageWrapper>
+                  <ReplyInfoWrapper>
+                    <ReplyInfoTextOne>{data.user.name}</ReplyInfoTextOne>
+                    <ReplyInfoTextTwo>{data.contents}</ReplyInfoTextTwo>
+                    <ReplyInfoDate>
+                      {`${String(
+                        new Date(data.createdAt).getFullYear()
+                      )}.${String(
+                        new Date(data.createdAt).getMonth() + 1
+                      ).padStart(2, '0')}.${String(
+                        new Date(data.createdAt).getDate()
+                      ).padStart(2, '0')}`}
+                    </ReplyInfoDate>
+                    <DoubleReplyWrapper>
+                      <DoubleReplyArrowWrapper>
+                        <DoubleReplyArrowImage src="/ArrowImage.svg" />
+                      </DoubleReplyArrowWrapper>
+                      <DoubleReplyImageWrapper>
+                        <DoubleReplyImage src="https://dnvefa72aowie.cloudfront.net/origin/profile/202010/A100F45448BF4ACD444D166B81D33CE7CC1CF5D785327C719A9028F9A2097242.jpg?q=82&s=80x80&t=crop" />
+                      </DoubleReplyImageWrapper>
+                      <DoubleReplyTextWrapper>
+                        <DoubleReplyTextOne>노원두</DoubleReplyTextOne>
+                        <DoubleReplyTextTwo>가격이 조금...</DoubleReplyTextTwo>
+                      </DoubleReplyTextWrapper>
+                    </DoubleReplyWrapper>
+                  </ReplyInfoWrapper>
+                  <ReplyEmojiWrapper>
+                    {props.fetchUserLoggedIn.fetchUserLoggedIn._id ===
+                      data._id && (
+                      <>
+                        <ReplyPencilImage src="/Pencilimage.png" />
+                        <ReplyCancelImage src="/Cancelimage.png" />
+                      </>
+                    )}
+                    <ReplyMessageImage src="/Reply.svg" />
+                  </ReplyEmojiWrapper>
+                </ReplySection>
+              )
+            )
+          ) : (
+            <div style={{ margin: '10px auto' }}>
+              <div style={{ textAlign: 'center' }}>
+                등록된 게시물이 없습니다.
+              </div>
+            </div>
+          ))}
       </ContentArticle>
     </>
   )

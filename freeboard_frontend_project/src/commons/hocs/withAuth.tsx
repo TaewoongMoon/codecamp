@@ -9,6 +9,7 @@ export default function withAuth(Component: any) {
     const { accessToken, setAccessToken } = useContext(GlobalContext)
     useEffect(() => {
       if (accessToken) return
+      // console.log('accessToken', accessToken)
       const restoreAccessToken = async () => {
         const newAccessToken = await getAccessToken({ setAccessToken })
         if (!newAccessToken) router.push('/clonecoding/login')

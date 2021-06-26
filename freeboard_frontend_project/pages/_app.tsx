@@ -16,12 +16,15 @@ export const GlobalContext = createContext({
   accessToken: '',
   setAccessToken: (_: any) => {},
   userId: '',
-  setUserId: (_: any) => {}
+  setUserId: (_: any) => {},
+  doubleReply: '',
+  setDoubleReply: (_: any) => {}
 })
 
 function MyApp({ Component, pageProps }: { Component: any; pageProps: any }) {
   const [accessToken, setAccessToken] = useState('')
   const [userId, setUserId] = useState('')
+  const [doubleReply, setDoubleReply] = useState('')
 
   const uploadLink = createUploadLink({
     uri: 'https://backend.codebootcamp.co.kr/graphql',
@@ -58,7 +61,14 @@ function MyApp({ Component, pageProps }: { Component: any; pageProps: any }) {
   })
   return (
     <GlobalContext.Provider
-      value={{ accessToken, setAccessToken, userId, setUserId }}
+      value={{
+        accessToken,
+        setAccessToken,
+        userId,
+        setUserId,
+        doubleReply,
+        setDoubleReply
+      }}
     >
       <ApolloProvider client={client}>
         <Globalstyles></Globalstyles>

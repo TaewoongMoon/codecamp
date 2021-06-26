@@ -1,26 +1,21 @@
-import { gql, useApolloClient, useMutation, useQuery } from '@apollo/client'
-import { useRef, useState } from 'react'
+import { useApolloClient, useMutation, useQuery } from '@apollo/client'
+import { useRouter } from 'next/router'
+import { useContext, useRef, useState } from 'react'
+import { GlobalContext } from '../../../../../pages/_app'
 import { LOGOUT_USER } from '../List.queries'
 import HeaderUI from './Header.presenter'
+import { FETCH_USERLOGGEDIN } from './Header.queries'
 
 const HeaderPart = () => {
   const [searchColor, setSearchColor] = useState(false)
   const searchRef = useRef<HTMLInputElement>(null)
   const [handleOpen, setHandleOpen] = useState(false)
   const client = useApolloClient()
+  const router = useRouter()
 
-  const FETCH_USERLOGGEDIN = gql`
-    query fetchUserLoggedIn {
-      fetchUserLoggedIn {
-        _id
-        email
-        name
-        createdAt
-      }
-    }
-  `
+  const { setAccessToken } = useContext(GlobalContext)
+
   const { data } = useQuery(FETCH_USERLOGGEDIN)
-  console.log(data)
 
   const onClickInput = () => {
     setSearchColor(true)
@@ -46,8 +41,8 @@ const HeaderPart = () => {
       const response = logoutUser()
       console.log(response)
       client.clearStore() // 질문
-      location.reload()
-      //   router.push('/clonecoding/login') // cache를 비운이후의 문제에 대해서 물어보기
+      await setAccessToken('')
+      router.push('/clonecoding/login')
     } catch (error) {
       alert(error.message)
     }
