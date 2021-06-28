@@ -196,6 +196,8 @@ export default function CommentPage() {
       alert(error.message)
     }
   }
+  // const cocoments = cocomentsResult.data.fetchUseditemQuestionAnswers
+  //     return Object.assign({}, data, { cocoments: cocoments })
 
   function onClickCommentFix(event: any) {
     if (commentFix === true) {
@@ -223,6 +225,7 @@ export default function CommentPage() {
         const aaa = Object.assign({}, prev, {
           fetchBoardComments: [
             ...prev.fetchBoardComments,
+            // @ts-ignore
             ...fetchMoreResult.fetchBoardComments
           ]
         })

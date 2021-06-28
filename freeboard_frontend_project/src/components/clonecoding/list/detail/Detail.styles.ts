@@ -452,6 +452,72 @@ export const ContentCounts = styled.p`
   color: #868e96;
   cursor: pointer;
 `
+
+export const ReplyWrapper = styled.div`
+  margin: 0px auto;
+  width: 677px;
+  margin-top: 10px;
+`
+
+export const ReplyInputBox = styled.input`
+  width: 677px;
+  height: 70px;
+  font-size: 14px;
+  text-align: left;
+  color: #000000;
+  border: 1px solid #bdbdbd;
+  outline: none;
+  ::placeholder {
+    color: #bdbdbd;
+    font-size: 11px;
+  }
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+`
+
+export const ReplyCountBox = styled.div`
+  width: 677px;
+  height: 30px;
+  font-size: 14px;
+  color: #bdbdbd;
+  border: 1px solid #bdbdbd;
+  border-top: none;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+`
+export const ReplyBoxLine = styled.div`
+  width: 677px;
+  height: 1px;
+  background-color: #e9e9e9;
+  margin: 10px auto;
+`
+
+export const ReplyButton = styled.button`
+  width: 91px;
+  height: 30px;
+  font-size: 14px;
+  color: #ffffff;
+  background-color: #000000;
+  position: absolute;
+  left: calc(100% - 91px);
+  outline: none;
+`
+export const ReplyButtonTwo = styled.button`
+  width: 91px;
+  height: 30px;
+  font-size: 14px;
+  color: #000000;
+  background-color: yellow;
+  position: absolute;
+  left: calc(100% - 91px);
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #bdbdbd;
+`
+
 export const ReplySection = styled.section`
   width: 677px;
   margin: 10px auto;
@@ -498,6 +564,7 @@ export const ReplyInfoDate = styled.div`
   color: #bdbdbd;
 `
 export const DoubleReplyWrapper = styled.div`
+  width: 600px;
   margin-bottom: 10px;
   margin-top: 25px;
   display: flex;
@@ -505,6 +572,7 @@ export const DoubleReplyWrapper = styled.div`
   color: #212529;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  border-bottom: 1px solid #e9ecef;
 `
 export const DoubleReplyArrowWrapper = styled.div`
   margin-top: 10px;
@@ -524,6 +592,7 @@ export const DoubleReplyImage = styled.img`
 `
 export const DoubleReplyTextWrapper = styled.div`
   margin-left: 8px;
+  margin-bottom: 10px;
 `
 
 export const DoubleReplyTextOne = styled.div`
