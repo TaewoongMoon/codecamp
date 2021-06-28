@@ -32,6 +32,7 @@ export const FETCH_USEDITEMQUESTIONS = gql`
       contents
       user {
         name
+        _id
       }
       createdAt
     }
@@ -40,12 +41,56 @@ export const FETCH_USEDITEMQUESTIONS = gql`
 
 export const FETCH_USEDITEMQUESTIONANSWERS = gql`
   query fetchUseditemQuestionAnswers($useditemQuestionId: ID!) {
-    fetchUseditemQuestions(useditemQuestionId: $useditemQuestionId) {
+    fetchUseditemQuestionAnswers(useditemQuestionId: $useditemQuestionId) {
       _id
       contents
       user {
         name
       }
     }
+  }
+`
+
+export const CREATE_USEDITEMQUESTION = gql`
+  mutation createUseditemQuestion(
+    $createUseditemQuestionInput: CreateUseditemQuestionInput!
+    $useditemId: ID!
+  ) {
+    createUseditemQuestion(
+      createUseditemQuestionInput: $createUseditemQuestionInput
+      useditemId: $useditemId
+    ) {
+      _id
+      contents
+      user {
+        _id
+        name
+      }
+    }
+  }
+`
+
+export const UPDATE_USEDITEMQUESTION = gql`
+  mutation updateUseditemQuestion(
+    $updateUseditemQuestionInput: UpdateUseditemQuestionInput!
+    $useditemQuestionId: ID!
+  ) {
+    updateUseditemQuestion(
+      updateUseditemQuestionInput: $updateUseditemQuestionInput
+      useditemQuestionId: $useditemQuestionId
+    ) {
+      _id
+      contents
+      user {
+        _id
+        name
+      }
+      createdAt
+    }
+  }
+`
+export const DELETE_USEDITEMQUESTION = gql`
+  mutation deleteUseditemQuestion($useditemQuestionId: ID!) {
+    deleteUseditemQuestion(useditemQuestionId: $useditemQuestionId)
   }
 `
