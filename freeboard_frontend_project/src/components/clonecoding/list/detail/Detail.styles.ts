@@ -459,6 +459,28 @@ export const ReplyWrapper = styled.div`
   margin-top: 10px;
 `
 
+export const DoubleReplyFixWrapper = styled.div`
+  margin: 0px auto;
+  width: 600px;
+  margin-top: 10px;
+`
+
+export const DoubleReplyFixInputBox = styled.input`
+  width: 600px;
+  height: 70px;
+  font-size: 14px;
+  text-align: left;
+  color: #000000;
+  border: 1px solid #bdbdbd;
+  outline: none;
+  ::placeholder {
+    color: #bdbdbd;
+    font-size: 11px;
+  }
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+`
+
 export const ReplyInputBox = styled.input`
   width: 677px;
   height: 70px;
@@ -488,8 +510,28 @@ export const ReplyCountBox = styled.div`
   align-items: center;
   position: relative;
 `
+export const DoubleReplyFixCountBox = styled.div`
+  width: 600px;
+  height: 30px;
+  font-size: 14px;
+  color: #bdbdbd;
+  border: 1px solid #bdbdbd;
+  border-top: none;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+`
 export const ReplyBoxLine = styled.div`
   width: 677px;
+  height: 1px;
+  background-color: #e9e9e9;
+  margin: 10px auto;
+`
+
+export const DoubleReplyFixBoxLine = styled.div`
+  width: 600px;
   height: 1px;
   background-color: #e9e9e9;
   margin: 10px auto;
@@ -573,7 +615,27 @@ export const DoubleReplyWrapper = styled.div`
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   border-bottom: 1px solid #e9ecef;
+  position: relative;
 `
+export const DoubleReplyEmojiWrapper = styled.div`
+  position: absolute;
+  left: 523px;
+  display: flex;
+  flex-direction: row;
+`
+
+export const DoubleReplyPencilImage = styled.img`
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+`
+export const DoubleReplyCancelImage = styled.img`
+  margin-left: 18px;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+`
+
 export const DoubleReplyArrowWrapper = styled.div`
   margin-top: 10px;
   display: inline-block;
@@ -630,4 +692,57 @@ export const ReplyMessageImage = styled.img`
   width: 15px;
   height: 15px;
   cursor: pointer;
+`
+
+export const DoubleCommentReplyWrapper = styled.div`
+  margin: 0px auto;
+  width: 600px;
+  margin-top: 10px;
+`
+
+export const DoubleReplyInputBox = styled.input`
+  width: 600px;
+  height: 70px;
+  font-size: 14px;
+  text-align: left;
+  color: #000000;
+  border: 1px solid #bdbdbd;
+  outline: none;
+  ::placeholder {
+    color: #bdbdbd;
+    font-size: 11px;
+  }
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+`
+
+export const DoubleReplyCountBox = styled.div`
+  width: 600px;
+  height: 30px;
+  font-size: 14px;
+  color: #bdbdbd;
+  border: 1px solid #bdbdbd;
+  border-top: none;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+`
+export const DoubleReplyBoxLine = styled.div`
+  width: 600px;
+  height: 1px;
+  background-color: #e9e9e9;
+  margin: 10px auto;
+`
+
+export const DoubleReplyButton = styled.button`
+  width: 91px;
+  height: 30px;
+  font-size: 14px;
+  color: #ffffff;
+  background-color: #000000;
+  position: absolute;
+  left: calc(100% - 91px);
+  outline: none;
 `

@@ -46,6 +46,7 @@ export const FETCH_USEDITEMQUESTIONANSWERS = gql`
       contents
       user {
         name
+        _id
       }
     }
   }
@@ -92,5 +93,33 @@ export const UPDATE_USEDITEMQUESTION = gql`
 export const DELETE_USEDITEMQUESTION = gql`
   mutation deleteUseditemQuestion($useditemQuestionId: ID!) {
     deleteUseditemQuestion(useditemQuestionId: $useditemQuestionId)
+  }
+`
+
+export const CREATE_USEDITEMQUESTIONANSWER = gql`
+  mutation createUseditemQuestionAnswer(
+    $createUseditemQuestionAnswerInput: CreateUseditemQuestionAnswerInput!
+    $useditemQuestionId: ID!
+  ) {
+    createUseditemQuestionAnswer(
+      createUseditemQuestionAnswerInput: $createUseditemQuestionAnswerInput
+      useditemQuestionId: $useditemQuestionId
+    ) {
+      _id
+      contents
+      user {
+        _id
+        email
+        name
+      }
+      createdAt
+    }
+  }
+`
+export const DELETE_USEDITEMQUESTIONQUESTIONANSWER = gql`
+  mutation deleteUseditemQuestionAnswer($useditemQuestionAnswerId: ID!) {
+    deleteUseditemQuestionAnswer(
+      useditemQuestionAnswerId: $useditemQuestionAnswerId
+    )
   }
 `

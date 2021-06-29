@@ -7,6 +7,9 @@ import { FETCH_USERLOGGEDIN } from '../header/Header.queries'
 import ListDetailUI from './Detail.presenter'
 import {
   CREATE_USEDITEMQUESTION,
+  CREATE_USEDITEMQUESTIONANSWER,
+  DELETE_USEDITEMQUESTION,
+  DELETE_USEDITEMQUESTIONQUESTIONANSWER,
   FETCH_USEDITEM,
   FETCH_USEDITEMQUESTIONANSWERS,
   FETCH_USEDITEMQUESTIONS,
@@ -27,13 +30,14 @@ const ListDetailPage = () => {
   })
   const [countNumber, setCountNumber] = useState('0')
   const [commentValue, setCommentValue] = useState('')
+  const [doubleReplyValue, setDoubleReplyValue] = useState<any>({})
+  const [doubleReplyCountNumber, setDoubleReplyCountNumber] = useState({})
   const [fixCommentValue, setFixCommentValue] = useState('')
   const [replyShow, setReplyShow] = useState(false)
+  const [doubleReplyShow, setDoubleReplyShow] = useState<any>({})
   const [inputDefaultValue, setInputDefaultValue] = useState([])
   const [fixCountNumber, setFixCountNumber] = useState('0')
-  // @ts-ignore
-  console.log(inputDefaultValue[0]?.contents.length)
-
+  const [doubleReply, setDoubleReply] = useState<any>({})
   const { data: fetchUsedItemReplyData, refetch } = useQuery(
     FETCH_USEDITEMQUESTIONS,
     {
@@ -44,7 +48,13 @@ const ListDetailPage = () => {
   )
   const [createUsedItemQuestion] = useMutation(CREATE_USEDITEMQUESTION)
   const [updateUsedItemQuestion] = useMutation(UPDATE_USEDITEMQUESTION)
-
+  const [deleteUsedItemQuestion] = useMutation(DELETE_USEDITEMQUESTION)
+  const [deleteUsedItemQuestionAnswer] = useMutation(
+    DELETE_USEDITEMQUESTIONQUESTIONANSWER
+  )
+  const [createUsedItemQuestionAnswer] = useMutation(
+    CREATE_USEDITEMQUESTIONANSWER
+  )
   const { data: fetchUserLoggedIn } = useQuery(FETCH_USERLOGGEDIN)
   const timeDifference = Math.floor(
     (new Date().getTime() -
@@ -80,7 +90,6 @@ const ListDetailPage = () => {
       // @ts-ignore
       setResultOne(comments)
     }
-
     //   const result = await client.query({
     //     query: FETCH_USEDITEMQUESTIONS,
     //     variables: {
@@ -198,8 +207,6 @@ const ListDetailPage = () => {
     }
   }
 
-  console.log(inputDefaultValue[0])
-
   const onClickReplyFixBoxShow = (event: any) => {
     if (replyShow === false) {
       setReplyShow(true)
@@ -214,7 +221,104 @@ const ListDetailPage = () => {
     }
   }
 
-  // const onClickReplyCancel = ()
+  const onClickReplyCancel = async (event: any) => {
+    const result = await fetchUsedItemReplyData?.fetchUseditemQuestions.filter(
+      (data: any) => data._id === event.target.id
+    )
+    try {
+      await deleteUsedItemQuestion({
+        variables: {
+          useditemQuestionId: result[0]?._id
+        }
+      })
+      alert('성공적으로 삭제하였습니다')
+      location.reload()
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
+  const onClickDoubleReply = (event: any) => {
+    if (!doubleReply[event.target.id]) {
+      const result = {
+        ...doubleReply,
+        [event.target.id]: true
+      }
+      setDoubleReply(result)
+    } else if (doubleReply[event.target.id]) {
+      const result = {
+        ...doubleReply,
+        [event.target.id]: false
+      }
+      const temp = {
+        ...doubleReplyCountNumber,
+        [event.target.id]: null
+      }
+      setDoubleReply(result)
+      setDoubleReplyCountNumber(temp)
+    }
+  }
+
+  const onChangeDoubleReply = (event: any) => {
+    if (doubleReplyValue[event.target.id]?.length > 100) return
+    const result = {
+      ...doubleReplyValue,
+      [event.target.id]: event.target.value
+    }
+    const resultTwo = {
+      ...doubleReplyCountNumber,
+      [event.target.id]: event.target.value.length
+    }
+    setDoubleReplyValue(result)
+    setDoubleReplyCountNumber(resultTwo)
+  }
+
+  const onClickDoubleReplySubmit = async (event: any) => {
+    try {
+      await createUsedItemQuestionAnswer({
+        variables: {
+          createUseditemQuestionAnswerInput: {
+            contents: String(doubleReplyValue[event.target.id])
+          },
+          useditemQuestionId: String(event.target.id)
+        }
+      })
+      alert('성공적으로 등록이되었습니다.')
+      location.reload()
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
+  const onClickDoubleReplyDelete = async (event: any) => {
+    try {
+      await deleteUsedItemQuestionAnswer({
+        variables: {
+          useditemQuestionAnswerId: event.target.id
+        }
+      })
+      alert('성공적으로 제거하였습니다.')
+      location.reload()
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+  const onClickDoubleReplyFixBoxShow = (event: any) => {
+    if (!doubleReplyShow[event.target.id]) {
+      const result = {
+        ...doubleReplyShow,
+        [event.target.id]: true
+      }
+      setDoubleReplyShow(result)
+    } else if (doubleReplyShow[event.target.id]) {
+      const result = {
+        ...doubleReplyShow,
+        [event.target.id]: false
+      }
+      setDoubleReplyShow(result)
+    }
+  }
+  console.log('doubleReplyShow', doubleReplyShow)
 
   return (
     <ListDetailUI
@@ -239,6 +343,15 @@ const ListDetailPage = () => {
       inputDefaultValue={inputDefaultValue}
       fixCountNumber={fixCountNumber}
       onClickReplyChangeSubmit={onClickReplyChangeSubmit}
+      onClickReplyCancel={onClickReplyCancel}
+      onClickDoubleReply={onClickDoubleReply}
+      doubleReply={doubleReply}
+      onChangeDoubleReply={onChangeDoubleReply}
+      doubleReplyCountNumber={doubleReplyCountNumber}
+      onClickDoubleReplySubmit={onClickDoubleReplySubmit}
+      onClickDoubleReplyDelete={onClickDoubleReplyDelete}
+      onClickDoubleReplyFixBoxShow={onClickDoubleReplyFixBoxShow}
+      doubleReplyShow={doubleReplyShow}
     />
   )
 }
