@@ -10,6 +10,7 @@ import { createUploadLink } from 'apollo-upload-client'
 import { createContext, useState } from 'react'
 import { onError } from '@apollo/client/link/error'
 import getAccessToken from '../src/commons/libraries/getAccessToken'
+import Head from 'next/head'
 
 export const GlobalContext = createContext({
   accessToken: '',
@@ -59,6 +60,30 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <Head>
+        <meta property="og:title" content="코드캠프 1기 사이트!!"></meta>
+        <meta
+          property="og:image"
+          content="https://dullyshin.github.io/2018/08/30/HTML-imgLink/#lg=1&slide=0"
+        ></meta>
+        <meta
+          property="og: description"
+          content="코드캠프1기들 모여주세요!!"
+        ></meta>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-WEG0CHM6QK"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-WEG0CHM6QK')`
+          }}
+        ></script>
+      </Head>
       <GlobalContext.Provider
         value={{ accessToken, setAccessToken, setUserInfo, userInfo }}
       >

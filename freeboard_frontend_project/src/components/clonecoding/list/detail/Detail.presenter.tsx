@@ -70,7 +70,19 @@ import {
   ReplyCountBox,
   ReplyButton,
   ReplyButtonTwo,
-  ReplyBoxLine
+  ReplyBoxLine,
+  DoubleCommentReplyWrapper,
+  DoubleReplyInputBox,
+  DoubleReplyCountBox,
+  DoubleReplyButton,
+  DoubleReplyBoxLine,
+  DoubleReplyEmojiWrapper,
+  DoubleReplyPencilImage,
+  DoubleReplyCancelImage,
+  DoubleReplyFixWrapper,
+  DoubleReplyFixInputBox,
+  DoubleReplyFixCountBox,
+  DoubleReplyFixBoxLine
 } from './Detail.styles'
 
 interface Iprops {
@@ -95,6 +107,15 @@ interface Iprops {
   inputDefaultValue: any
   fixCountNumber: any
   onClickReplyChangeSubmit: any
+  onClickReplyCancel: any
+  onClickDoubleReply: any
+  doubleReply: any
+  onChangeDoubleReply: any
+  doubleReplyCountNumber: any
+  onClickDoubleReplySubmit: any
+  onClickDoubleReplyDelete: any
+  onClickDoubleReplyFixBoxShow: any
+  doubleReplyShow: any
 }
 
 const ListDetailUI = (props: Iprops) => {
@@ -252,23 +273,87 @@ const ListDetailUI = (props: Iprops) => {
                   </ReplyInfoDate>
                   {data.cocoments.length > 0 &&
                     data.cocoments.map((data: any) => (
-                      <DoubleReplyWrapper key="">
-                        <DoubleReplyArrowWrapper>
-                          <DoubleReplyArrowImage src="/ArrowImage.svg" />
-                        </DoubleReplyArrowWrapper>
-                        <DoubleReplyImageWrapper>
-                          <DoubleReplyImage src="https://dnvefa72aowie.cloudfront.net/origin/profile/202010/A100F45448BF4ACD444D166B81D33CE7CC1CF5D785327C719A9028F9A2097242.jpg?q=82&s=80x80&t=crop" />
-                        </DoubleReplyImageWrapper>
-                        <DoubleReplyTextWrapper>
-                          <DoubleReplyTextOne>
-                            {data.user.name}
-                          </DoubleReplyTextOne>
-                          <DoubleReplyTextTwo>
-                            {data.contents}
-                          </DoubleReplyTextTwo>
-                        </DoubleReplyTextWrapper>
-                      </DoubleReplyWrapper>
+                      <>
+                        <DoubleReplyWrapper key="">
+                          <DoubleReplyArrowWrapper>
+                            <DoubleReplyArrowImage src="/ArrowImage.svg" />
+                          </DoubleReplyArrowWrapper>
+                          <DoubleReplyImageWrapper>
+                            <DoubleReplyImage src="https://dnvefa72aowie.cloudfront.net/origin/profile/202010/A100F45448BF4ACD444D166B81D33CE7CC1CF5D785327C719A9028F9A2097242.jpg?q=82&s=80x80&t=crop" />
+                          </DoubleReplyImageWrapper>
+                          <DoubleReplyTextWrapper>
+                            <DoubleReplyTextOne>
+                              {data.user.name}
+                            </DoubleReplyTextOne>
+                            <DoubleReplyTextTwo>
+                              {data.contents}
+                            </DoubleReplyTextTwo>
+                          </DoubleReplyTextWrapper>
+                          {data.user._id ===
+                            props.fetchUserLoggedIn?.fetchUserLoggedIn._id && (
+                            <DoubleReplyEmojiWrapper>
+                              <DoubleReplyPencilImage
+                                id={data._id}
+                                src="/Pencilimage.png"
+                                onClick={props.onClickDoubleReplyFixBoxShow}
+                              ></DoubleReplyPencilImage>
+                              <DoubleReplyCancelImage
+                                src="/Cancelimage.png"
+                                id={data._id}
+                                onClick={props.onClickDoubleReplyDelete}
+                              ></DoubleReplyCancelImage>
+                            </DoubleReplyEmojiWrapper>
+                          )}
+                        </DoubleReplyWrapper>
+                        {props.doubleReplyShow[data._id] && (
+                          <>
+                            <DoubleReplyFixWrapper>
+                              <DoubleReplyFixInputBox
+                                placeholder="개인정보를 공유 및 요청하거나, 명예 훼손 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
+                                maxLength={100}
+                              ></DoubleReplyFixInputBox>
+                            </DoubleReplyFixWrapper>
+                            <DoubleReplyFixCountBox>
+                              {props.fixCountNumber
+                                ? props.fixCountNumber
+                                : '0'}
+                              /100
+                              <ReplyButtonTwo
+                                onClick={props.onClickReplyChangeSubmit}
+                              >
+                                수정하기
+                              </ReplyButtonTwo>
+                            </DoubleReplyFixCountBox>
+                            <DoubleReplyFixBoxLine />
+                          </>
+                        )}
+                      </>
                     ))}
+                  {props.doubleReply[data._id] && (
+                    <>
+                      <DoubleCommentReplyWrapper>
+                        <DoubleReplyInputBox
+                          placeholder="개인정보를 공유 및 요청하거나, 명예 훼손 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
+                          maxLength={100}
+                          onChange={props.onChangeDoubleReply}
+                          id={data._id}
+                        ></DoubleReplyInputBox>
+                      </DoubleCommentReplyWrapper>
+                      <DoubleReplyCountBox>
+                        {props.doubleReplyCountNumber[data._id]
+                          ? props.doubleReplyCountNumber[data._id]
+                          : '0'}
+                        /100
+                        <DoubleReplyButton
+                          id={data._id}
+                          onClick={props.onClickDoubleReplySubmit}
+                        >
+                          댓글달기
+                        </DoubleReplyButton>
+                      </DoubleReplyCountBox>
+                      <DoubleReplyBoxLine />
+                    </>
+                  )}
                 </ReplyInfoWrapper>
                 <ReplyEmojiWrapper>
                   {props.fetchUserLoggedIn?.fetchUserLoggedIn._id ===
@@ -279,10 +364,18 @@ const ListDetailUI = (props: Iprops) => {
                         onClick={props.onClickReplyFixBoxShow}
                         src="/Pencilimage.png"
                       />
-                      <ReplyCancelImage src="/Cancelimage.png" />
+                      <ReplyCancelImage
+                        id={data._id}
+                        onClick={props.onClickReplyCancel}
+                        src="/Cancelimage.png"
+                      />
                     </>
                   )}
-                  <ReplyMessageImage src="/Reply.svg" />
+                  <ReplyMessageImage
+                    id={data._id}
+                    onClick={props.onClickDoubleReply}
+                    src="/Reply.svg"
+                  />
                 </ReplyEmojiWrapper>
               </ReplySection>
             ))
