@@ -164,7 +164,7 @@ const ListUI = (props: Iprops) => {
             ))}
           </ItemCardWrapper>
           <HotItemList>
-            <HotItemText href="https://www.daangn.com/hot_articles">
+            <HotItemText href="/clonecoding/list/full">
               인기매물 더 보기
             </HotItemText>
           </HotItemList>
