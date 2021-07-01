@@ -1,3 +1,5 @@
+import Head from 'next/head'
+import { useEffect } from 'react'
 import { ProfileLefterWrapper } from '../../../freewrite/body/Body.styles'
 import HeaderPart from '../header/Header.container'
 import {
@@ -82,7 +84,10 @@ import {
   DoubleReplyFixWrapper,
   DoubleReplyFixInputBox,
   DoubleReplyFixCountBox,
-  DoubleReplyFixBoxLine
+  DoubleReplyFixBoxLine,
+  ListPageRedirectionButton,
+  PurchaseButton,
+  ButtonWrapper
 } from './Detail.styles'
 
 interface Iprops {
@@ -116,12 +121,59 @@ interface Iprops {
   onClickDoubleReplyDelete: any
   onClickDoubleReplyFixBoxShow: any
   doubleReplyShow: any
+  onChangeDoubleReplyFix: any
+  doubleReplyFixCountNumber: any
+  onClickDoubleReplyFixSubmit: any
+  onClickMainPage: any
+}
+
+declare global {
+  // eslint-disable-next-line no-unused-vars
+  interface Window {
+    kakao: any
+  }
 }
 
 const ListDetailUI = (props: Iprops) => {
   const SlickDotNumber = ['one', 'two', 'three']
+
+  useEffect(() => {
+    if (!window.kakao) return
+    window.kakao.maps.load(function () {
+      const container = document.getElementById('map')
+      const options = {
+        center: new window.kakao.maps.LatLng(33.450701, 126.570667),
+        level: 3
+      }
+
+      const map = new window.kakao.maps.Map(container, options)
+
+      const markerPosition = new window.kakao.maps.LatLng(33.450701, 126.570667)
+
+      const marker = new window.kakao.maps.Marker({
+        position: markerPosition
+      })
+      marker.setMap(map)
+      window.kakao.maps.event.addListener(
+        map,
+        'click',
+        function (mouseEvent: any) {
+          const latlng = mouseEvent.latLng
+
+          marker.setPosition(latlng)
+        }
+      )
+    })
+  }, [window.kakao])
+
   return (
     <>
+      <Head>
+        <script
+          type="text/javascript"
+          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=553eb7ecc2f9915f03890ff6539b13ae&autoload=false&libraries=LIBRARY&libraries=services"
+        ></script>
+      </Head>
       <HeaderPart></HeaderPart>
       <ContentArticle>
         <ContentSection>
@@ -218,9 +270,25 @@ const ListDetailUI = (props: Iprops) => {
           </ContentDetailWrapper>
           <ContentCounts onClick={props.onClickReplyButton}>
             {' '}
-            채팅 20 ∙ 관심 5 ∙ 조회 141
+            채팅 {props.fetchUsedItemReplyData?.fetchUseditemQuestions.length} ∙
+            관심 5 ∙ 조회 141
           </ContentCounts>
+          <div
+            id="map"
+            style={{
+              width: '500px',
+              height: '400px',
+              display: 'flex',
+              margin: '20px auto'
+            }}
+          ></div>
         </ContentWrapper>
+        <ButtonWrapper>
+          <ListPageRedirectionButton onClick={props.onClickMainPage}>
+            목록으로
+          </ListPageRedirectionButton>
+          <PurchaseButton>구매하기</PurchaseButton>
+        </ButtonWrapper>
         <ReplyWrapper>
           <ReplyInputBox
             onChange={props.onChangeTextCount}
@@ -311,15 +379,19 @@ const ListDetailUI = (props: Iprops) => {
                               <DoubleReplyFixInputBox
                                 placeholder="개인정보를 공유 및 요청하거나, 명예 훼손 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
                                 maxLength={100}
+                                defaultValue={data.contents}
+                                id={data._id}
+                                onChange={props.onChangeDoubleReplyFix}
                               ></DoubleReplyFixInputBox>
                             </DoubleReplyFixWrapper>
                             <DoubleReplyFixCountBox>
-                              {props.fixCountNumber
-                                ? props.fixCountNumber
-                                : '0'}
+                              {props.doubleReplyFixCountNumber[data._id]
+                                ? props.doubleReplyFixCountNumber[data._id]
+                                : data.contents.length}
                               /100
                               <ReplyButtonTwo
-                                onClick={props.onClickReplyChangeSubmit}
+                                onClick={props.onClickDoubleReplyFixSubmit}
+                                id={data._id}
                               >
                                 수정하기
                               </ReplyButtonTwo>
