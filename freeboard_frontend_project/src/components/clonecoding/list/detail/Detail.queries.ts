@@ -123,3 +123,20 @@ export const DELETE_USEDITEMQUESTIONQUESTIONANSWER = gql`
     )
   }
 `
+export const UPDATE_USEDITEMQUESTIONANSWER = gql`
+  mutation updateUseditemQuestionAnswer(
+    $updateUseditemQuestionAnswerInput: UpdateUseditemQuestionAnswerInput!
+    $useditemQuestionAnswerId: ID!
+  ) {
+    updateUseditemQuestionAnswer(
+      updateUseditemQuestionAnswerInput: $updateUseditemQuestionAnswerInput
+      useditemQuestionAnswerId: $useditemQuestionAnswerId
+    ) {
+      _id
+      contents
+      user {
+        _id
+      }
+    }
+  }
+`

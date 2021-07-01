@@ -13,7 +13,8 @@ import {
   FETCH_USEDITEM,
   FETCH_USEDITEMQUESTIONANSWERS,
   FETCH_USEDITEMQUESTIONS,
-  UPDATE_USEDITEMQUESTION
+  UPDATE_USEDITEMQUESTION,
+  UPDATE_USEDITEMQUESTIONANSWER
 } from './Detail.queries'
 
 const ListDetailPage = () => {
@@ -38,6 +39,9 @@ const ListDetailPage = () => {
   const [inputDefaultValue, setInputDefaultValue] = useState([])
   const [fixCountNumber, setFixCountNumber] = useState('0')
   const [doubleReply, setDoubleReply] = useState<any>({})
+  const [doubleReplyFixCountNumber, setDoubleReplyFixCountNumber] =
+    useState<any>({})
+  const [doubleReplyFixValue, setDoubleReplyFixValue] = useState<any>({})
   const { data: fetchUsedItemReplyData, refetch } = useQuery(
     FETCH_USEDITEMQUESTIONS,
     {
@@ -54,6 +58,10 @@ const ListDetailPage = () => {
   )
   const [createUsedItemQuestionAnswer] = useMutation(
     CREATE_USEDITEMQUESTIONANSWER
+  )
+
+  const [updateUsedItemQuestionAnswer] = useMutation(
+    UPDATE_USEDITEMQUESTIONANSWER
   )
   const { data: fetchUserLoggedIn } = useQuery(FETCH_USERLOGGEDIN)
   const timeDifference = Math.floor(
@@ -90,6 +98,7 @@ const ListDetailPage = () => {
       // @ts-ignore
       setResultOne(comments)
     }
+
     //   const result = await client.query({
     //     query: FETCH_USEDITEMQUESTIONS,
     //     variables: {
@@ -199,8 +208,8 @@ const ListDetailPage = () => {
           useditemQuestionId: inputDefaultValue[0]?._id
         }
       })
-      refetch()
       alert('성공')
+      refetch() // refetch했는데 렌더링이 안일어남
       location.reload()
     } catch (error) {
       alert(error.message)
@@ -310,6 +319,12 @@ const ListDetailPage = () => {
         [event.target.id]: true
       }
       setDoubleReplyShow(result)
+      // @ts-ignore
+      const numberTemp = resultOne.filter(
+        (data: any) => data.cocoments.length > 0
+      )
+      console.log('number_temp', numberTemp)
+      console.log(event.target.id)
     } else if (doubleReplyShow[event.target.id]) {
       const result = {
         ...doubleReplyShow,
@@ -318,7 +333,44 @@ const ListDetailPage = () => {
       setDoubleReplyShow(result)
     }
   }
-  console.log('doubleReplyShow', doubleReplyShow)
+
+  console.log('resultOne', resultOne)
+
+  const onChangeDoubleReplyFix = (event: any) => {
+    if (doubleReplyFixCountNumber[event.target.id] > 100) return
+    const countTemp = {
+      ...doubleReplyFixCountNumber,
+      [event.target.id]: event.target.value.length
+    }
+    const valueTemp = {
+      ...doubleReplyFixValue,
+      [event.target.id]: event.target.value
+    }
+
+    setDoubleReplyFixCountNumber(countTemp)
+    setDoubleReplyFixValue(valueTemp)
+  }
+
+  const onClickDoubleReplyFixSubmit = async (event: any) => {
+    try {
+      await updateUsedItemQuestionAnswer({
+        variables: {
+          updateUseditemQuestionAnswerInput: {
+            contents: doubleReplyFixValue[event.target.id]
+          },
+          useditemQuestionAnswerId: String(event.target.id)
+        }
+      })
+      alert('성공적으로 재등록하였습니다')
+      location.reload()
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
+  const onClickMainPage = () => {
+    router.push('/clonecoding/list')
+  }
 
   return (
     <ListDetailUI
@@ -352,6 +404,10 @@ const ListDetailPage = () => {
       onClickDoubleReplyDelete={onClickDoubleReplyDelete}
       onClickDoubleReplyFixBoxShow={onClickDoubleReplyFixBoxShow}
       doubleReplyShow={doubleReplyShow}
+      onChangeDoubleReplyFix={onChangeDoubleReplyFix}
+      doubleReplyFixCountNumber={doubleReplyFixCountNumber}
+      onClickDoubleReplyFixSubmit={onClickDoubleReplyFixSubmit}
+      onClickMainPage={onClickMainPage}
     />
   )
 }

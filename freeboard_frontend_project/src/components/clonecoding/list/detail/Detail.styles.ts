@@ -746,3 +746,41 @@ export const DoubleReplyButton = styled.button`
   left: calc(100% - 91px);
   outline: none;
 `
+export const ButtonWrapper = styled.div`
+  margin: 10px auto;
+  width: 380px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`
+
+export const ListPageRedirectionButton = styled.button`
+  width: 179px;
+  height: 52px;
+  border-radius: 10px;
+  border: 1px solid #d1d3d8;
+  font-size: 14px;
+  background-color: #fff;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  cursor: pointer;
+  :hover {
+    opacity: 0.7;
+  }
+`
+export const PurchaseButton = styled.button`
+  width: 179px;
+  height: 52px;
+  border-radius: 10px;
+  border: 1px solid #d1d3d8;
+  font-size: 14px;
+  background-color: orange;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  cursor: pointer;
+  :hover {
+    opacity: 0.7;
+  }
+`
