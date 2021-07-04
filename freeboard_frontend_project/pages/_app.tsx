@@ -11,7 +11,8 @@ import { createUploadLink } from 'apollo-upload-client'
 import { createContext, useState } from 'react'
 import { onError } from '@apollo/client/link/error'
 import getAccessToken from '../src/commons/libraries/getAccessToeken'
-
+import getConfig from 'next/config'
+const { publicRuntimeConfig } = getConfig()
 export const GlobalContext = createContext({
   accessToken: '',
   setAccessToken: (_: any) => {},
@@ -25,7 +26,7 @@ function MyApp({ Component, pageProps }: { Component: any; pageProps: any }) {
   const [accessToken, setAccessToken] = useState('')
   const [userId, setUserId] = useState('')
   const [doubleReply, setDoubleReply] = useState('')
-
+  console.log('publicRuntimeConfig', publicRuntimeConfig)
   const uploadLink = createUploadLink({
     uri: 'https://backend.codebootcamp.co.kr/graphql',
     headers: {

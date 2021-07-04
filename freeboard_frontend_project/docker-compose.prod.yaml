@@ -5,9 +5,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - ./pages:/freeboard_frontend/pages
-      - ./src:/freeboard_frontend/src
+    # volumes:
+    #   - ./pages:/freeboard_frontend/pages
+    #   - ./src:/freeboard_frontend/src
     command: 'yarn start'
     ports:
       - 3000:3000
+    env_file:
+      - ./.env.prod

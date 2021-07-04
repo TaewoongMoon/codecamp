@@ -8,6 +8,6 @@ services:
     volumes:
       - ./pages:/freeboard_frontend/pages
       - ./src:/freeboard_frontend/src
-    command: 'yarn start'
+    command: 'yarn dev'
     ports:
       - 3000:3000
