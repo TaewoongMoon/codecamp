@@ -4,9 +4,9 @@ import { useQuery, gql } from '@apollo/client'
 import {
   Query,
   QueryFetchProfileArgs
-} from '../../../commons/types/generated/types'
+} from '../../../../commons/types/generated/types'
 
-export default function Querydetail () {
+export default function Querydetail() {
   const router = useRouter()
 
   const FETCH_PROFILE = gql`

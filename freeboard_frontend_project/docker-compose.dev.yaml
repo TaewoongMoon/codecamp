@@ -1,0 +1,13 @@
+version: '3.3'
+
+services:
+  freeboard_frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./pages:/freeboard_frontend/pages
+      - ./src:/freeboard_frontend/src
+    command: 'yarn dev'
+    ports:
+      - 3000:3000

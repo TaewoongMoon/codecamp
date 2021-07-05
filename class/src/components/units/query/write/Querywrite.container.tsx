@@ -1,5 +1,5 @@
 import QueryUI from './Querywrite.presenter'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { CREATE_PROFILE } from './Querywrite.queries'
@@ -23,6 +23,12 @@ const Query = () => {
   })
 
   const [completeSign, setCompleteSign] = useState(true)
+
+  const [ccc, setCCC] = useState(123)
+
+  const onClickChange = () => {
+    setCCC(456)
+  }
 
   const onChangeInput = (event) => {
     const data = {
@@ -66,6 +72,11 @@ const Query = () => {
       alert(error.message)
     }
   }
+  const inputNameRef = useRef<any>()
+  useEffect(() => {
+    inputNameRef.current.focus()
+    console.log('안녕하세요')
+  }, [ccc])
 
   return (
     <QueryUI
@@ -73,6 +84,8 @@ const Query = () => {
       onChangeInput={onChangeInput}
       _state={completeSign}
       handleAge={handleAge}
+      inputNameRef={inputNameRef}
+      onClickChange={onClickChange}
     />
   )
 }

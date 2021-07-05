@@ -1,12 +1,20 @@
-import { ChangeEvent, useState } from 'react'
-import { useMutation, gql } from '@apollo/client'
+import { ChangeEvent, useRef, useState } from 'react'
+import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { WriteUI } from './Write.presenter'
+import { CREATE_BOARD } from './Write.queries'
 
-export default function WriteContainer () {
+export default function WriteContainer() {
   const router = useRouter()
-  console.log(router.query)
-  const [buttonColor, setButtonColor] = useState(true)
+  const tempRef = useRef<HTMLDivElement>(null)
+  const [buttonColor, setButtonColor] = useState<boolean>(true)
+  const [addressDetails, setAddressDetails] = useState({
+    zipcode: '',
+    address: ''
+  })
+
+  const [fileUrl, setFileUrl] = useState<string[]>([])
+  const [commentUrl, setCommentUrl] = useState<any>([])
 
   const [boardWritePackage, setBoardWritePackage] = useState({
     headWriter: '',
@@ -19,29 +27,6 @@ export default function WriteContainer () {
     headOption: ''
   })
 
-  const CREATE_BOARD = gql`
-    mutation createBoard(
-      $headWriter: String
-      $headPassword: String
-      $headTitle: String!
-      $headContent: String!
-    ) {
-      createBoard(
-        createBoardInput: {
-          writer: $headWriter
-          password: $headPassword
-          title: $headTitle
-          contents: $headContent
-        }
-      ) {
-        _id
-        writer
-        title
-        contents
-      }
-    }
-  `
-
   const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     const data = {
       ...boardWritePackage,
@@ -49,8 +34,6 @@ export default function WriteContainer () {
     }
 
     setBoardWritePackage(data)
-
-    console.log(boardWritePackage)
 
     if (
       boardWritePackage.headWriter.length > 0 &&
@@ -63,48 +46,19 @@ export default function WriteContainer () {
     }
   }
 
-  // const WriterChange = (event) => {
-  //   const temp = event.target.value;
-  //   setWriter(temp);
-  // }
-
-  // const PasswordChange = (event) => {
-  //   const temp = event.target.value;
-  //   setPassword(temp);
-  // }
-
-  // const TitleChange = (event) => {
-  //   const temp = event.target.value;
-  //   setTitle(temp);
-  // }
-
-  // const ContentChange = (event) => {
-  //   const temp = event.target.value;
-  //   setContent(temp);
-  // }
-
-  // const AddressChangeSimple = (event) =>{
-  //   const temp = event.target.value;
-  //   setSimpleAddress(temp);
-  // }
-
-  // const AddressChangeDetail = (event) => {
-  //   const temp = event.target.value;
-  //   setDetailAddress(temp);
-  // }
-
-  // const YoutubeChange = (event) => {
-  //   const temp = event.target.value;
-  //   setYoutube(temp);
-  // }
-
-  // const SettingOption = (event) => {
-  //   // setOption(OptionBtnName)
-  //   console.log(event.target.value)
-  //   console.log(event.target.name)
-  // }
+  const handleComplete = (data: any) => {
+    setAddressDetails({
+      ...addressDetails,
+      zipcode: String(data.zonecode),
+      address: String(data.address)
+    })
+  }
 
   const [createBoard] = useMutation(CREATE_BOARD)
+
+  const onClickCancel = () => {
+    router.back()
+  }
 
   const RegisterButton = async () => {
     if (
@@ -118,7 +72,10 @@ export default function WriteContainer () {
       alert('제목을 작성하여주십시오.')
     } else if (boardWritePackage.headContent.length < 20) {
       alert('내용의 길이가 너무 짦습니다.')
-    } else if (boardWritePackage.simpleAddress.length < 1) {
+    } else if (
+      boardWritePackage.simpleAddress.length ||
+      addressDetails.address.length < 1
+    ) {
       alert('주소를 작성하여 주십시오.')
     } else if (boardWritePackage.detailAddress.length < 1) {
       alert('주소를 작성하여 주십시오.')
@@ -133,7 +90,9 @@ export default function WriteContainer () {
             headWriter: boardWritePackage.headWriter,
             headPassword: boardWritePackage.headPassword,
             headTitle: boardWritePackage.headTitle,
-            headContent: boardWritePackage.headContent
+            headContent: boardWritePackage.headContent,
+            headYoutube: boardWritePackage.headYoutube,
+            commentUrl
           }
         })
         const message = '입력을 완료하였습니다.'
@@ -151,6 +110,14 @@ export default function WriteContainer () {
       onChangeInput={onChangeInput}
       RegisterButton={RegisterButton}
       buttonColor={buttonColor}
+      handleComplete={handleComplete}
+      addressDetails={addressDetails}
+      onClickCancel={onClickCancel}
+      tempRef={tempRef}
+      fileUrl={fileUrl}
+      setFileUrl={setFileUrl}
+      commentUrl={commentUrl}
+      setCommentUrl={setCommentUrl}
     />
   )
 }

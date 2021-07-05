@@ -1,4 +1,4 @@
-export const getDate = (date) => {
+export const getDate = (date: any) => {
   if (!date || typeof date !== 'string') return ''
 
   const value = new Date(date)

@@ -1,20 +1,24 @@
 import styled from '@emotion/styled'
+import Modal from '../modal/Modal.container'
 
+export const TotalBox = styled.div`
+  width: 100%;
+  height: 100%;
+`
 export const Wrapper = styled.div`
-  width: 1200px;
+  max-width: 1200px;
+  width: 100%;
   height: 1847px;
   border: 1px solid black;
-  margin: 100px;
-
   padding-top: 80px;
   padding-left: 102px;
   padding-right: 102px;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  border: none;
   box-shadow: 0px 0px 10px gray;
+  outline: none;
+  overflow-y: auto;
 `
 
 export const Title = styled.div`
@@ -80,14 +84,7 @@ export const Zipcode = styled.input`
   border: 1px solid #bdbdbd;
 `
 
-export const SearchButton = styled.button`
-  width: 124px;
-  height: 52px;
-  margin-left: 16px;
-  background-color: black;
-  cursor: pointer;
-  color: white;
-`
+export const SearchButton = styled(Modal)``
 
 export const Address = styled.input`
   width: 996px;
@@ -107,14 +104,8 @@ export const Youtube = styled.input`
 export const ImageWrapper = styled.div`
   width: 996px;
   padding-top: 40px;
-`
-
-export const UploadButton = styled.button`
-  width: 78px;
-  height: 78px;
-  background-color: #bdbdbd;
-  margin-right: 24px;
-  cursor: pointer;
+  display: flex;
+  flex-direction: row;
 `
 
 export const OptionWrapper = styled.div`

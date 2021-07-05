@@ -4,7 +4,12 @@ const QueryUI = (props) => {
     <>
       <div>
         <Name>이름: </Name>
-        <input type="text" name="name" onChange={props.onChangeInput}></input>
+        <input
+          ref={props.inputNameRef}
+          type="text"
+          name="name"
+          onChange={props.onChangeInput}
+        ></input>
         <span>나이: </span>
         <input type="text" name="age" onChange={props.handleAge}></input>
         <span>학교: </span>
@@ -12,6 +17,7 @@ const QueryUI = (props) => {
         <Button onClick={props.ProfileRegisterButton} disabled={!props._state}>
           프로필 등록하기
         </Button>
+        <Button onClick={props.onClickChange}>변경하기</Button>
       </div>
     </>
   )
