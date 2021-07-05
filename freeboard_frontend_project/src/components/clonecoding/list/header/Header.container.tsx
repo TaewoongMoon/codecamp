@@ -48,6 +48,10 @@ const HeaderPart = () => {
     }
   }
 
+  const onClickListFullPage = () => {
+    router.push('/clonecoding/list/full')
+  }
+
   return (
     <HeaderUI
       onClickInput={onClickInput}
@@ -59,6 +63,7 @@ const HeaderPart = () => {
       setSearchColor={setSearchColor}
       onClickLogOut={onClickLogOut}
       data={data}
+      onClickListFullPage={onClickListFullPage}
     />
   )
 }

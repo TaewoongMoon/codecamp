@@ -253,6 +253,8 @@ export default function CommentPage() {
     }
   })
 
+  console.log('testdata', commentData?.fetchBoardComments)
+
   return (
     <CommentBoard
       onClickStarRating={onClickStarRating}

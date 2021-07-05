@@ -34,6 +34,7 @@ interface Iprops {
   setSearchColor: any
   onClickLogOut: any
   data: any
+  onClickListFullPage: any
 }
 
 const HeaderUI = (props: Iprops) => {
@@ -86,7 +87,9 @@ const HeaderUI = (props: Iprops) => {
               </HeaderDownloadText>
               <ModalBox isActive={props.handleOpen}>
                 <FirstModalText>물건 등록하기</FirstModalText>
-                <SecondModalText>자유게시판 보러가기</SecondModalText>
+                <SecondModalText onClick={props.onClickListFullPage}>
+                  자유게시판 보러가기
+                </SecondModalText>
               </ModalBox>
             </HeaderDownloadWrapper>
             <LogOutButton onClick={props.onClickLogOut}>

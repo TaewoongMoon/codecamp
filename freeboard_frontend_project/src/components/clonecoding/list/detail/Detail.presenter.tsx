@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import { useEffect } from 'react'
 import { ProfileLefterWrapper } from '../../../freewrite/body/Body.styles'
 import HeaderPart from '../header/Header.container'
@@ -138,42 +137,46 @@ const ListDetailUI = (props: Iprops) => {
   const SlickDotNumber = ['one', 'two', 'three']
 
   useEffect(() => {
-    if (!window.kakao) return
-    window.kakao.maps.load(function () {
-      const container = document.getElementById('map')
-      const options = {
-        center: new window.kakao.maps.LatLng(33.450701, 126.570667),
-        level: 3
-      }
-
-      const map = new window.kakao.maps.Map(container, options)
-
-      const markerPosition = new window.kakao.maps.LatLng(33.450701, 126.570667)
-
-      const marker = new window.kakao.maps.Marker({
-        position: markerPosition
-      })
-      marker.setMap(map)
-      window.kakao.maps.event.addListener(
-        map,
-        'click',
-        function (mouseEvent: any) {
-          const latlng = mouseEvent.latLng
-
-          marker.setPosition(latlng)
+    const script = document.createElement('script')
+    script.src =
+      '//dapi.kakao.com/v2/maps/sdk.js?appkey=553eb7ecc2f9915f03890ff6539b13ae&autoload=false&libraries=LIBRARY&libraries=services'
+    document.head.appendChild(script)
+    script.onload = () => {
+      window.kakao.maps.load(function () {
+        const container = document.getElementById('map')
+        const options = {
+          center: new window.kakao.maps.LatLng(33.450701, 126.570667),
+          level: 3
         }
-      )
-    })
-  }, [window.kakao])
+
+        const map = new window.kakao.maps.Map(container, options)
+
+        const markerPosition = new window.kakao.maps.LatLng(
+          33.450701,
+          126.570667
+        )
+
+        const marker = new window.kakao.maps.Marker({
+          position: markerPosition
+        })
+        marker.setMap(map)
+        window.kakao.maps.event.addListener(
+          map,
+          'click',
+          function (mouseEvent: any) {
+            const latlng = mouseEvent.latLng
+
+            marker.setPosition(latlng)
+          }
+        )
+      })
+    }
+
+    return () => script.remove()
+  }, [])
 
   return (
     <>
-      <Head>
-        <script
-          type="text/javascript"
-          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=553eb7ecc2f9915f03890ff6539b13ae&autoload=false&libraries=LIBRARY&libraries=services"
-        ></script>
-      </Head>
       <HeaderPart></HeaderPart>
       <ContentArticle>
         <ContentSection>
@@ -264,9 +267,11 @@ const ListDetailUI = (props: Iprops) => {
           </ContentCategory>
           <ContentPrice>{props.fetchData?.fetchUseditem.price}원</ContentPrice>
           <ContentDetailWrapper>
-            <ContentDetailText>
-              {props.fetchData?.fetchUseditem.contents}
-            </ContentDetailText>
+            <ContentDetailText
+              dangerouslySetInnerHTML={{
+                __html: props.fetchData?.fetchUseditem.contents
+              }}
+            ></ContentDetailText>
           </ContentDetailWrapper>
           <ContentCounts onClick={props.onClickReplyButton}>
             {' '}

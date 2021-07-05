@@ -1,3 +1,4 @@
+import InfiniteScroll from 'react-infinite-scroller'
 import withAuth from '../../../../commons/hocs/withAuth'
 import HeaderPart from '../header/Header.container'
 import {
@@ -26,6 +27,8 @@ import {
 interface Iprops {
   onChangeRegion: any
   regionOnChange: any
+  onLoadMore: any
+  usedItemsData: any
 }
 
 const ListFullUI = (props: Iprops) => {
@@ -90,7 +93,10 @@ const ListFullUI = (props: Iprops) => {
               </HotArticlesOption>
             ))}
           </HotArticlesNavSelect>
-          <HotArticlesNavSelectTwo disabled={!props.regionOnChange}>
+          <HotArticlesNavSelectTwo
+            disabled={!props.regionOnChange}
+            isActive={props.regionOnChange}
+          >
             <HotArticlesOptionTwo>동네를 선택하세요</HotArticlesOptionTwo>
             {optionListTwo.map((data: any) => (
               <HotArticlesOption value={data} key="">
@@ -100,83 +106,36 @@ const ListFullUI = (props: Iprops) => {
           </HotArticlesNavSelectTwo>
         </HotArticlesNavigation>
       </ListFullBodyWrapper>
-      <CardsWrap>
-        <ItemCard key="">
-          <CardLink>
-            <CardPhotoWrapper>
-              <CardPhoto src="https://dnvefa72aowie.cloudfront.net/origin/article/202106/930bb3072e828f709b1ea72d4577edbf99e7c9b1d864d11c50aa7c538f95019b.webp?q=82&s=300x300&t=crop"></CardPhoto>
-            </CardPhotoWrapper>
-            <CardDescriptionWrapper>
-              <CardTitle>안녕</CardTitle>
-              <CardPrice>1원</CardPrice>
-              <CardTag>이행</CardTag>
-              <CardLikeNameWrapper>
-                <CardHeartImage src="/heartImage.svg"></CardHeartImage>
-              </CardLikeNameWrapper>
-            </CardDescriptionWrapper>
-          </CardLink>
-        </ItemCard>
-        <ItemCard key="">
-          <CardLink>
-            <CardPhotoWrapper>
-              <CardPhoto src="https://dnvefa72aowie.cloudfront.net/origin/article/202106/930bb3072e828f709b1ea72d4577edbf99e7c9b1d864d11c50aa7c538f95019b.webp?q=82&s=300x300&t=crop"></CardPhoto>
-            </CardPhotoWrapper>
-            <CardDescriptionWrapper>
-              <CardTitle>안녕</CardTitle>
-              <CardPrice>1원</CardPrice>
-              <CardTag>이행</CardTag>
-              <CardLikeNameWrapper>
-                <CardHeartImage src="/heartImage.svg"></CardHeartImage>
-              </CardLikeNameWrapper>
-            </CardDescriptionWrapper>
-          </CardLink>
-        </ItemCard>
-        <ItemCard key="">
-          <CardLink>
-            <CardPhotoWrapper>
-              <CardPhoto src="https://dnvefa72aowie.cloudfront.net/origin/article/202106/930bb3072e828f709b1ea72d4577edbf99e7c9b1d864d11c50aa7c538f95019b.webp?q=82&s=300x300&t=crop"></CardPhoto>
-            </CardPhotoWrapper>
-            <CardDescriptionWrapper>
-              <CardTitle>안녕</CardTitle>
-              <CardPrice>1원</CardPrice>
-              <CardTag>이행</CardTag>
-              <CardLikeNameWrapper>
-                <CardHeartImage src="/heartImage.svg"></CardHeartImage>
-              </CardLikeNameWrapper>
-            </CardDescriptionWrapper>
-          </CardLink>
-        </ItemCard>
-        <ItemCard key="">
-          <CardLink>
-            <CardPhotoWrapper>
-              <CardPhoto src="https://dnvefa72aowie.cloudfront.net/origin/article/202106/930bb3072e828f709b1ea72d4577edbf99e7c9b1d864d11c50aa7c538f95019b.webp?q=82&s=300x300&t=crop"></CardPhoto>
-            </CardPhotoWrapper>
-            <CardDescriptionWrapper>
-              <CardTitle>안녕</CardTitle>
-              <CardPrice>1원</CardPrice>
-              <CardTag>이행</CardTag>
-              <CardLikeNameWrapper>
-                <CardHeartImage src="/heartImage.svg"></CardHeartImage>
-              </CardLikeNameWrapper>
-            </CardDescriptionWrapper>
-          </CardLink>
-        </ItemCard>
-        <ItemCard key="">
-          <CardLink>
-            <CardPhotoWrapper>
-              <CardPhoto src="https://dnvefa72aowie.cloudfront.net/origin/article/202106/930bb3072e828f709b1ea72d4577edbf99e7c9b1d864d11c50aa7c538f95019b.webp?q=82&s=300x300&t=crop"></CardPhoto>
-            </CardPhotoWrapper>
-            <CardDescriptionWrapper>
-              <CardTitle>안녕</CardTitle>
-              <CardPrice>1원</CardPrice>
-              <CardTag>이행</CardTag>
-              <CardLikeNameWrapper>
-                <CardHeartImage src="/heartImage.svg"></CardHeartImage>
-              </CardLikeNameWrapper>
-            </CardDescriptionWrapper>
-          </CardLink>
-        </ItemCard>
-      </CardsWrap>
+      <InfiniteScroll
+        pageStart={0}
+        loadMore={props.onLoadMore}
+        hasMore={true}
+        loader={
+          <div className="loader" key={0}>
+            Loading ...
+          </div>
+        }
+      >
+        <CardsWrap>
+          {props.usedItemsData?.fetchUseditems.map((data: any) => (
+            <ItemCard key="">
+              <CardLink href={`/clonecoding/list/${data._id}`}>
+                <CardPhotoWrapper>
+                  <CardPhoto src="https://dnvefa72aowie.cloudfront.net/origin/article/202106/930bb3072e828f709b1ea72d4577edbf99e7c9b1d864d11c50aa7c538f95019b.webp?q=82&s=300x300&t=crop"></CardPhoto>
+                </CardPhotoWrapper>
+                <CardDescriptionWrapper>
+                  <CardTitle>{data.name}</CardTitle>
+                  <CardPrice>{data.price}원</CardPrice>
+                  <CardTag>{data.tags}</CardTag>
+                  <CardLikeNameWrapper>
+                    <CardHeartImage src="/heartImage.svg"></CardHeartImage>
+                  </CardLikeNameWrapper>
+                </CardDescriptionWrapper>
+              </CardLink>
+            </ItemCard>
+          ))}
+        </CardsWrap>
+      </InfiniteScroll>
     </>
   )
 }

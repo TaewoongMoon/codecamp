@@ -9,9 +9,6 @@ const reset = css`
 
   body {
     -ms-overflow-style: none;
-    ::-webkit-scrollbar {
-      display: none;
-    }
   }
 
   @font-face {

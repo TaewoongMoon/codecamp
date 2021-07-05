@@ -1,5 +1,9 @@
 import styled from '@emotion/styled'
 
+interface Iprops {
+  isActive?: any
+}
+
 export const ListFullBodyWrapper = styled.section`
   margin-top: 120px;
   display: block;
@@ -58,7 +62,7 @@ export const HotArticlesNavSelectTwo = styled.select`
   font-size: 17px;
   letter-spacing: -0.6px;
   text-align: left;
-  background: #f8f9fa
+  background: ${(props: Iprops) => (props.isActive ? '#fff' : '#f8f9fa')}
     url('https://d1unjqcospf8gs.cloudfront.net/assets/home/articles/icon-arrow-down-ea33c4b4c74ce0aca95580c70c5ba1f464ff5833213b0fc8db5de0fab98b57e1.svg')
     no-repeat 89% 50%;
 `
