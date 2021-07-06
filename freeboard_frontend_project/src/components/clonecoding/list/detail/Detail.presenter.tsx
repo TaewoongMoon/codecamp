@@ -236,7 +236,7 @@ const ListDetailUI = (props: Iprops) => {
                   <ProfileRightFirstText>
                     {props.fetchData?.fetchUseditem.seller.name}
                   </ProfileRightFirstText>
-                  <ProfileRightSecondText>순천시 서면</ProfileRightSecondText>
+                  <ProfileRightSecondText>부산시 서면</ProfileRightSecondText>
                 </ProfileRightWrapper>
               </ProfileLefterWrapper>
               <TemperatureWrapper>
