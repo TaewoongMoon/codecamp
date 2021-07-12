@@ -28,7 +28,7 @@ function MyApp({ Component, pageProps }: { Component: any; pageProps: any }) {
   const [doubleReply, setDoubleReply] = useState('')
   console.log('publicRuntimeConfig', publicRuntimeConfig)
   const uploadLink = createUploadLink({
-    uri: 'https://backend.codebootcamp.co.kr/graphql06',
+    uri: 'https://backend.codebootcamp.co.kr/graphql',
     headers: {
       authorization: `Bearer ${accessToken || ''}`
     },
