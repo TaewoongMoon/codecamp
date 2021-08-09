@@ -76,6 +76,7 @@ export default function CommentPage() {
       tempStars[3] = true
       tempStars[4] = true
     }
+    console.log('event.target', event.target.id)
     setNumberofStars(tempStars)
     setRegisterPackage({
       ...registerPackage,
